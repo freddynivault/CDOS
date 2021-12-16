@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PagesController!{% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    </style>
+
+    <form>
+        <div class="col-sm-4 col-xs-12">
+            <div class="form-group">
+                <h1>Créer un compte</h1>
+                <div class="inputs">
+                    <select name="user" id="user-select">
+                    <option value="">Type d'utilisateurs</option>
+                    <option value="candidat">Candidat</option>
+                        <option value="as">Admin Structure</option>
+                    </select>
+
+                    <input type="text" placeholder="Prenom" />
+                    <input type="text" placeholder="Nom">
+                    <input type="email" placeholder="Email" />
+                    <input type="password" placeholder="Mot de passe">
+                    <input type="password" placeholder="Confirmer votre mot de passe">
+                </div>
+
+                <div align="center">
+                    <button type="submit">Créer un compte</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+{% endblock %}

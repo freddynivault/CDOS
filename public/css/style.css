@@ -1,0 +1,120 @@
+/**
+BODY
+ */
+
+body {
+    background-color: white;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+/**
+NAVBAR
+ */
+
+.navbar-expand-lg .navbar-nav .nav-link {
+    padding: 1rem 0.5rem;
+    font-size: 0.9rem;
+    position: relative;
+}
+
+.navbar-expand-lg .navbar-nav .nav-link:hover {
+    border-top: 3px solid white;
+    border-color: #ee334e;
+}
+
+.navbar-toggler {
+    background: #DDDDDD;
+    border: none;
+    padding: 10px 6px;
+    outline: none;
+}
+.navbar-toggler span{
+    display: block;
+    width: 22px;
+    height: 2px;
+    border: 1px;
+    background: #FFFFFF;
+}
+.navbar-toggler span + span{
+    margin-top: 4px;
+    width: 18px;
+    margin-left: 4px;
+}
+
+.navbar-toggler span + span + span{
+    width: 10px;
+    margin-left: 10px;
+}
+
+/**
+FORMULAIRE
+ */
+
+form {
+    margin-top: 100px;
+    background-color: #fff;
+    padding: 40px 60px;
+    border-radius: 10px;
+    min-width: 300px;
+    background-image: url("/img/coq.png");
+    background-repeat: no-repeat;
+}
+form .form-group{
+    text-align: center;
+    position: relative;
+    top:50%;
+    left: 100%;
+}
+form h1{
+    color: #0a1e47;
+    text-align:center;
+    margin-bottom: 25px;
+}
+
+form .inputs {
+    display: flex;
+    flex-direction: column;
+}
+form .inputs input[type='email'], input[type='password'], input[type='text']{
+    padding: 15px;
+    border:none;
+    border-radius: 5px;
+    background-color:#f2f2f2;
+    outline:none;
+    margin-bottom: 25px;
+}
+form .inputs input[type='text']{
+    padding: 15px;
+}
+form .inputs select{
+    padding: 15px;
+    margin-bottom: 25px;
+}
+form .create{
+    font-size: 14px;
+    margin-bottom: 20px;
+    color: #ee334e;
+    margin-top: 20px;
+}
+
+form .mdp {
+    font-size: 14px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    color: #ee334e;
+    padding-left: 50px;
+}
+
+form button{
+    padding: 15px 25px;
+    border-radius: 5px;
+    border:none;
+    font-size: 15px;
+    color: #fff;
+    background-color: #0a1e47;
+    outline:none;
+    cursor:pointer;
+    margin-bottom: 200px;
+    margin-top: 30px;
+}
