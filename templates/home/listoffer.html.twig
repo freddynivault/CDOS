@@ -10,7 +10,7 @@
                 <div class="card_body">
                     <div class="row d-flex">
                         <div class="col-sm-4 createSegment">
-                         <a class="btn dim_button create_new"> <span class="glyphicon glyphicon-plus"></span> Create New</a>
+                         <a class="btn dim_button create_new"> <span class="glyphicon glyphicon-plus"></span> Ajouter une nouvelle offre</a>
                         </div>
                         <div class="col-sm-8 add_flex">
                             <div class="form-group searchInput">
@@ -23,508 +23,195 @@
                         <table style="width:100%;" id="filtertable" class="table cust-datatable dataTable no-footer ">
                             <thead>
                                 <tr>
-                                    <th style="min-width:50px;">ID</th>
-                                    <th style="min-width:150px;">Name</th>
-                                    <th style="min-width:150px;">Mode</th>
-                                    <th style="min-width:100px;">Event</th>
-                                    <th style="min-width:100px;">Date</th>
-                                    <th style="min-width:150px;">Status</th>
+                                    <th style="min-width:150px;">Titre de l'offre</th>
+                                    <th style="min-width:150px;">Nom de la structure</th>
+                                    <th style="min-width:150px;">Description de l'offre</th>
+                                    <th style="min-width:100px;">Type de contrat</th>
+                                    <th style="min-width:100px;">Date de publication</th>
+                                    <th style="min-width:150px;">Localisation</th>
                                     <th style="min-width:150px;">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>1</td>
-                                    <td>Dummy</td>
-                                    <td><span class="mode mode_process">Processing</span></td>
-                                    <td>Journey</td>
-                                    <td>17-Apr-2020</td>
-                                    <td><span class="mode mode_on">Active</span></td>
+
+                                    <td><b>Chargé de mission vie associative</b></td>
+                                    <td>CDOS Vienne</td>
+                                    <td>As d'activité : Industrie, Logistique, Transport, Bâtiment Travaux Public, Tertiaire</td>
+                                    <td><span class="mode mode_process">CDD</td>
+                                    <td>17-Jan-2022</td>
+                                    <td>Poitiers</span></td>
                                     <td>
-                                        <div class="btn-group">
-                                            <a class="dropdown-toggle dropdown_icon" data-toggle="dropdown">
-                                            <i class="fa fa-pencil-square-o"></i> </a>
-                                            <ul class="dropdown-menu">
-                                                <li>
-                                                    <a href="#" target="_blank">
-                                                        Dummy Details
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" target="_blank">
-                                                        Dummy Details
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" target="_blank">
-                                                        Dummy Details
-                                                    </a>
-                                                </li>
-                                            </ul>
+                                        <div class="btn-group edit">
+                                            <abbr title="Modifier"><a href="#"><i class="bi bi-pencil-fill" href="#"></i></a></abbr>
                                         </div>
-                                        <span class="actionCust">
-                                            <a href="#"><i class="fa fa-line-chart"></i></a>
-                                        </span>
-                                        <div class="btn-group">
-                                            <a class="dropdown-toggle dropdown_icon" data-toggle="dropdown">
-                                                <i class="fa fa-ellipsis-h"></i>
-                                            </a>
-                                            <ul class="dropdown-menu dropdown_more">
-                                                <li>
-                                                    <a href="#" target="_black">
-                                                        <i class="fa fa-clone"></i>Duplicate
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" target="_black">
-                                                        <i class="fa fa-trash"></i> Delete
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" target="_black">
-                                                        <i class="fa fa-list"></i>Activity</a>
-                                                    </li>
-                                            </ul>
+
+                                        <div class="btn-group delete">
+                                            <abbr title="Supprimer"><a href="#"><i class="bi bi-trash-fill"></i></a></abbr>
                                         </div>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>1</td>
-                                    <td>Dummy</td>
-                                    <td><span class="mode mode_done">Completed</span></td>
-                                    <td>Journey</td>
-                                    <td>17-Apr-2020</td>
-                                    <td><span class="mode mode_off">Inactive</span></td>
+
+                                    <td><b>Chargé de mission suivi stratégique</b></td>
+                                    <td>Direction affaires générales</td>
                                     <td>
-                                        <div class="btn-group">
-                                            <a class="dropdown-toggle dropdown_icon" data-toggle="dropdown">
-                                            <i class="fa fa-pencil-square-o"></i> </a>
-                                            <ul class="dropdown-menu">
-                                                <li>
-                                                    <a href="#" target="_blank">
-                                                        Dummy Details
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" target="_blank">
-                                                        Dummy Details
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" target="_blank">
-                                                        Dummy Details
-                                                    </a>
-                                                </li>
-                                            </ul>
+                                        Adéquat t'accompagne dans ta recherche d'emploi (intérim, CDD, CDI) et te propose + de 5000 jobs dans tous les secteurs d'activité : Industrie, Logistique, Transport, Bâtiment Travaux Public, Tertiaire</td>
+                                    <td><span class="mode mode_done">CDI</td>
+                                    <td>17-Jan-2022</td>
+                                    <td>Niort</span></td>
+                                    <td>
+                                        <div class="btn-group edit">
+                                            <abbr title="Modifier"><a href="#"><i class="bi bi-pencil-fill" href="#"></i></a></abbr>
                                         </div>
-                                        <span class="actionCust">
-                                            <a href="#"><i class="fa fa-line-chart"></i></a>
-                                        </span>
-                                        <div class="btn-group">
-                                            <a class="dropdown-toggle dropdown_icon" data-toggle="dropdown">
-                                                <i class="fa fa-ellipsis-h"></i>
-                                            </a>
-                                            <ul class="dropdown-menu dropdown_more">
-                                                <li>
-                                                    <a href="#" target="_black">
-                                                        <i class="fa fa-clone"></i>Duplicate
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" target="_black">
-                                                        <i class="fa fa-trash"></i> Delete
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" target="_black">
-                                                        <i class="fa fa-list"></i>Activity</a>
-                                                    </li>
-                                            </ul>
+
+                                        <div class="btn-group delete">
+                                            <abbr title="Supprimer"><a href="#"><i class="bi bi-trash-fill"></i></a></abbr>
                                         </div>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>1</td>
-                                    <td>Dummy</td>
-                                    <td><span class="mode mode_process">Processing</span></td>
-                                    <td>Journey</td>
-                                    <td>17-Apr-2020</td>
-                                    <td><span class="mode mode_on">Active</span></td>
+
+                                    <td><b>Chargé de mission suivi stratégique</b></td>
+                                    <td>Direction affaires générales</td>
+                                    <td>Direction affaires générales</td>
+                                    <td><span class="mode mode_process">CDD</td>
+                                    <td>17-Jan-2022</td>
+                                    <td>Poitiers</span></td>
                                     <td>
-                                        <div class="btn-group">
-                                            <a class="dropdown-toggle dropdown_icon" data-toggle="dropdown">
-                                            <i class="fa fa-pencil-square-o"></i> </a>
-                                            <ul class="dropdown-menu">
-                                                <li>
-                                                    <a href="#" target="_blank">
-                                                        Dummy Details
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" target="_blank">
-                                                        Dummy Details
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" target="_blank">
-                                                        Dummy Details
-                                                    </a>
-                                                </li>
-                                            </ul>
+                                        <div class="btn-group edit">
+                                            <abbr title="Modifier"><a href="#"><i class="bi bi-pencil-fill" href="#"></i></a></abbr>
                                         </div>
-                                        <span class="actionCust">
-                                            <a href="#"><i class="fa fa-line-chart"></i></a>
-                                        </span>
-                                        <div class="btn-group">
-                                            <a class="dropdown-toggle dropdown_icon" data-toggle="dropdown">
-                                                <i class="fa fa-ellipsis-h"></i>
-                                            </a>
-                                            <ul class="dropdown-menu dropdown_more">
-                                                <li>
-                                                    <a href="#" target="_black">
-                                                        <i class="fa fa-clone"></i>Duplicate
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" target="_black">
-                                                        <i class="fa fa-trash"></i> Delete
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" target="_black">
-                                                        <i class="fa fa-list"></i>Activity</a>
-                                                    </li>
-                                            </ul>
+
+                                        <div class="btn-group delete">
+                                            <abbr title="Supprimer"><a href="#"><i class="bi bi-trash-fill"></i></a></abbr>
                                         </div>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>1</td>
-                                    <td>Dummy</td>
-                                    <td><span class="mode mode_done">Completed</span></td>
-                                    <td>Journey</td>
-                                    <td>17-Apr-2020</td>
-                                    <td><span class="mode mode_off">Inactive</span></td>
+
+                                    <td><b>Chargé de mission suivi stratégique</b></td>
+                                    <td>Direction affaires générales</td>
+                                    <td>Direction affaires générales</td>
+                                    <td><span class="mode mode_process">CDD</td>
+                                    <td>17-Jan-2022</td>
+                                    <td>Poitiers</span></td>
                                     <td>
-                                        <div class="btn-group">
-                                            <a class="dropdown-toggle dropdown_icon" data-toggle="dropdown">
-                                            <i class="fa fa-pencil-square-o"></i> </a>
-                                            <ul class="dropdown-menu">
-                                                <li>
-                                                    <a href="#" target="_blank">
-                                                        Dummy Details
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" target="_blank">
-                                                        Dummy Details
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" target="_blank">
-                                                        Dummy Details
-                                                    </a>
-                                                </li>
-                                            </ul>
+                                        <div class="btn-group edit">
+                                            <abbr title="Modifier"><a href="#"><i class="bi bi-pencil-fill" href="#"></i></a></abbr>
                                         </div>
-                                        <span class="actionCust">
-                                            <a href="#"><i class="fa fa-line-chart"></i></a>
-                                        </span>
-                                        <div class="btn-group">
-                                            <a class="dropdown-toggle dropdown_icon" data-toggle="dropdown">
-                                                <i class="fa fa-ellipsis-h"></i>
-                                            </a>
-                                            <ul class="dropdown-menu dropdown_more">
-                                                <li>
-                                                    <a href="#" target="_black">
-                                                        <i class="fa fa-clone"></i>Duplicate
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" target="_black">
-                                                        <i class="fa fa-trash"></i> Delete
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" target="_black">
-                                                        <i class="fa fa-list"></i>Activity</a>
-                                                    </li>
-                                            </ul>
+
+                                        <div class="btn-group delete">
+                                            <abbr title="Supprimer"><a href="#"><i class="bi bi-trash-fill"></i></a></abbr>
                                         </div>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>1</td>
-                                    <td>Dummy</td>
-                                    <td><span class="mode mode_process">Processing</span></td>
-                                    <td>Journey</td>
-                                    <td>17-Apr-2020</td>
-                                    <td><span class="mode mode_on">Active</span></td>
+
+                                    <td><b>Chargé de mission suivi stratégique</b></td>
+                                    <td>Direction affaires générales</td>
+                                    <td>Direction affaires générales</td>
+                                    <td><span class="mode mode_process">CDD</td>
+                                    <td>17-Jan-2022</td>
+                                    <td>Poitiers</span></td>
                                     <td>
-                                        <div class="btn-group">
-                                            <a class="dropdown-toggle dropdown_icon" data-toggle="dropdown">
-                                            <i class="fa fa-pencil-square-o"></i> </a>
-                                            <ul class="dropdown-menu">
-                                                <li>
-                                                    <a href="#" target="_blank">
-                                                        Dummy Details
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" target="_blank">
-                                                        Dummy Details
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" target="_blank">
-                                                        Dummy Details
-                                                    </a>
-                                                </li>
-                                            </ul>
+                                        <div class="btn-group edit">
+                                            <abbr title="Modifier"><a href="#"><i class="bi bi-pencil-fill" href="#"></i></a></abbr>
                                         </div>
-                                        <span class="actionCust">
-                                            <a href="#"><i class="fa fa-line-chart"></i></a>
-                                        </span>
-                                        <div class="btn-group">
-                                            <a class="dropdown-toggle dropdown_icon" data-toggle="dropdown">
-                                                <i class="fa fa-ellipsis-h"></i>
-                                            </a>
-                                            <ul class="dropdown-menu dropdown_more">
-                                                <li>
-                                                    <a href="#" target="_black">
-                                                        <i class="fa fa-clone"></i>Duplicate
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" target="_black">
-                                                        <i class="fa fa-trash"></i> Delete
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" target="_black">
-                                                        <i class="fa fa-list"></i>Activity</a>
-                                                    </li>
-                                            </ul>
+
+                                        <div class="btn-group delete">
+                                            <abbr title="Supprimer"><a href="#"><i class="bi bi-trash-fill"></i></a></abbr>
                                         </div>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>1</td>
-                                    <td>Dummy</td>
-                                    <td><span class="mode mode_done">Completed</span></td>
-                                    <td>Journey</td>
-                                    <td>17-Apr-2020</td>
-                                    <td><span class="mode mode_off">Inactive</span></td>
+
+                                    <td><b>Chargé de mission suivi stratégique</b></td>
+                                    <td>Direction affaires générales</td>
+                                    <td>Direction affaires générales</td>
+                                    <td><span class="mode mode_process">CDD</td>
+                                    <td>17-Jan-2022</td>
+                                    <td>Poitiers</span></td>
                                     <td>
-                                        <div class="btn-group">
-                                            <a class="dropdown-toggle dropdown_icon" data-toggle="dropdown">
-                                            <i class="fa fa-pencil-square-o"></i> </a>
-                                            <ul class="dropdown-menu">
-                                                <li>
-                                                    <a href="#" target="_blank">
-                                                        Dummy Details
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" target="_blank">
-                                                        Dummy Details
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" target="_blank">
-                                                        Dummy Details
-                                                    </a>
-                                                </li>
-                                            </ul>
+                                        <div class="btn-group edit">
+                                            <abbr title="Modifier"><a href="#"><i class="bi bi-pencil-fill" href="#"></i></a></abbr>
                                         </div>
-                                        <span class="actionCust">
-                                            <a href="#"><i class="fa fa-line-chart"></i></a>
-                                        </span>
-                                        <div class="btn-group">
-                                            <a class="dropdown-toggle dropdown_icon" data-toggle="dropdown">
-                                                <i class="fa fa-ellipsis-h"></i>
-                                            </a>
-                                            <ul class="dropdown-menu dropdown_more">
-                                                <li>
-                                                    <a href="#" target="_black">
-                                                        <i class="fa fa-clone"></i>Duplicate
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" target="_black">
-                                                        <i class="fa fa-trash"></i> Delete
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" target="_black">
-                                                        <i class="fa fa-list"></i>Activity</a>
-                                                    </li>
-                                            </ul>
+
+                                        <div class="btn-group delete">
+                                            <abbr title="Supprimer"><a href="#"><i class="bi bi-trash-fill"></i></a></abbr>
                                         </div>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>1</td>
-                                    <td>Dummy</td>
-                                    <td><span class="mode mode_process">Processing</span></td>
-                                    <td>Journey</td>
-                                    <td>17-Apr-2020</td>
-                                    <td><span class="mode mode_on">Active</span></td>
+
+                                    <td><b>Chargé de mission suivi stratégique</b></td>
+                                    <td>Direction affaires générales</td>
+                                    <td>Direction affaires générales</td>
+                                    <td><span class="mode mode_process">CDD</td>
+                                    <td>17-Jan-2022</td>
+                                    <td>Poitiers</span></td>
                                     <td>
-                                        <div class="btn-group">
-                                            <a class="dropdown-toggle dropdown_icon" data-toggle="dropdown">
-                                            <i class="fa fa-pencil-square-o"></i> </a>
-                                            <ul class="dropdown-menu">
-                                                <li>
-                                                    <a href="#" target="_blank">
-                                                        Dummy Details
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" target="_blank">
-                                                        Dummy Details
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" target="_blank">
-                                                        Dummy Details
-                                                    </a>
-                                                </li>
-                                            </ul>
+                                        <div class="btn-group edit">
+                                            <abbr title="Modifier"><a href="#"><i class="bi bi-pencil-fill" href="#"></i></a></abbr>
                                         </div>
-                                        <span class="actionCust">
-                                            <a href="#"><i class="fa fa-line-chart"></i></a>
-                                        </span>
-                                        <div class="btn-group">
-                                            <a class="dropdown-toggle dropdown_icon" data-toggle="dropdown">
-                                                <i class="fa fa-ellipsis-h"></i>
-                                            </a>
-                                            <ul class="dropdown-menu dropdown_more">
-                                                <li>
-                                                    <a href="#" target="_black">
-                                                        <i class="fa fa-clone"></i>Duplicate
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" target="_black">
-                                                        <i class="fa fa-trash"></i> Delete
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" target="_black">
-                                                        <i class="fa fa-list"></i>Activity</a>
-                                                    </li>
-                                            </ul>
+
+                                        <div class="btn-group delete">
+                                            <abbr title="Supprimer"><a href="#"><i class="bi bi-trash-fill"></i></a></abbr>
                                         </div>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>1</td>
-                                    <td>Dummy</td>
-                                    <td><span class="mode mode_done">Completed</span></td>
-                                    <td>Journey</td>
-                                    <td>17-Apr-2020</td>
-                                    <td><span class="mode mode_off">Inactive</span></td>
+
+                                    <td><b>Chargé de mission suivi stratégique</b></td>
+                                    <td>Direction affaires générales</td>
+                                    <td>Direction affaires générales</td>
+                                    <td><span class="mode mode_process">CDD</td>
+                                    <td>17-Jan-2022</td>
+                                    <td>Poitiers</span></td>
                                     <td>
-                                        <div class="btn-group">
-                                            <a class="dropdown-toggle dropdown_icon" data-toggle="dropdown">
-                                            <i class="fa fa-pencil-square-o"></i> </a>
-                                            <ul class="dropdown-menu">
-                                                <li>
-                                                    <a href="#" target="_blank">
-                                                        Dummy Details
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" target="_blank">
-                                                        Dummy Details
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" target="_blank">
-                                                        Dummy Details
-                                                    </a>
-                                                </li>
-                                            </ul>
+                                        <div class="btn-group edit">
+                                            <abbr title="Modifier"><a href="#"><i class="bi bi-pencil-fill" href="#"></i></a></abbr>
                                         </div>
-                                        <span class="actionCust">
-                                            <a href="#"><i class="fa fa-line-chart"></i></a>
-                                        </span>
-                                        <div class="btn-group">
-                                            <a class="dropdown-toggle dropdown_icon" data-toggle="dropdown">
-                                                <i class="fa fa-ellipsis-h"></i>
-                                            </a>
-                                            <ul class="dropdown-menu dropdown_more">
-                                                <li>
-                                                    <a href="#" target="_black">
-                                                        <i class="fa fa-clone"></i>Duplicate
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" target="_black">
-                                                        <i class="fa fa-trash"></i> Delete
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" target="_black">
-                                                        <i class="fa fa-list"></i>Activity</a>
-                                                    </li>
-                                            </ul>
+
+                                        <div class="btn-group delete">
+                                            <abbr title="Supprimer"><a href="#"><i class="bi bi-trash-fill"></i></a></abbr>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+
+                                    <td><b>Chargé de mission suivi stratégique</b></td>
+                                    <td>Direction affaires générales</td>
+                                    <td>Direction affaires générales</td>
+                                    <td><span class="mode mode_process">CDD</td>
+                                    <td>17-Jan-2022</td>
+                                    <td>Poitiers</span></td>
+                                    <td>
+                                        <div class="btn-group edit">
+                                            <abbr title="Modifier"><a href="#"><i class="bi bi-pencil-fill" href="#"></i></a></abbr>
+                                        </div>
+
+                                        <div class="btn-group delete">
+                                            <abbr title="Supprimer"><a href="#"><i class="bi bi-trash-fill"></i></a></abbr>
                                         </div>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>1</td>
-                                    <td>Dummy</td>
-                                    <td><span class="mode mode_process">Processing</span></td>
-                                    <td>Journey</td>
-                                    <td>17-Apr-2020</td>
-                                    <td><span class="mode mode_on">Active</span></td>
+
+                                    <td><b>ah</b></td>
+                                    <td>Direction affaires générales</td>
+                                    <td>Direction affaires générales</td>
+                                    <td><span class="mode mode_process">CDD</td>
+                                    <td>17-Jan-2022</td>
+                                    <td>Poitiers</span></td>
                                     <td>
-                                        <div class="btn-group">
-                                            <a class="dropdown-toggle dropdown_icon" data-toggle="dropdown">
-                                            <i class="fa fa-pencil-square-o"></i> </a>
-                                            <ul class="dropdown-menu">
-                                                <li>
-                                                    <a href="#" target="_blank">
-                                                        Dummy Details
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" target="_blank">
-                                                        Dummy Details
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" target="_blank">
-                                                        Dummy Details
-                                                    </a>
-                                                </li>
-                                            </ul>
+                                        <div class="btn-group edit">
+                                            <abbr title="Modifier"><a href="#"><i class="bi bi-pencil-fill" href="#"></i></a></abbr>
                                         </div>
-                                        <span class="actionCust">
-                                            <a href="#"><i class="fa fa-line-chart"></i></a>
-                                        </span>
-                                        <div class="btn-group">
-                                            <a class="dropdown-toggle dropdown_icon" data-toggle="dropdown">
-                                                <i class="fa fa-ellipsis-h"></i>
-                                            </a>
-                                            <ul class="dropdown-menu dropdown_more">
-                                                <li>
-                                                    <a href="#" target="_black">
-                                                        <i class="fa fa-clone"></i>Duplicate
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" target="_black">
-                                                        <i class="fa fa-trash"></i> Delete
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" target="_black">
-                                                        <i class="fa fa-list"></i>Activity</a>
-                                                    </li>
-                                            </ul>
+
+                                        <div class="btn-group delete">
+                                            <abbr title="Supprimer"><a href="#"><i class="bi bi-trash-fill"></i></a></abbr>
                                         </div>
                                     </td>
                                 </tr>
@@ -573,15 +260,9 @@
 
         });
 
-
-
         $("#filterbox" ).on('keyup change', function () {
             dataTable.search(this.value).draw();
         });
-
-
-
-
 
     </script>
 
