@@ -8,22 +8,57 @@
         .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
     </style>
 
+    <script>
+        function showUser(){
+            var selectBox =document.getElementById('user');
+            var userInput =selectBox.options[selectBox.selectedIndex].value;
+
+            if (userInput =='candidat'){
+                //document.getElementById('formCandidat').style.visibility='visible';
+                //document.getElementById('formAdminS').style.visibility='hidden';
+                document.getElementById('formCandidat').style.display='block';
+                document.getElementById('formAdminS').style.display='none';
+            }
+            else if (userInput =='adminS'){
+                //document.getElementById('formAdminS').style.visibility='visible';
+                //document.getElementById('formCandidat').style.visibility='hidden';
+                document.getElementById('formAdminS').style.display='block';
+                document.getElementById('formCandidat').style.display='none';
+            }
+            return false;
+
+
+        }
+    </script>
     <form>
         <div class="col-sm-4 col-xs-12">
             <div class="form-group">
                 <h1>Créer un compte</h1>
                 <div class="inputs">
-                    <select name="user" id="user-select">
-                    <option value="">Type d'utilisateurs</option>
-                    <option value="candidat">Candidat</option>
-                        <option value="as">Admin Structure</option>
+                    <label for="user">Choisissez le type d'utilisateur</label>
+                    <select name="user" id="user" onchange="return showUser();">
+                        <option value="typeU">Type d'utilisateur</option>
+                        <option value="candidat">Candidat</option>
+                        <option value="adminS">Admin Structure</option>
                     </select>
+                    <div id="formCandidat" class="formCandidat">
+                        <input type="text" placeholder="Prenom" />
+                        <input type="text" placeholder="Nom">
+                        <input type="email" placeholder="Email" />
+                        <input type="password" placeholder="Mot de passe">
+                        <input type="password" placeholder="Confirmer votre mot de passe">
+                    </div>
 
-                    <input type="text" placeholder="Prenom" />
-                    <input type="text" placeholder="Nom">
-                    <input type="email" placeholder="Email" />
-                    <input type="password" placeholder="Mot de passe">
-                    <input type="password" placeholder="Confirmer votre mot de passe">
+                    <div id="formAdminS" class="formAdminS">
+                        <input type="text" placeholder="Nom de la structure" />
+                        <input type="text" placeholder="Description">
+                        <input type="email" placeholder="Email" />
+                        <br>
+                        <label for="logo">Déposez votre logo : </label>
+                        <input type="file" id="logo"/>
+                        <input type="password" placeholder="Mot de passe">
+                        <input type="password" placeholder="Confirmer votre mot de passe">
+                    </div>
                 </div>
 
                 <div align="center">
@@ -32,5 +67,4 @@
             </div>
         </div>
     </form>
-
 {% endblock %}
