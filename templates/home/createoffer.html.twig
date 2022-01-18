@@ -1,0 +1,181 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PagesController!{% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    </style>
+
+<form>
+    <div class = "container">
+        <div class = "py-5 text-center">
+            <h2>Titre de l'offre</h2>
+            <p class ="lead">Veuillez renseigner les informations concernant l'offre que vous souhaitez ajouter</p>
+        </div>
+    </div>
+
+    <div class ="container">
+        <div class ="row g-3">
+        <h4>Structure</h4>
+        <div class ="col-sm-6">
+            <label for ="nameStructure" class ="form-label"> Nom de la structure</label>
+            <input id="nameStructure" placeholder="CDOS Vienne" type="text" class="form-control">
+            <div class="invalid-feedback">Veuillez renseigner le nom de la structure</div>
+        </div>
+        <div class ="col-sm-6">
+            <div class="mb-3">
+                <label for ="logoStructure" class ="form-label">Logo de la structure</label>
+                <input class="form-control" type="file" id="formFile">
+            </div>
+        </div>
+            <div class ="col-12">
+                <div class="mb-3">
+                    <label for ="descriptionStructure" class ="form-label">Description de la structure</label>
+                    <textarea class="form-control" placeholder="Description ..." id="floatingTextarea"></textarea>
+
+                </div>
+            </div>
+
+            <hr class="my-4">
+
+
+            <div class ="row mt-3">
+                <div class="col col-md-6">
+                    <h4>Poste proposé</h4>
+                    <div class="mb-3">
+                        <label for ="intitulePoste" class ="form-label">Intitulé du poste</label>
+                        <input id="intitulePoste" placeholder="Chargé(e) de mision" type="text" class="form-control" size="10">
+                        <div class="invalid-feedback">Veuillez l'intitulé du poste</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for ="descriptionPoste" class ="form-label">Description du poste</label>
+                        <input id="descriptionPosteStructure" placeholder="..." type="text" class="form-control">
+                        <div class="invalid-feedback">Veuillez renseigner la description du poste</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for ="missionPoste" class ="form-label">Missions</label>
+                        <input id="missionPoste" placeholder="..." type="text" class="form-control">
+                        <div class="invalid-feedback">Veuillez renseigner les missions pour ce poste</div>
+                    </div>
+                </div>
+                <div class="col col-md-6">
+                    <div class="container">
+                        <div class="row">
+                    <h4>Profil recherché</h4>
+                    <div class="col-sm">
+                        <label for ="formation" class ="form-label">Formation (Diplômes)</label>
+                        <input id="formation" placeholder="Bac+5" type="text" class="form-control">
+                        <div class="invalid-feedback">Veuillez renseigner la formation pour le profil recherché</div>
+                    </div>
+                    <div class="col">
+                        <label for ="experience" class ="form-label">Expérience</label>
+                        <input id="experience" placeholder="2 ans" type="text" class="form-control">
+                        <div class="invalid-feedback">Veuillez renseigner l'expérience pour le profil recherché</div>
+                    </div>
+                </div>
+                </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm">
+                                <label for ="competence" class ="form-label">Compétences</label>
+                                <input id="competence" placeholder="Autonomie/Travail d'équipe" type="text" class="form-control">
+                                <div class="invalid-feedback">Veuillez renseigner les compétences pour le profil recherché</div>
+                            </div>
+                            <div class="col">
+                                <label for ="qualite" class ="form-label">Qualités</label>
+                                <input id="qualite" placeholder="CDOS Vienne" type="text" class="form-control">
+                                <div class="invalid-feedback">Veuillez renseigner les qualités pour le profil recherché</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm">
+                                <label for ="outils" class ="form-label">Outils à maitriser</label>
+                                <input id="outils" placeholder="CDOS Vienne" type="text" class="form-control">
+                                <div class="invalid-feedback">Veuillez renseigner les outils à maitriser pour le profil recherché</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="my-4">
+
+            <div class ="row mt-3">
+                <div class="col col-md-6">
+                    <h4>Détails du contrat</h4>
+                    <div class="mb-3">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                            <label class="form-check-label" for="inlineRadio1">CDI</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                            <label class="form-check-label" for="inlineRadio2">CDD</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"
+                            <label class="form-check-label" for="inlineRadio3">Stage</label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for ="descriptionPoste" class ="form-label">Description du poste</label>
+                        <input id="descriptionPosteStructure" placeholder="..." type="text" class="form-control">
+                        <div class="invalid-feedback">Veuillez renseigner la description du poste</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for ="datePublication" class ="form-label">Date de publication</label>
+                        <input id="datePublication" placeholder="..." type="text" class="form-control">
+                        <div class="invalid-feedback">Veuillez renseigner les missions pour ce poste</div>
+                    </div>
+                </div>
+                <div class="col col-md-6">
+                    <div class="container">
+                        <div class="row">
+                            <h4>Profil recherché</h4>
+                            <div class="col-sm">
+                                <div id="date-picker-example" class="md-form md-outline input-with-post-icon datepicker">
+                                <label for ="formation" class ="form-label">Date de publication</label>
+                                <input placeholder="Select date" type="text" id="example" class="fas fa-calendar input-prefix" tabindex=0>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <label for ="experience" class ="form-label">Expérience</label>
+                                <input id="experience" placeholder="2 ans" type="text" class="form-control">
+                                <div class="invalid-feedback">Veuillez renseigner l'expérience pour le profil recherché</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm">
+                                <label for ="competence" class ="form-label">Compétences</label>
+                                <input id="competence" placeholder="Autonomie/Travail d'équipe" type="text" class="form-control">
+                                <div class="invalid-feedback">Veuillez renseigner les compétences pour le profil recherché</div>
+                            </div>
+                            <div class="col">
+                                <label for ="qualite" class ="form-label">Qualités</label>
+                                <input id="qualite" placeholder="CDOS Vienne" type="text" class="form-control">
+                                <div class="invalid-feedback">Veuillez renseigner les qualités pour le profil recherché</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm">
+                                <label for ="outils" class ="form-label">Outils à maitriser</label>
+                                <input id="outils" placeholder="CDOS Vienne" type="text" class="form-control">
+                                <div class="invalid-feedback">Veuillez renseigner les outils à maitriser pour le profil recherché</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+       </div>
+    </div>
+</form>
+{% endblock %}
