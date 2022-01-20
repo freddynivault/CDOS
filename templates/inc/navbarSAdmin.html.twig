@@ -33,14 +33,28 @@
                 <li class="nav-item text-uppercase px-5">
                     <a class="nav-link text-light" href="{{ path ('app_offers') }}">
                         <i class="bi bi-file-earmark-fill" style="font-size:  16px;"></i>
-                        Nos offres
+                        Les offres
                     </a>
                 </li>
 
                 <li class="nav-item text-uppercase px-5">
                     <a class="nav-link text-light" href="#">
                         <i class="bi bi-pen-fill bi-10px" style="font-size:  16px;"></i>
-                        Candidature spontanée
+                        Les Candidatures spontanées
+                    </a>
+                </li>
+
+                <li class="nav-item text-uppercase px-5">
+                    <a class="nav-link text-light" href="#">
+                        <i class="bi bi-person-lines-fill" style="font-size:  16px;"></i>
+                        Les candidatures
+                    </a>
+                </li>
+
+                <li class="nav-item text-uppercase px-5">
+                    <a class="nav-link text-light" href="#">
+                        <i class="bi bi-person-bounding-box"" style="font-size:  16px;"></i>
+                        Les utilisateurs
                     </a>
                 </li>
 
@@ -52,8 +66,8 @@
                 <i class="bi bi-person-circle"></i>
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" href="{{ path('app_createaccount') }}">Créer un compte</a></li>
-                <li><a class="dropdown-item" href="{{ path('app_connect') }}">Se connecter</a></li>
+                <li><a class="dropdown-item" href="{{ path('app_createaccountSAdmin') }}">Créer un compte</a></li>
+                <li><a class="dropdown-item" href="#">Se déconnecter</a></li>
             </ul>
         </div>
     </div>

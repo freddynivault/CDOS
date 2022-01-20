@@ -48,5 +48,20 @@ class HomeController extends AbstractController
         return $this->render ('home/connect.html.twig');
     }
 
+    /**
+     * @Route("/createaccountSAdmin", name="app_createaccountSAdmin")
+     */
+    public function createaccountSAdmin(): Response
+    {
+        return $this->render ('home/createaccountSAdmin.html.twig');
+    }
+
+    /**
+     * @Route("/passforget", name="app_passforget")
+     */
+    public function passforget(): Response
+    {
+        return $this->render ('home/passforget.html.twig');
+    }
 
 }
