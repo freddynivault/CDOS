@@ -21,7 +21,7 @@
             <span></span>
             <span></span>
         </button>
-        <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent" >
+        <div class="justify-content-between" id="navbarSupportedContent" >
             <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
 
                 <li class="nav-item text-uppercase px-5">
@@ -52,15 +52,16 @@
                 </li>
 
             </ul>
-            <div class="btn-group dropstart">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="bi bi-person-circle"></i>
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="{{ path('app_createaccount') }}">Créer un compte</a></li>
-                    <li><a class="dropdown-item" href="{{ path('app_connect') }}">Se connecter</a></li>
-                </ul>
-            </div>
+
+        </div>
+        <div class="btn-group dropstart">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-person-circle"></i>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="{{ path('app_createaccount') }}">Créer un compte</a></li>
+                <li><a class="dropdown-item" href="{{ path('app_connect') }}">Se connecter</a></li>
+            </ul>
         </div>
     </div>
 </nav>

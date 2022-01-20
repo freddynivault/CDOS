@@ -13,7 +13,7 @@ class HomeController extends AbstractController
      */
     public function home(): Response
     {
-        return $this->render ('home/createaccount.html.twig');
+        return $this->render ('home/index.html.twig');
     }
 
     /**
@@ -30,6 +30,14 @@ class HomeController extends AbstractController
     public function createaccount(): Response
     {
         return $this->render ('home/createaccount.html.twig');
+    }
+
+    /**
+     * @Route("/createoffer", name="app_createoffer")
+     */
+    public function createoffer(): Response
+    {
+        return $this->render ('home/createoffer.html.twig');
     }
 
     /**
