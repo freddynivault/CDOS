@@ -13,7 +13,7 @@ class HomeController extends AbstractController
      */
     public function home(): Response
     {
-        return $this->render ('home/index.html.twig');
+        return $this->render ('home/viewjoboffer.html.twig');
     }
 
     /**
@@ -22,6 +22,14 @@ class HomeController extends AbstractController
     public function offer(): Response
     {
         return $this->render ('home/listoffer.html.twig');
+    }
+
+    /**
+     * @Route("/listofferAdmin", name="app_offersadmin")
+     */
+    public function offerAdmin(): Response
+    {
+        return $this->render ('home/listofferAdmin.html.twig');
     }
 
     /**

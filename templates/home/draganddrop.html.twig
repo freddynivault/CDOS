@@ -4,48 +4,93 @@
     <meta charset="UTF-8">
     <title></title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ asset('css/styledrag.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/styledrag2.css') }}">
 </head>
 <body>
 <div class="container">
-    <h4>Télécharger l'offre au format PDF</h4>
     <div class="row">
-        <div id="uploads"></div>
-        <div class="dropzone" id="dropzone">
-            Drop files here to upload
-
+        <div class="drop-zone">
+            <span class="drop-zone__prompt">Cliquez pour parcourir ou glissez votre document</span>
+            <input type="file" name="myFile" class="drop-zone__input">
         </div>
     </div>
 </div>
+
+
+
 <script>
-    var fileobj;
-    function upload_file(e) {
-        e.preventDefault();
-        fileobj = e.dataTransfer.files[0];
-        ajax_file_upload(fileobj);
-    }
+    document.querySelectorAll(".drop-zone__input").forEach((inputElement) => {
+        const dropZoneElement = inputElement.closest(".drop-zone");
 
-    function file_explorer() {
-        document.getElementById('dropzone').click();
-        document.getElementById('dropzone').onchange = function() {
-            fileobj = document.getElementById('dropzone').files[0];
-            ajax_file_upload(fileobj);
-        };
-    }
+        dropZoneElement.addEventListener("click", (e) => {
+            inputElement.click();
+        });
 
-    function ajax_file_upload(file_obj) {
-        if (file_obj !== undefined) {
-            var form_data = new FormData();
-            form_data.append('file', file_obj);
-            var xhttp = new XMLHttpRequest();
-            xhttp.open("POST", "upload.php", true);
-            xhttp.onload = function (event) {
-
-
-                xhttp.send(form_data);
+        inputElement.addEventListener("change", (e) => {
+            if (inputElement.files.length) {
+                updateThumbnail(dropZoneElement, inputElement.files[0]);
             }
+        });
+
+        dropZoneElement.addEventListener("dragover", (e) => {
+            e.preventDefault();
+            dropZoneElement.classList.add("drop-zone--over");
+        });
+
+        ["dragleave", "dragend"].forEach((type) => {
+            dropZoneElement.addEventListener(type, (e) => {
+                dropZoneElement.classList.remove("drop-zone--over");
+            });
+        });
+
+        dropZoneElement.addEventListener("drop", (e) => {
+            e.preventDefault();
+
+            if (e.dataTransfer.files.length) {
+                inputElement.files = e.dataTransfer.files;
+                updateThumbnail(dropZoneElement, e.dataTransfer.files[0]);
+            }
+
+            dropZoneElement.classList.remove("drop-zone--over");
+        });
+    });
+
+    /**
+     * Updates the thumbnail on a drop zone element.
+     *
+     * @param {HTMLElement} dropZoneElement
+     * @param {File} file
+     */
+    function updateThumbnail(dropZoneElement, file) {
+        let thumbnailElement = dropZoneElement.querySelector(".drop-zone__thumb");
+
+        // First time - remove the prompt
+        if (dropZoneElement.querySelector(".drop-zone__prompt")) {
+            dropZoneElement.querySelector(".drop-zone__prompt").remove();
+        }
+
+        // First time - there is no thumbnail element, so lets create it
+        if (!thumbnailElement) {
+            thumbnailElement = document.createElement("div");
+            thumbnailElement.classList.add("drop-zone__thumb");
+            dropZoneElement.appendChild(thumbnailElement);
+        }
+
+        thumbnailElement.dataset.label = file.name;
+
+        // Show thumbnail for image files
+        if (file.type.startsWith("image/")) {
+            const reader = new FileReader();
+
+            reader.readAsDataURL(file);
+            reader.onload = () => {
+                thumbnailElement.style.backgroundImage = `url('${reader.result}')`;
+            };
+        } else {
+            thumbnailElement.style.backgroundImage = null;
         }
     }
+
 </script>
 </body>
 </html>

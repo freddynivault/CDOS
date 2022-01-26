@@ -1,0 +1,186 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PagesController!{% endblock %}
+
+{% block body %}
+    <link rel="stylesheet" href="public/css/bootstrap.min.css">
+
+    <style>
+        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    </style>
+
+<!--- Informations structure -->
+
+    <section class="home py-1 bg-light" id="job_présentation">
+        <div class="container-lg">
+            <div class="row align-items-center align-content-center">
+                <div class="col-md-6 mt-5 mt-md-0">
+                   <div class="home-img text-center">
+                       <img src="img/ministère.png" class="rounded-circle">
+                   </div>
+                </div>
+                <div class="col-md-6 mt-5 mt-md-0 order-md-first">
+                    <div class="home-text">
+                        <p class="text-muted mb-1">Nouvelle offre</p>
+                        <h1 class="text-danger text-uppercase fs-1 fw-bold">Titre de l'offre</h1>
+                        <h2 class="fs-4">Nom de l'entreprise</h2>
+                        <p class="mt-4 text-muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="home-img text-danger text-md-end">
+                        <abbr title="Télécharger l'offre en PDF"><h1><i class="bi bi-file-earmark-pdf-fill"></i></h1></abbr>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <hr class="my-4">
+    <!--- Presentation structure -->
+
+    <section class="about bg-white" id="about">
+        <div class="container-lg py-4">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="section-title">
+                        <h2 class="fw-bold mb-5">Poste proposé</h2>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="section-title">
+                        <h2 class="fw-bold mb-5">Profil recherché</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class ="col-md-6">
+                    <div class="about-text">
+                        <h3 class="fs-5">Intitulé du poste</h3>
+                        <p class="text-muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                    </div>
+                    <div class="about-text">
+                        <h3 class="fs-5">Description du poste</h3>
+                        <p class="text-muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                    </div>
+                    <div class="about-text">
+                        <h3 class="fs-5">Missions</h3>
+                        <p class="text-muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="about-text">
+                        <div class="row">
+                            <div class="col-md-6">
+                             <h3 class="fs-5">Formation (Diplômes)</h3>
+                             <p class="text-muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                            </div>
+                              <div class="col-md-6">
+                               <h3 class="fs-5">Expérience</h3>
+                               <p class="text-muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                             </div>
+                        </div>
+                    </div>
+                    <div class="about-text">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h3 class="fs-5">Compétences</h3>
+                                <p class="text-muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                            </div>
+                            <div class="col-md-6">
+                                <h3 class="fs-5">Qualités</h3>
+                                <p class="text-muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-text">
+                        <h3 class="fs-5">Outils à maitriser</h3>
+                        <p class="text-muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="my-4">
+
+    <!--- Détails du contrat --->
+
+    <section class="about bg-white" id="about">
+        <div class="container-lg py-4">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="section-title">
+                        <h2 class="fw-bold mb-5">Details du contrat</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class ="col-md-6">
+                    <div class="about-text">
+                        <h3 class="fs-5">Type de contrat</h3>
+                        <p class="text-muted">CDI</p>
+                    </div>
+                    <div class="about-text">
+                        <h3 class="fs-5">Temps de travail</h3>
+                        <p class="text-muted">35H</p>
+                    </div>
+                    <div class="about-text">
+                        <h3 class="fs-5">Date de début de contrat</h3>
+                        <p class="text-muted">11/04/2022</p>
+                    </div>
+                    <div class="about-text">
+                        <h3 class="fs-5">Date d'entretien</h3>
+                        <p class="text-muted">01/04/2022</p>
+                    </div>
+                </div>
+                <div class ="col-md-6">
+                    <div class="about-text">
+                        <h3 class="fs-5">Date de publication</h3>
+                        <p class="text-muted">25/01/2022</p>
+                    </div>
+                    <div class="about-text">
+                        <h3 class="fs-5">Date d'archivage de l'offre</h3>
+                        <p class="text-muted">30/04/2022</p>
+                    </div>
+                    <div class="about-text">
+                        <h3 class="fs-5">Convention collective</h3>
+                        <p class="text-muted">Lorem Ipsum is simply dummy text</p>
+                    </div>
+                    <div class="about-text">
+                        <h3 class="fs-5">Salaire brut</h3>
+                        <p class="text-danger">1500 €</p>
+                    </div>
+
+                </div>
+
+                <hr class="my-4">
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--- Drag & drop --->
+
+    <section class="about bg-white" id="about">
+        <div class="container-lg py-4">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h4>Envoyez votre CV</h4>
+                        {{ include('home/draganddrop.html.twig') }}
+                </div>
+                <div class="col-sm-6">
+                    <h4>Envoyez votre lettre de motivation</h4>
+                        {{ include('home/draganddrop.html.twig') }}
+                </div>
+                <div align="center">
+                    <a href="#" class="btn btn-danger px-6 mt-6">Postuler à cette offre</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <script src="assets/bootstrap.bundle.min.js"></script>
+{% endblock %}
