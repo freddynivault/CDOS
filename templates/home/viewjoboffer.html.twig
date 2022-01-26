@@ -162,6 +162,16 @@
     </section>
 
     <!--- Drag & drop --->
+<div class="container">
+<div class="accordion accordion-flush" id="accordionFlushExample">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="flush-headingOne">
+            <button class="accordion-button collapsed btn-danger" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                Cliquez pour postuler à cette offre
+            </button>
+        </h2>
+        <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">Ci-dessous vous pouvez télécharger votre CV et votre lettre de motivation pour cette offre</br>Vous avez la possibilité d'éditer un commentaire</div>
 
     <section class="about bg-white" id="about">
         <div class="container-lg py-4">
@@ -174,12 +184,20 @@
                     <h4>Envoyez votre lettre de motivation</h4>
                         {{ include('home/draganddrop.html.twig') }}
                 </div>
+                <div class="mb-3">
+                    <label for ="commentaire" class ="form-label">Commentaires</label>
+                    <textarea class="form-control" placeholder="..." id="floatingTextarea"></textarea>
+                </div>
                 <div align="center">
                     <a href="#" class="btn btn-danger px-6 mt-6">Postuler à cette offre</a>
                 </div>
             </div>
         </div>
-    </section>
+      </section>
+     </div>
+    </div>
+</div>
+</div>
 
 
     <script src="assets/bootstrap.bundle.min.js"></script>
