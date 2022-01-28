@@ -20,6 +20,9 @@ class RegistrationFormType extends AbstractType
         $builder
             ->add('firstName', null, array('label' => false))
             ->add('lastName', null, array('label' => false))
+            ->add('nomStructure', null, array('label' => false))
+            ->add('descriptionStructure', null, array('label' => false))
+            ->add('logoStructure', null, array('label' => false))
             ->add('email', EmailType::class, array('label' => false))
             ->add('password', PasswordType::class, array('label' => false))
             ->add('confirmPassword', PasswordType::class, array('label' => false))

@@ -46,6 +46,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $lastName;
 
     /**
+     * @ORM\Column(type="string")
+     */
+    private $nomStructure;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $descriptionStructure;
+
+    /**
+     * @ORM\Column(type="integer")
+     **/
+    private $logoStructure;
+
+    /**
      * @var string The hashed password
      * @ORM\Column(type="string")
      * @Assert\Length(min="8", minMessage="Le mot de passe doit contenir au moins 8 caractères")
@@ -137,6 +152,54 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setLastName($lastName): void
     {
         $this->lastName = $lastName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNomStructure(): string
+    {
+        return $this->nomStructure;
+    }
+
+    /**
+     * @param string $nomStructure
+     */
+    public function setNomStructure($nomStructure): void
+    {
+        $this->nomStructure = $nomStructure;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescriptionStructure(): string
+    {
+        return $this->descriptionStructure;
+    }
+
+    /**
+     * @param string $descriptionStructure
+     */
+    public function setDescriptionStructure($descriptionStructure): void
+    {
+        $this->descriptionStructure = $descriptionStructure;
+    }
+
+    /**
+     * @return int
+     */
+    public function getLogoStructure(): int
+    {
+        return $this->logoStructure;
+    }
+
+    /**
+     * @param int $logoStructure
+     */
+    public function setLogoStructure($logoStructure): void
+    {
+        $this->logoStructure = $logoStructure;
     }
 
     /**
