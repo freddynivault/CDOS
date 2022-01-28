@@ -13,7 +13,7 @@ class HomeController extends AbstractController
      */
     public function home(): Response
     {
-        return $this->render ('home/viewjoboffer.html.twig');
+        return $this->render ('home/index.html.twig');
     }
 
     /**
