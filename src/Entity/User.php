@@ -13,7 +13,7 @@ use App\Validator as CDOSAssert;
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\Table(name="`user`")
- * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
+ * @UniqueEntity(fields={"email"}, message="Il existe déjà un utilisateur avec cette adresse email")
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
