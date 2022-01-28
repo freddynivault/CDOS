@@ -8,6 +8,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use App\Validator as CDOSAssert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -32,6 +33,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\Column(type="string")
      */
+    private $userType = "Candidat";
+
+    /**
+     * @ORM\Column(type="string")
+     */
     private $firstName;
 
     /**
@@ -40,18 +46,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $lastName;
 
     /**
-     * @ORM\Column(type="string")
-     */
-    private $userType = "Candidat";
-
-    /**
-     * @ORM\Column(type="json")
-     */
-    private $roles = [];
-
-    /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     * @Assert\Length(min="8", minMessage="Le mot de passe doit contenir au moins 8 caractères")
+     * @CDOSAssert\StrongPassword(message="Le mot de passe doit contenir au moins une lettre majuscule, une lettre minuscule et un chiffre.")
      */
     private $password;
 
@@ -61,9 +59,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $confirmPassword;
 
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $roles = [];
+
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUserIdentifier(): string
+    {
+        return (string) $this->email;
     }
 
     public function getEmail(): ?string
@@ -79,56 +92,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * A visual identifier that represents this user.
-     *
-     * @see UserInterface
+     * @return mixed
      */
-    public function getUserIdentifier(): string
+    public function getUserType()
     {
-        return (string) $this->email;
+        return $this->userType;
     }
 
     /**
-     * @see UserInterface
+     * @param mixed $userType
      */
-    public function getRoles(): array
+    public function setUserType($userType): void
     {
-        $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
-
-        return array_unique($roles);
-    }
-
-    public function setRoles(array $roles): self
-    {
-        $this->roles = $roles;
-
-        return $this;
-    }
-
-    /**
-     * @see PasswordAuthenticatedUserInterface
-     */
-    public function getPassword(): string
-    {
-        return $this->password;
-    }
-
-    public function setPassword(string $password): self
-    {
-        $this->password = $password;
-
-        return $this;
-    }
-
-    /**
-     * @see UserInterface
-     */
-    public function eraseCredentials()
-    {
-        // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
+        $this->userType = $userType;
     }
 
     /**
@@ -164,19 +140,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return mixed
+     * @see PasswordAuthenticatedUserInterface
      */
-    public function getUserType()
+    public function getPassword(): string
     {
-        return $this->userType;
+        return $this->password;
     }
 
-    /**
-     * @param mixed $userType
-     */
-    public function setUserType($userType): void
+    public function setPassword(string $password): self
     {
-        $this->userType = $userType;
+        $this->password = $password;
+
+        return $this;
     }
 
     /**
@@ -193,5 +168,33 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setConfirmPassword(string $confirmPassword): void
     {
         $this->confirmPassword = $confirmPassword;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
     }
 }
