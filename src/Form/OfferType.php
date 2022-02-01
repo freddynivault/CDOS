@@ -22,15 +22,15 @@ class OfferType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('titre',null, array('label' => false))
+            ->add('titre', null, array('label' => false))
             ->add('intitule_poste')
             ->add('description_poste')
             ->add('missions')
             ->add('statut', HiddenType::class)
             ->add('nombre_candidature', HiddenType::class)
-           // ->add('logo_structure', FileType::class)
-            ->add('experience', ChoiceType::class,  [
-                'choices'  => [
+            // ->add('logo_structure', FileType::class)
+            ->add('experience', ChoiceType::class, [
+                'choices' => [
                     'Pas d\'experience' => '0',
                     '1 an' => '1',
                     '2 ans' => '2',
@@ -48,7 +48,7 @@ class OfferType extends AbstractType
             ->add('convention_collective')
             ->add('outils')
             ->add('temps_travail', ChoiceType::class, [
-                'choices'  => [
+                'choices' => [
                     '...' => '0',
                     '1 H' => '1',
                     '2 H' => '2',
@@ -87,19 +87,24 @@ class OfferType extends AbstractType
                     '35 H' => '35',
                 ],
             ])
-
             ->add('date_debut_contrat', DateType::class, [
 
                 'widget' => 'single_text',
                 // this is actually the default format for single_text
-
+                'required' => false,
+                'format' => 'dd/MM/yyyy',
+                'html5' => false,
+                 'attr' => ['class' => 'js-datepicker']
 
             ])
-
             ->add('date_entretien', DateType::class, [
 
                 'widget' => 'single_text',
                 // this is actually the default format for single_text
+                'required' => false,
+                'format' => 'dd/MM/yyyy',
+                'html5' => false,
+                 'attr' => ['class' => 'js-datepicker']
 
 
             ])
@@ -107,19 +112,25 @@ class OfferType extends AbstractType
 
                 'widget' => 'single_text',
                 // this is actually the default format for single_text
-
+                'required' => false,
+                'format' => 'dd/MM/yyyy',
+                'html5' => false,
+                'attr' => ['class' => 'js-datepicker'],
 
             ])
             ->add('date_archivage', DateType::class, [
 
                 'widget' => 'single_text',
                 // this is actually the default format for single_text
-
+                'required' => false,
+                'format' => 'dd/MM/yyyy',
+                'html5' => false,
+                'attr' => ['class' => 'js-datepicker'],
 
             ])
             ->add('salaire')
             ->add('formation', ChoiceType::class, [
-                'choices'  => [
+                'choices' => [
                     '...' => 'nothing',
                     'BPJEPS' => 'BPJEPS',
                     'DEJEPS' => 'DEJEPS',
@@ -132,7 +143,7 @@ class OfferType extends AbstractType
             ->add('competences')
             ->add('qualites')
             ->add('type_contrat', ChoiceType::class, [
-                'choices'  => [
+                'choices' => [
                     '...' => 'nothing',
                     'CDI' => 'CDI',
                     'CDD' => 'CDD',
@@ -144,7 +155,7 @@ class OfferType extends AbstractType
                 ],
             ])
             ->add('categorie_contrat', ChoiceType::class, [
-                'choices'  => [
+                'choices' => [
                     '...' => 'nothing',
                     'Emploi' => 'Emploi',
                     'Service civique' => 'Service_civ',
@@ -152,23 +163,8 @@ class OfferType extends AbstractType
                     'Stage' => 'Stage',
                 ],
             ])
-            ->add('name_file', FileType::class, [
-                'label' => 'Brochure (PDF file)',
-                'mapped' => false,
-                'required' => false,
-                'constraints' => [
-                    new File([
-                        'maxSize' => '1024k',
-                        'mimeTypes' => [
-                            'application/pdf',
-                            'application/x-pdf',
-                        ],
-                        'mimeTypesMessage' => 'Merci de déposer un PDF valide',
-                    ])
-                ],
-            ])
-            ->add('submit', SubmitType::class)
-        ;
+            ->add('submit', SubmitType::class);
+
     }
 
     public function configureOptions(OptionsResolver $resolver): void
@@ -178,3 +174,4 @@ class OfferType extends AbstractType
         ]);
     }
 }
+

@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\OfferRepository;
 use Doctrine\ORM\Mapping as ORM;
 
+
 /**
  * @ORM\Entity(repositoryClass=OfferRepository::class)
  */
@@ -23,7 +24,7 @@ class Offer
     private $titre;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $name_file;
 
@@ -45,17 +46,17 @@ class Offer
     private $missions;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $statut;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $logo_structure;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $nombre_candidature;
 
@@ -80,17 +81,17 @@ class Offer
     private $temps_travail;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="date")
      */
     private $date_debut_contrat;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="date")
      */
     private $date_entretien;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="date",)
      */
     private $date_publication;
 
@@ -111,7 +112,7 @@ class Offer
     }
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="date", nullable=true)
      */
     private $date_archivage;
 
@@ -184,6 +185,70 @@ class Offer
         $this->description_poste = $description_poste;
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDateDebutContrat()
+    {
+        return $this->date_debut_contrat;
+    }
+
+    /**
+     * @param mixed $date_debut_contrat
+     */
+    public function setDateDebutContrat($date_debut_contrat): void
+    {
+        $this->date_debut_contrat = $date_debut_contrat;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDateEntretien()
+    {
+        return $this->date_entretien;
+    }
+
+    /**
+     * @param mixed $date_entretien
+     */
+    public function setDateEntretien($date_entretien): void
+    {
+        $this->date_entretien = $date_entretien;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDatePublication()
+    {
+        return $this->date_publication;
+    }
+
+    /**
+     * @param mixed $date_publication
+     */
+    public function setDatePublication($date_publication): void
+    {
+        $this->date_publication = $date_publication;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDateArchivage()
+    {
+        return $this->date_archivage;
+    }
+
+    /**
+     * @param mixed $date_archivage
+     */
+    public function setDateArchivage($date_archivage): void
+    {
+        $this->date_archivage = $date_archivage;
     }
 
     public function getMissions(): ?string
@@ -270,53 +335,7 @@ class Offer
         return $this;
     }
 
-    public function getDateDebutContrat(): ?int
-    {
-        return $this->date_debut_contrat;
-    }
 
-    public function setDateDebutContrat(int $date_debut_contrat): self
-    {
-        $this->date_debut_contrat = $date_debut_contrat;
-
-        return $this;
-    }
-
-    public function getDateEntretien(): ?int
-    {
-        return $this->date_entretien;
-    }
-
-    public function setDateEntretien(int $date_entretien): self
-    {
-        $this->date_entretien = $date_entretien;
-
-        return $this;
-    }
-
-    public function getDatePublication(): ?int
-    {
-        return $this->date_publication;
-    }
-
-    public function setDatePublication(int $date_publication): self
-    {
-        $this->date_publication = $date_publication;
-
-        return $this;
-    }
-
-    public function getDateArchivage(): ?int
-    {
-        return $this->date_archivage;
-    }
-
-    public function setDateArchivage(?int $date_archivage): self
-    {
-        $this->date_archivage = $date_archivage;
-
-        return $this;
-    }
 
     public function getSalaire(): ?int
     {

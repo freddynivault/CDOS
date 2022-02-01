@@ -5,7 +5,7 @@
 {% block body %}
     {% form_theme form'bootstrap_5_layout.html.twig' %}
 
-<form>
+<form method="post">
     {{ form_start(form) }}
     <div class = "container">
         <div class = "py-5 text-center">
@@ -15,12 +15,10 @@
             {{ form_row(form.titre, {'attr': {'placeholder': 'Titre offre'}}) }}
         </div>
     </div>
-
-
-
-
     {{ form_end(form) }}
 
+
 </form>
+
 
 {% endblock %}
