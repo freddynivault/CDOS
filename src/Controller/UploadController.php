@@ -30,7 +30,7 @@ class UploadController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form-> isValid()){
-            $file= $upload->getNamepdf();
+            $file = $form->get('name_pdf')->getData();
             $fileName= md5(uniqid()).'.'.$file->guessExtension();
             $file->move($this->getParameter('upload_directory'),$fileName);
             $upload->setNamepdf($fileName);

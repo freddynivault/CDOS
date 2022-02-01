@@ -36,7 +36,7 @@ class UploadType extends AbstractType
                 ],
             ])
 
-            ->add('titre',null, array('label' => false))
+            ->add('titre',null, array('label' => true))
             ->add('intitule_poste')
             ->add('description_poste')
             ->add('missions')
