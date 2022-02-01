@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}AddOffer{% endblock %}
+
+{% block body %}
+    {% form_theme form'bootstrap_5_layout.html.twig' %}
+
+<form>
+    {{ form_start(form) }}
+    <div class = "container">
+        <div class = "py-5 text-center">
+            <p class ="lead">Veuillez renseigner les informations concernant l'offre que vous souhaitez ajouter</p>
+            </br>
+            <h4>Titre de l'offre</h4>
+            {{ form_row(form.titre, {'attr': {'placeholder': 'Titre offre'}}) }}
+        </div>
+    </div>
+
+
+
+
+    {{ form_end(form) }}
+
+</form>
+
+{% endblock %}

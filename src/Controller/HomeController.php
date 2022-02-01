@@ -14,7 +14,7 @@ class HomeController extends AbstractController
      */
     public function home(): Response
     {
-        return $this->render ('home/index.html.twig');
+        return $this->render ('home/viewjoboffer.html.twig');
     }
 
     /**
@@ -24,6 +24,15 @@ class HomeController extends AbstractController
     {
         return $this->render ('home/listoffer.html.twig');
     }
+
+    /**
+     * @Route("/listcandidature", name="app_candidate")
+     */
+    public function candidate(): Response
+    {
+        return $this->render ('home/listcandidature.html.twig');
+    }
+
 
     /**
      * @Route("/listofferAdmin", name="app_offersadmin")
