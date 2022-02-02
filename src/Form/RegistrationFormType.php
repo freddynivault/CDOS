@@ -4,28 +4,55 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\IsTrue;
-use Symfony\Component\Validator\Constraints\Length;
-use Symfony\Component\Validator\Constraints\NotBlank;
+use function Sodium\add;
 
 class RegistrationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('firstName', null, array('label' => false))
-            ->add('lastName', null, array('label' => false))
-            ->add('nomStructure', null, array('label' => false))
-            ->add('descriptionStructure', null, array('label' => false))
-            ->add('logoStructure', null, array('label' => false))
-            ->add('email', EmailType::class, array('label' => false))
-            ->add('password', PasswordType::class, array('label' => false))
-            ->add('confirmPassword', PasswordType::class, array('label' => false))
+            ->add('email', EmailType::class, [
+                'label' => false,
+                'attr' => ['placeholder'=> 'Adresse mail'],
+            ])
+            ->add('password', PasswordType::class, [
+                'label' => false,
+                'attr' => ['placeholder'=> 'Mot de passe']
+            ])
+            ->add('confirmPassword', PasswordType::class, [
+                'label' => false,
+                'attr' => ['placeholder'=> 'Confirmez votre mot de passe']
+            ])
+            ->add('firstName', TextType::class, [
+                'label' => false,
+                'required' => false,
+            ])
+            ->add('lastName', TextType::class, [
+                'label' => false,
+                'required' => false,
+        ])
+            ->add('nomStructure', TextType::class, [
+                'label' => false,
+                'required' => false,
+                ])
+            ->add('descriptionStructure', TextType::class, [
+                'label' => false,
+                'required' => false,
+                ])
+            ->add('logoStructure', IntegerType::class, [
+                'label' => false,
+                'required' => false,
+                ])
         ;
     }
 
@@ -33,6 +60,9 @@ class RegistrationFormType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => User::class,
+            'attr' => [
+                'novalidate' => 'novalidate'
+            ],
         ]);
     }
 }
