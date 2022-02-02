@@ -24,8 +24,6 @@ class UploadType extends AbstractType
         $builder
             ->add('nom_structure',TextType::class, [
                 'label' => false,
-                'required' => true,
-                'constraints' => [new Length(['min' => 3])],
 
             ])
             ->add('description_structure', TextareaType::class,array('label' => false))
@@ -39,6 +37,7 @@ class UploadType extends AbstractType
                     new File([
                         'mimeTypes' => [ // We want to let upload only txt, csv or Excel files
                             'application/pdf',
+                            "application/x-pdf",
 
 
                         ],

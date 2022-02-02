@@ -30,7 +30,7 @@
         <div class="container">
             {{ form_start(formUpload) }}
             <div class="text-center">
-                <h4>Categorie du contrat</h4>
+                <h4>Categorie de l'offre</h4>
                 {{ form_row(formUpload.categorie_contrat) }}
             </div>
         </div>
@@ -128,11 +128,11 @@
                         </div>
                         <div class="mb-3">
                             <label for="dateDebutContrat" class="form-label">Date de début de contrat</label>
-                            {{ form_row(formUpload.date_debut_contrat) }}
+                            {{ form_row(formUpload.date_debut_contrat, {'attr': {'placeholder': "dd/mm/yyyy" }}) }}
                         </div>
                         <div class="mb-3">
                             <label for="dateEntretien" class="form-label">Date d'entretien</label>
-                            {{ form_row(formUpload.date_entretien) }}
+                            {{ form_row(formUpload.date_entretien, {'attr': {'placeholder': "dd/mm/yyyy" }}) }}
                         </div>
                     </div>
                     <div class="col col-md-6">
@@ -140,11 +140,11 @@
                         <div class="mb-3">
                             <div class="mb-3">
                                 <label for="datePublication" class="form-label">Date de publication</label>
-                                {{ form_row(formUpload.date_publication) }}
+                                {{ form_row(formUpload.date_publication, {'attr': {'placeholder': "dd/mm/yyyy" }}) }}
                             </div>
                             <div class="mb-3">
                                 <label for="dateArchivage" class="form-label">Date d'archivage de l'offre</label>
-                                {{ form_row(formUpload.date_archivage) }}
+                                {{ form_row(formUpload.date_archivage, {'attr': {'placeholder': "dd/mm/yyyy" }})}}
                             </div>
                         </div>
                         <div class="mb-3">
