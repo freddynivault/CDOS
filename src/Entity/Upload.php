@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\UploadRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UploadRepository::class)
@@ -24,11 +25,13 @@ class Upload
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotBlank(message="Veuillez renseigner ce champ")
      */
     private $titre;
 
     /**
      * @ORM\Column(type="string", nullable=true)
+     * @Assert\NotBlank(message="Veuillez renseigner ce champ")
      */
     private $nom_structure;
 
@@ -66,6 +69,7 @@ class Upload
 
     /**
      * @ORM\Column(type="string", nullable=true)
+     * @Assert\NotBlank(message="Veuillez renseigner ce champ")
      */
     private $description_structure;
 
@@ -74,21 +78,25 @@ class Upload
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotBlank(message="Veuillez renseigner ce champ")
      */
     private $intitule_poste;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotBlank(message="Veuillez renseigner ce champ")
      */
     private $description_poste;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotBlank(message="Veuillez renseigner ce champ")
      */
     private $missions;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     *
      */
     private $statut;
 
@@ -104,11 +112,13 @@ class Upload
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     *
      */
     private $experience;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     *
      */
     private $convention_collective;
 
@@ -119,21 +129,26 @@ class Upload
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Choice(choices={"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35"}, message="Vous devez choisir un temps de travail")
      */
     private $temps_travail;
 
     /**
      * @ORM\Column(type="date", nullable=true)
+     * @Assert\NotBlank(message="Veuillez renseigner ce champ")
      */
     private $date_debut_contrat;
 
     /**
      * @ORM\Column(type="date", nullable=true)
+     * @Assert\NotBlank(message="Veuillez renseigner ce champ")
      */
     private $date_entretien;
 
     /**
      * @ORM\Column(type="date", nullable=true)
+     * @Assert\NotBlank(message="Veuillez renseigner ce champ")
+     *
      */
     private $date_publication;
 
@@ -155,21 +170,25 @@ class Upload
 
     /**
      * @ORM\Column(type="date", nullable=true)
+     * @Assert\NotBlank(message="Veuillez renseigner ce champ")
      */
     private $date_archivage;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\NotBlank(message="Veuillez renseigner ce champ")
      */
     private $salaire;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Choice(choices={"BPJEPS","DEJEPS","L_Management","M_Management","L_APAS","M_APAS"}, message="Vous devez choisir une formation")
      */
     private $formation;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     *
      */
     private $competences;
 
@@ -180,11 +199,13 @@ class Upload
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Choice(choices={"CDI","CDD","Stage","CDI_Interim","Service_civ","Saisonnier"}, message="Vous devez choisir un type de contrat")
      */
     private $type_contrat;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotBlank(message="Veuillez renseigner ce champ")
      */
     private $categorie_contrat;
 

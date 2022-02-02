@@ -11,19 +11,26 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
+use Symfony\Component\Validator\Constraints\Length;
 
 class UploadType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nom_structure',null, array('label' => false))
+            ->add('nom_structure',TextType::class, [
+                'label' => false,
+                'required' => true,
+                'constraints' => [new Length(['min' => 3])],
+
+            ])
             ->add('description_structure', TextareaType::class,array('label' => false))
 
-            ->add('namepdf', FileType::class,[
+            ->add('name_pdf', FileType::class,[
 
                 'label' => false,
                 'mapped' => false, // Tell that there is no Entity to link
@@ -32,11 +39,10 @@ class UploadType extends AbstractType
                     new File([
                         'mimeTypes' => [ // We want to let upload only txt, csv or Excel files
                             'application/pdf',
-                            //'image/png',
-                            //'image/jpeg'
+
 
                         ],
-                        'mimeTypesMessage' => "This document isn't valid.",
+                        'mimeTypesMessage' => "Ce document n'est pas un PDF",
                     ])
                 ],
             ])
@@ -47,7 +53,23 @@ class UploadType extends AbstractType
             ->add('missions',null, array('label' => false))
             ->add('statut', HiddenType::class)
             ->add('nombre_candidature', HiddenType::class)
-            // ->add('logo_structure', FileType::class)
+            ->add('logo_structure', FileType::class,[
+
+                'label' => false,
+                'mapped' => false, // Tell that there is no Entity to link
+                'required' => true,
+                'constraints' => [
+                    new File([
+                        'mimeTypes' => [ // We want to let upload only txt, csv or Excel files
+
+                            'image/png',
+                            'image/jpeg'
+
+                        ],
+                        'mimeTypesMessage' => "Ce document n'est pas une image (.jpeg ou .png)",
+                    ])
+                ],
+            ])
             ->add('experience', ChoiceType::class,  [
                 'choices'  => [
                     'Pas d\'experience' => '0',

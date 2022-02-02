@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Hello PagesController!{% endblock %}
-
+{% block stylesheets %}<link rel="stylesheet" href="{{ asset('css/styledrag2.css') }}">{% endblock %}
 {% block body %}
     <style>
         .example-wrapper {
@@ -17,9 +17,240 @@
         }
 
     </style>
-    <form method="post">
-     {{ form(formUpload) }}
 
-    </form>
+        <div class="container">
+            {{ form_start(formUpload, {'attr': {'novalidate': 'novalidate'}}) }}
+            <div class="py-5 text-center">
+                <p class="lead">Veuillez renseigner les informations concernant l'offre que vous souhaitez ajouter</p>
+                </br>
+                <h4>Titre de l'offre</h4>
+                {{ form_row(formUpload.titre) }}
+            </div>
+        </div>
+        <div class="container">
+            {{ form_start(formUpload) }}
+            <div class="text-center">
+                <h4>Categorie du contrat</h4>
+                {{ form_row(formUpload.categorie_contrat) }}
+            </div>
+        </div>
 
+        <div class="container">
+            <div class="row g-3">
+                <h4>Structure</h4>
+                <div class="col-sm-6">
+                    <label for="nameStructure" class="form-label"> Nom de la structure</label>
+                    {{ form_row(formUpload.nom_structure) }}
+                </div>
+                <div class="col-sm-6">
+                    <div class="mb-3">
+                        <label for="logoStructure" class="form-label">Logo de la structure</label>
+
+                        {{ form_row(formUpload.logo_structure) }}
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="mb-3">
+                        <label for="descriptionStructure" class="form-label">Description de la structure</label>
+                        {{ form_row(formUpload.description_structure) }}
+                    </div>
+                </div>
+
+                <hr class="my-4">
+
+
+                <div class="row mt-3">
+                    <div class="col col-md-6">
+                        <h4>Poste proposé</h4>
+                        <div class="mb-3">
+                            <label for="intitulePoste" class="form-label">Intitulé du poste</label>
+                            {{ form_row(formUpload.intitule_poste) }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="descriptionPoste" class="form-label">Description du poste</label>
+                            {{ form_row(formUpload.description_poste) }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="missionPoste" class="form-label">Missions</label>
+                            {{ form_row(formUpload.missions) }}
+                        </div>
+                    </div>
+                    <div class="col col-md-6">
+                        <div class="container">
+                            <div class="row">
+                                <h4>Profil recherché</h4>
+                                <div class="col-sm">
+                                    <label for="formation" class="form-label">Formation (Diplômes)</label>
+                                    {{ form_row(formUpload.formation) }}
+                                </div>
+                                <div class="col">
+                                    <label for="experience" class="form-label">Expérience</label>
+                                    {{ form_row(formUpload.experience) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm">
+                                    <label for="competence" class="form-label">Compétences</label>
+                                    {{ form_row(formUpload.competences) }}
+                                </div>
+                                <div class="col">
+                                    <label for="qualite" class="form-label">Qualités</label>
+                                    {{ form_row(formUpload.qualites) }}
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm">
+                                    <label for="outils" class="form-label">Outils à maitriser</label>
+                                    {{ form_row(formUpload.outils) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="my-4">
+
+                <div class="row mt-3">
+                    <div class="col col-md-6">
+                        <h4>Détails du contrat</h4>
+                        <div class="mb-3">
+                            <label for="typeContrat" class="form-label">Type de contrat</label>
+                            {{ form_row(formUpload.type_contrat) }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="tempsTravail" class="form-label">Temps de travail</label>
+                            {{ form_row(formUpload.temps_travail) }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="dateDebutContrat" class="form-label">Date de début de contrat</label>
+                            {{ form_row(formUpload.date_debut_contrat) }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="dateEntretien" class="form-label">Date d'entretien</label>
+                            {{ form_row(formUpload.date_entretien) }}
+                        </div>
+                    </div>
+                    <div class="col col-md-6">
+
+                        <div class="mb-3">
+                            <div class="mb-3">
+                                <label for="datePublication" class="form-label">Date de publication</label>
+                                {{ form_row(formUpload.date_publication) }}
+                            </div>
+                            <div class="mb-3">
+                                <label for="dateArchivage" class="form-label">Date d'archivage de l'offre</label>
+                                {{ form_row(formUpload.date_archivage) }}
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="convention" class="form-label">Convention collective</label>
+                            {{ form_row(formUpload.convention_collective) }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="salaire" class="form-label">Salaire brut</label>
+                            {{ form_row(formUpload.salaire) }}
+                        </div>
+
+                    </div>
+                    <hr class="my-4">
+                    <h4>Télécharger l'offre au format PDF</h4>
+                    <div class="container">
+                        <div class="row">
+                            <div class="drop-zone">
+                                <span class="drop-zone__prompt">Cliquez pour parcourir ou glissez votre document</span>
+                                {{ form_row(formUpload.name_pdf, {'attr': {'class': 'drop-zone__input'}}) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+        <div align="center">
+            {{ form_row(formUpload.submit, { 'label': 'Envoyer' }) }}
+        </div>
+        {{ form_end(formUpload) }}
+
+
+    <script>
+        document.querySelectorAll(".drop-zone__input").forEach((inputElement) => {
+            const dropZoneElement = inputElement.closest(".drop-zone");
+
+            dropZoneElement.addEventListener("click", (e) => {
+                inputElement.click();
+            });
+
+            inputElement.addEventListener("change", (e) => {
+                if (inputElement.files.length) {
+                    updateThumbnail(dropZoneElement, inputElement.files[0]);
+                }
+            });
+
+            dropZoneElement.addEventListener("dragover", (e) => {
+                e.preventDefault();
+                dropZoneElement.classList.add("drop-zone--over");
+            });
+
+            ["dragleave", "dragend"].forEach((type) => {
+                dropZoneElement.addEventListener(type, (e) => {
+                    dropZoneElement.classList.remove("drop-zone--over");
+                });
+            });
+
+            dropZoneElement.addEventListener("drop", (e) => {
+                e.preventDefault();
+
+                if (e.dataTransfer.files.length) {
+                    inputElement.files = e.dataTransfer.files;
+                    updateThumbnail(dropZoneElement, e.dataTransfer.files[0]);
+                }
+
+                dropZoneElement.classList.remove("drop-zone--over");
+            });
+        });
+
+        /**
+         * Updates the thumbnail on a drop zone element.
+         *
+         * @param {HTMLElement} dropZoneElement
+         * @param {File} file
+         */
+        function updateThumbnail(dropZoneElement, file) {
+            let thumbnailElement = dropZoneElement.querySelector(".drop-zone__thumb");
+
+            // First time - remove the prompt
+            if (dropZoneElement.querySelector(".drop-zone__prompt")) {
+                dropZoneElement.querySelector(".drop-zone__prompt").remove();
+            }
+
+            // First time - there is no thumbnail element, so lets create it
+            if (!thumbnailElement) {
+                thumbnailElement = document.createElement("div");
+                thumbnailElement.classList.add("drop-zone__thumb");
+                dropZoneElement.appendChild(thumbnailElement);
+            }
+
+            thumbnailElement.dataset.label = file.name;
+
+            // Show thumbnail for image files
+            if (file.type.startsWith("image/")) {
+                const reader = new FileReader();
+
+                reader.readAsDataURL(file);
+                reader.onload = () => {
+                    thumbnailElement.style.backgroundImage = `url('${reader.result}')`;
+                };
+            } else {
+                thumbnailElement.style.backgroundImage = null;
+            }
+        }
+
+    </script>
 {% endblock %}

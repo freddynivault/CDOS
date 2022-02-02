@@ -2,10 +2,8 @@
 
 namespace App\Controller;
 
-use App\Entity\Offer;
 use App\Entity\Upload;
 use App\Entity\User;
-use App\Form\OfferType;
 use App\Form\RegistrationFormType;
 use App\Form\UploadType;
 use App\Security\UserAuthenticator;
@@ -34,8 +32,21 @@ class UploadController extends AbstractController
             $fileName= md5(uniqid()).'.'.$file->guessExtension();
             $file->move($this->getParameter('upload_directory'),$fileName);
             $upload->setNamepdf($fileName);
+
+
+
+            $logo = $form->get('logo_structure')->getData();
+            $logoName= md5(uniqid()).'.'.$logo->guessExtension();
+            $logo->move($this->getParameter('upload_directory'),$logoName);
+            $upload->setLogoStructure($logoName);
+
+
+
             $upload->setStatut('Initial');
             $upload->setNombreCandidature('0');
+
+
+
 
             $entityManager->persist($upload);
             $entityManager->flush();
@@ -44,7 +55,7 @@ class UploadController extends AbstractController
 
 
         return $this->render('offer/pouet.html.twig', [
-        'form' => $form->createView(),
+        'formUpload' => $form->createView(),
     ]);
 
     }
