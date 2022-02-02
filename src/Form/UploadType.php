@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
@@ -19,7 +20,11 @@ class UploadType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name_pdf', FileType::class,[
+            ->add('nom_structure',null, array('label' => false))
+            ->add('description_structure', TextareaType::class,array('label' => false))
+
+            ->add('namepdf', FileType::class,[
+
                 'label' => false,
                 'mapped' => false, // Tell that there is no Entity to link
                 'required' => true,
@@ -36,10 +41,10 @@ class UploadType extends AbstractType
                 ],
             ])
 
-            ->add('titre',null, array('label' => true))
-            ->add('intitule_poste')
-            ->add('description_poste')
-            ->add('missions')
+            ->add('titre',null, array('label' => false))
+            ->add('intitule_poste',null, array('label' => false))
+            ->add('description_poste',null, array('label' => false))
+            ->add('missions',null, array('label' => false))
             ->add('statut', HiddenType::class)
             ->add('nombre_candidature', HiddenType::class)
             // ->add('logo_structure', FileType::class)
@@ -58,9 +63,10 @@ class UploadType extends AbstractType
                     '10 ans' => '10',
 
                 ],
+                'label' => false
             ])
-            ->add('convention_collective')
-            ->add('outils')
+            ->add('convention_collective',null, array('label' => false))
+            ->add('outils',null, array('label' => false))
             ->add('temps_travail', ChoiceType::class, [
                 'choices'  => [
                     '...' => '0',
@@ -100,6 +106,7 @@ class UploadType extends AbstractType
                     '34 H' => '34',
                     '35 H' => '35',
                 ],
+                'label' => false
             ])
 
             ->add('date_debut_contrat', DateType::class, [
@@ -108,7 +115,8 @@ class UploadType extends AbstractType
                 // this is actually the default format for single_text
                 'required' => false,
                 'format' => 'dd/MM/yyyy',
-                'html5' => false
+                'html5' => false,
+                'label' => false
 
             ])
 
@@ -118,7 +126,8 @@ class UploadType extends AbstractType
                 // this is actually the default format for single_text
                 'required' => false,
                 'format' => 'dd/MM/yyyy',
-                'html5' => false
+                'html5' => false,
+                'label' => false
 
             ])
             ->add('date_publication', DateType::class, [
@@ -127,7 +136,8 @@ class UploadType extends AbstractType
                 // this is actually the default format for single_text
                 'required' => false,
                 'format' => 'dd/MM/yyyy',
-                'html5' => false
+                'html5' => false,
+                'label' => false
 
             ])
             ->add('date_archivage', DateType::class, [
@@ -136,11 +146,12 @@ class UploadType extends AbstractType
                 // this is actually the default format for single_text
                 'required' => false,
                 'format' => 'dd/MM/yyyy',
-                'html5' => false
+                'html5' => false,
+                'label' => false
 
             ])
-            ->add('salaire')
-            ->add('formation', ChoiceType::class, [
+            ->add('salaire',null, array('label' => false))
+            ->add('formation', ChoiceType::class,   [
                 'choices'  => [
                     '...' => 'nothing',
                     'BPJEPS' => 'BPJEPS',
@@ -150,9 +161,10 @@ class UploadType extends AbstractType
                     'Licence APAS' => 'L_APAS',
                     'Master APAS' => 'M_APAS'
                 ],
+                'label' => false
             ])
-            ->add('competences')
-            ->add('qualites')
+            ->add('competences',null, array('label' => false))
+            ->add('qualites',null, array('label' => false))
             ->add('type_contrat', ChoiceType::class, [
                 'choices'  => [
                     '...' => 'nothing',
@@ -164,6 +176,7 @@ class UploadType extends AbstractType
                     'Saisonnier' => 'Saisonnier',
 
                 ],
+                'label' => false
             ])
             ->add('categorie_contrat', ChoiceType::class, [
                 'choices'  => [
@@ -173,8 +186,9 @@ class UploadType extends AbstractType
                     'Alternance' => 'Alternance',
                     'Stage' => 'Stage',
                 ],
+                'label' => false
             ])
-            ->add('submit', SubmitType::class)
+            ->add('submit', SubmitType::class )
         ;
     }
 
