@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Upload;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,9 +22,11 @@ class HomeController extends AbstractController
     /**
      * @Route("/listoffer", name="app_offers")
      */
-    public function offer(): Response
+    public function offer(ManagerRegistry $doctrine): Response
     {
-        return $this->render ('home/listoffer.html.twig');
+        $entityManager = $doctrine->getManager();
+        $offer = $entityManager->getRepository(Upload::class)->findAll();
+        return $this->render ('home/listoffer.html.twig', ['tableau' => $offer]);
     }
 
     /**
@@ -39,7 +43,8 @@ class HomeController extends AbstractController
      */
     public function offerAdmin(): Response
     {
-        return $this->render ('home/listofferAdmin.html.twig');
+
+        return $this->render('home/listofferAdmin.html.twig');
     }
 
     /**

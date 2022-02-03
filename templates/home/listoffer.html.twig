@@ -21,41 +21,44 @@
                     </div>
                     <div class="overflow-x">
                         <table style="width:100%;" id="filtertable" class="table cust-datatable dataTable no-footer ">
-                            <thead>
-                                <tr>
-                                    <th style="min-width:150px;">Titre de l'offre</th>
-                                    <th style="min-width:150px;">Nom de la structure</th>
-                                    <th style="min-width:150px;">Description de l'offre</th>
-                                    <th style="min-width:100px;">Type de contrat</th>
-                                    <th style="min-width:100px;">Date de publication</th>
-                                    <th style="min-width:150px;">Localisation</th>
 
-                                </tr>
+                            <thead>
+                                <th style="min-width:150px;">Consulter l'offre</th>
+                                <th style="min-width:150px;">Titre de l'offre</th>
+                                <th style="min-width:150px;">Nom de la structure</th>
+                                <th style="min-width:150px;">Description de l'offre</th>
+                                <th style="min-width:100px;">Type de contrat</th>
+                                <th style="min-width:100px;">Date de publication</th>
+                                <th style="min-width:150px;">Localisation</th>
+                                <th style="min-width:150px;">Action</th>
                             </thead>
                             <tbody>
-                                <tr>
+                                {% for offer in tableau %}
+                                    <tr>
+                                        <td> <div class="btn-group edit">
+                                                <abbr title="Consulter"><a href="#"><i class="bi bi-pencil-fill" href="#"></i></a></abbr>
+                                            </div></td>
+                                        <td> {{ offer.titre}} </td>
+                                        <td> {{ offer.nomStructure }} </td>
+                                        <td> {{ offer.descriptionPoste }} </td>
+                                        <td><span class="mode mode_process"> {{ offer.typeContrat }}</td>
+                                        <td> {{ offer.datePublication|date("d/m/Y") }} </td>
+                                        <td> {{ offer.Localisation}} </td>
+                                        <td> <div class="btn-group edit">
+                                                <abbr title="Modifier"><a href="#"><i class="bi bi-pencil-fill" href="#"></i></a></abbr>
+                                            </div>
 
-                                    <td><b>Chargé de mission vie associative</b></td>
-                                    <td>CDOS Vienne</td>
-                                    <td>As d'activité : Industrie, Logistique, Transport, Bâtiment Travaux Public, Tertiaire</td>
-                                    <td><span class="mode mode_process">CDD</td>
-                                    <td>17-Jan-2022</td>
-                                    <td>Poitiers</span></td>
+                                            <div class="btn-group delete">
+                                                <abbr title="Supprimer"><a href="#"><i class="bi bi-trash-fill"></i></a></abbr>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
 
-                                </tr>
-                                <tr>
-
-                                    <td><b>Chargé de mission suivi stratégique</b></td>
-                                    <td>Direction affaires générales</td>
-                                    <td>
-                                        Adéquat t'accompagne dans ta recherche d'emploi (intérim, CDD, CDI) et te propose + de 5000 jobs dans tous les secteurs d'activité : Industrie, Logistique, Transport, Bâtiment Travaux Public, Tertiaire</td>
-                                    <td><span class="mode mode_done">CDI</td>
-                                    <td>17-Jan-2022</td>
-                                    <td>Niort</span></td>
-
-                                </tr>
 
                             </tbody>
+
+
                         </table>
                     </div>
                 </div>
@@ -77,8 +80,8 @@
             "paging": false,
 
             'aoColumnDefs':[{
-                'bSortable':false,
-                'aTargets':['nosort'],
+                'bSortable':true,
+                'aTargets':['3'],
 
             }],
             columnDefs:[
