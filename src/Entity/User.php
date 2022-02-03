@@ -56,11 +56,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $descriptionStructure;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
-     **/
-    private $logoStructure;
-
-    /**
      * @var string The hashed password
      * @ORM\Column(type="string")
      * @Assert\Length(min="8", minMessage="Le mot de passe doit contenir au moins 8 caractères")
@@ -187,22 +182,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return int
-     */
-    public function getLogoStructure(): int
-    {
-        return $this->logoStructure;
-    }
-
-    /**
-     * @param int $logoStructure
-     */
-    public function setLogoStructure($logoStructure): void
-    {
-        $this->logoStructure = $logoStructure;
-    }
-
-    /**
      * @see PasswordAuthenticatedUserInterface
      */
     public function getPassword(): string
@@ -248,6 +227,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
+
+        return $this;
+    }
+
+    public function addRoles(string $role): self
+    {
+        $rolesTab = $this->getRoles();
+        array_push($rolesTab,[$role]);
 
         return $this;
     }
