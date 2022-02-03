@@ -196,8 +196,8 @@ class UploadType extends AbstractType
                     'CDI' => 'CDI',
                     'CDD' => 'CDD',
                     'Stage' => 'Stage',
-                    'CDI interimaire' => 'CDI_Interim',
-                    'Service civique' => 'Service_civ',
+                    'CDI interimaire' => 'CDI interimaire',
+                    'Service civique' => 'Service civique',
                     'Saisonnier' => 'Saisonnier',
 
                 ],

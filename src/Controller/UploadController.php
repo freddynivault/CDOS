@@ -36,7 +36,7 @@ class UploadController extends AbstractController
 
 
 
-            $logo = $form->get('logo_structure')->getData();
+            $logo = $form->get('logoStructure')->getData();
             $logoName= md5(uniqid()).'.'.$logo->guessExtension();
             $logo->move($this->getParameter('upload_directory'),$logoName);
             $upload->setLogoStructure($logoName);

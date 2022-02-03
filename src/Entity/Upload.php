@@ -101,7 +101,6 @@ class Upload
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     * @Assert\Choice(choices={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35}, message="Vous devez choisir un temps de travail")
      */
     private $tempsTravail;
 
@@ -157,7 +156,7 @@ class Upload
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Choice(choices={"CDI","CDD","Stage","CDI_Interim","Service_civ","Saisonnier"}, message="Vous devez choisir un type de contrat")
+     * @Assert\Choice(choices={"CDI","CDD","Stage","CDI interimaire","Service civique","Saisonnier"}, message="Vous devez choisir un type de contrat")
      */
     private $typeContrat;
 
@@ -186,18 +185,19 @@ class Upload
     /**
      * @return mixed
      */
-    public function getNamepdf()
+    public function getNamePdf()
     {
-        return $this->namepdf;
+        return $this->namePdf;
     }
 
     /**
-     * @param mixed $namepdf
+     * @param mixed $namePdf
      */
-    public function setNamepdf($namepdf): void
+    public function setNamePdf($namePdf): void
     {
-        $this->namepdf = $namepdf;
+        $this->namePdf = $namePdf;
     }
+
 
     /**
      * @return mixed
