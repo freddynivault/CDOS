@@ -22,7 +22,7 @@ class RegistrationFormType extends AbstractType
                 'mapped' => false,
                 'choices'  => [
                     'Candidat' => 'ROLE_CANDIDAT',
-                    'Admin Structure' => 'ROLE_ADMIN_S',
+                    'Admin Structure' => 'ROLE_ADMIN_STRUCTURE',
                     'Super Admin' => 'ROLE_SUPER_ADMIN',
                 ],
             ])
