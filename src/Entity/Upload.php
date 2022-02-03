@@ -157,6 +157,7 @@ class Upload
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Choice(choices={"CDI","CDD","Stage","CDI interimaire","Service civique","Saisonnier"}, message="Vous devez choisir un type de contrat")
+     * @Assert\Choice(choices={"CDI","CDD","Stage","CDI interimaire","Service civique","Saisonnier"}, message="Vous devez choisir un type de contrat")
      */
     private $typeContrat;
 

@@ -17,22 +17,23 @@
             <div class="row align-items-center align-content-center">
                 <div class="col-md-6 mt-5 mt-md-0">
                    <div class="home-img text-center">
-                       <img src="img/ministère.png" class="rounded-circle">
+                       <img src="{{ asset('uploads/pdf_file/'~ offer.logoStructure) }}" class="rounded-circle">
                    </div>
                 </div>
                 <div class="col-md-6 mt-5 mt-md-0 order-md-first">
                     <div class="home-text">
-                        <p class="text-muted mb-1">Nouvelle offre</p>
-                        <h1 class="text-danger text-uppercase fs-1 fw-bold">Titre de l'offre</h1>
-                        <h2 class="fs-4">Nom de l'entreprise</h2>
-                        <p class="mt-4 text-muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+                        <p class="text-muted mb-1">{{ offer.localisation }}</p>
+                        <h1 class="text-danger text-uppercase fs-1 fw-bold">{{ offer.titre }}</h1>
+                        <h2 class="fs-4">{{ offer.nomStructure }}</h2>
+                        <p class="mt-4 text-muted">{{ offer.descriptionStructure}} </p>
                     </div>
                 </div>
                 <div class="col">
                     <div class="home-img text-md-end">
-                        <button class="btn text-danger">
+                        {%  set test = 'uploads/pdf_file/' ~ offer.namePdf %}
+                        <a class="btn btn-download text-danger" href="{{ asset(test) }}" download="{{ offer.titre }}.pdf">
                             <abbr title="Télécharger l'offre en PDF"><h1><i class="bi bi-file-earmark-pdf-fill"></i></h1></abbr>
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -59,15 +60,15 @@
                 <div class ="col-md-6">
                     <div class="about-text">
                         <h3 class="fs-5">Intitulé du poste</h3>
-                        <p class="text-muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                        <p class="text-muted">{{ offer.intitulePoste }}</p>
                     </div>
                     <div class="about-text">
                         <h3 class="fs-5">Description du poste</h3>
-                        <p class="text-muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                        <p class="text-muted">{{ offer.descriptionPoste }}</p>
                     </div>
                     <div class="about-text">
                         <h3 class="fs-5">Missions</h3>
-                        <p class="text-muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                        <p class="text-muted">{{ offer.missions }}</p>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -75,11 +76,11 @@
                         <div class="row">
                             <div class="col-md-6">
                              <h3 class="fs-5">Formation (Diplômes)</h3>
-                             <p class="text-muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                             <p class="text-muted">{{ offer.formation }}</p>
                             </div>
                               <div class="col-md-6">
                                <h3 class="fs-5">Expérience</h3>
-                               <p class="text-muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                               <p class="text-muted">{{ offer.experience }}</p>
                              </div>
                         </div>
                     </div>
@@ -87,17 +88,17 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <h3 class="fs-5">Compétences</h3>
-                                <p class="text-muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                                <p class="text-muted">{{ offer.competences }}</p>
                             </div>
                             <div class="col-md-6">
                                 <h3 class="fs-5">Qualités</h3>
-                                <p class="text-muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                                <p class="text-muted">{{ offer.qualites }}</p>
                             </div>
                         </div>
                     </div>
                     <div class="about-text">
                         <h3 class="fs-5">Outils à maitriser</h3>
-                        <p class="text-muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                        <p class="text-muted">{{ offer.outils }}</p>
                     </div>
                 </div>
             </div>
@@ -121,37 +122,37 @@
                 <div class ="col-md-6">
                     <div class="about-text">
                         <h3 class="fs-5">Type de contrat</h3>
-                        <p class="text-muted">CDI</p>
+                        <p class="text-muted">{{ offer.typeContrat }}</p>
                     </div>
                     <div class="about-text">
                         <h3 class="fs-5">Temps de travail</h3>
-                        <p class="text-muted">35H</p>
+                        <p class="text-muted">{{ offer.tempsTravail }}</p>
                     </div>
                     <div class="about-text">
                         <h3 class="fs-5">Date de début de contrat</h3>
-                        <p class="text-muted">11/04/2022</p>
+                        <p class="text-muted">{{ offer.dateDebutContrat|date("d/m/Y") }}</p>
                     </div>
                     <div class="about-text">
                         <h3 class="fs-5">Date d'entretien</h3>
-                        <p class="text-muted">01/04/2022</p>
+                        <p class="text-muted">{{ offer.dateEntretien|date("d/m/Y") }}</p>
                     </div>
                 </div>
                 <div class ="col-md-6">
                     <div class="about-text">
                         <h3 class="fs-5">Date de publication</h3>
-                        <p class="text-muted">25/01/2022</p>
+                        <p class="text-muted">{{ offer.datePublication|date("d/m/Y") }}</p>
                     </div>
                     <div class="about-text">
-                        <h3 class="fs-5">Date d'archivage de l'offre</h3>
-                        <p class="text-muted">30/04/2022</p>
+                        <h3 class="fs-5">Date limite de candidature</h3>
+                        <p class="text-muted">{{ offer.dateArchivage|date("d/m/Y") }}</p>
                     </div>
                     <div class="about-text">
                         <h3 class="fs-5">Convention collective</h3>
-                        <p class="text-muted">Lorem Ipsum is simply dummy text</p>
+                        <p class="text-muted">{{ offer.conventionCollective }}</p>
                     </div>
                     <div class="about-text">
                         <h3 class="fs-5">Salaire brut</h3>
-                        <p class="text-danger">1500 €</p>
+                        <p class="text-danger">{{ offer.salaire }}</p>
                     </div>
 
                 </div>
@@ -164,6 +165,7 @@
     </section>
 
     <!--- Drag & drop --->
+    {% if is_granted('ROLE_CANDIDAT') %}
     <form>
 <div class="container">
 <div class="accordion accordion-flush" id="accordionFlushExample">
@@ -202,7 +204,11 @@
 </div>
 </div>
     </form>
-
+    {% else %}
+        <div align="center">
+            <a href="{{ path ('app_login') }}" class="btn btn-danger" >Connecter vous pour pouvoir postuler à cette offre</a>
+        </div>
+    {% endif %}
 
     <script src="assets/bootstrap.bundle.min.js"></script>
 {% endblock %}

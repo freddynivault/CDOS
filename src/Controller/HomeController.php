@@ -16,7 +16,7 @@ class HomeController extends AbstractController
      */
     public function home(): Response
     {
-        return $this->render ('home/viewjoboffer.html.twig');
+        return $this->render ('home/index.html.twig');
     }
 
     /**
@@ -27,6 +27,16 @@ class HomeController extends AbstractController
         $entityManager = $doctrine->getManager();
         $offer = $entityManager->getRepository(Upload::class)->findAll();
         return $this->render ('home/listoffer.html.twig', ['tableau' => $offer]);
+    }
+
+    /**
+     * @Route("/viewoffer/{id}", name="app_viewoffer")
+     */
+    public function viewOffer(ManagerRegistry $doctrine, int $id): Response
+    {
+        $entityManager = $doctrine->getManager();
+        $offer = $entityManager->getRepository(Upload::class)->find($id);
+        return $this->render ('home/viewjoboffer.html.twig', ['offer' => $offer]);
     }
 
     /**
@@ -85,6 +95,14 @@ class HomeController extends AbstractController
     public function passforget(): Response
     {
         return $this->render ('home/passforget.html.twig');
+    }
+
+    /**
+     * @Route("/test", name="app_test")
+     */
+    public function test(): Response
+    {
+        return $this->render ('home/test.html.twig');
     }
 
 }

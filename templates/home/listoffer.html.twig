@@ -38,7 +38,7 @@
                                 {% for offer in tableau %}
                                     <tr>
                                         <td> <div class="btn-group consult">
-                                                <abbr title="Consulter"><a href="#"><i class="bi bi-eye-fill" href="#"></i></a></abbr>
+                                                <abbr title="Consulter"><a href="{{ path ('app_viewoffer',{id : offer.id}) }}"><i class="bi bi-eye-fill" href="#"></i></a></abbr>
                                             </div></td>
                                         <td><b> {{ offer.titre}} </b></td>
                                         <td> {{ offer.nomStructure }} </td>
