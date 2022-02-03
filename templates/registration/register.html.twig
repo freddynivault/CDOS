@@ -6,7 +6,7 @@
     {% form_theme registrationForm 'bootstrap_5_layout.html.twig' %}
     <script>
         function showUser(){
-            var selectBox = document.getElementById('registration_form_roles');
+            var selectBox = document.getElementById('registration_form_role');
             var userInput = selectBox.options[selectBox.selectedIndex].value;
             console.log("value = " + userInput);
             document.getElementById('formCandidat').style.display='none';
@@ -33,7 +33,7 @@
         <div class="form-group">
             <h1>Créer un compte</h1>
             {{ form_start(registrationForm) }}
-                {{ form_row(registrationForm.roles, {'attr': {'onchange': 'return showUser();'}}) }}
+                {{ form_row(registrationForm.role, {'attr': {'onchange': 'return showUser();'}}) }}
                 {{ form_row(registrationForm.email) }}
                 {{ form_row(registrationForm.password) }}
                 {{ form_row(registrationForm.confirmPassword) }}

@@ -17,9 +17,9 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('roles', ChoiceType::class, [
+            ->add('role', ChoiceType::class, [
                 'label' => false,
-                'multiple' => true,
+                'mapped' => false,
                 'choices'  => [
                     'Candidat' => 'ROLE_CANDIDAT',
                     'Admin Structure' => 'ROLE_ADMIN_S',
