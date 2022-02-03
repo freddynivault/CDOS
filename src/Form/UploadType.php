@@ -22,13 +22,17 @@ class UploadType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nom_structure',TextType::class, [
+            ->add('nomStructure',TextType::class, [
                 'label' => false,
 
             ])
-            ->add('description_structure', TextareaType::class,array('label' => false))
+            ->add('localisation',TextType::class, [
+                'label' => false,
 
-            ->add('name_pdf', FileType::class,[
+            ])
+            ->add('descriptionStructure', TextareaType::class,array('label' => false))
+
+            ->add('namePdf', FileType::class,[
 
                 'label' => false,
                 'mapped' => false, // Tell that there is no Entity to link
@@ -47,12 +51,12 @@ class UploadType extends AbstractType
             ])
 
             ->add('titre',null, array('label' => false))
-            ->add('intitule_poste',null, array('label' => false))
-            ->add('description_poste',null, array('label' => false))
+            ->add('intitulePoste',null, array('label' => false))
+            ->add('descriptionPoste',null, array('label' => false))
             ->add('missions',null, array('label' => false))
             ->add('statut', HiddenType::class)
-            ->add('nombre_candidature', HiddenType::class)
-            ->add('logo_structure', FileType::class,[
+            ->add('nombreCandidature', HiddenType::class)
+            ->add('logoStructure', FileType::class,[
 
                 'label' => false,
                 'mapped' => false, // Tell that there is no Entity to link
@@ -86,9 +90,9 @@ class UploadType extends AbstractType
                 ],
                 'label' => false
             ])
-            ->add('convention_collective',null, array('label' => false))
+            ->add('conventionCollective',null, array('label' => false))
             ->add('outils',null, array('label' => false))
-            ->add('temps_travail', ChoiceType::class, [
+            ->add('tempsTravail', ChoiceType::class, [
                 'choices'  => [
                     '...' => '0',
                     '1 H' => '1',
@@ -130,7 +134,7 @@ class UploadType extends AbstractType
                 'label' => false
             ])
 
-            ->add('date_debut_contrat', DateType::class, [
+            ->add('dateDebutContrat', DateType::class, [
 
                 'widget' => 'single_text',
                 // this is actually the default format for single_text
@@ -141,7 +145,7 @@ class UploadType extends AbstractType
 
             ])
 
-            ->add('date_entretien', DateType::class, [
+            ->add('dateEntretien', DateType::class, [
 
                 'widget' => 'single_text',
                 // this is actually the default format for single_text
@@ -151,7 +155,7 @@ class UploadType extends AbstractType
                 'label' => false
 
             ])
-            ->add('date_publication', DateType::class, [
+            ->add('datePublication', DateType::class, [
 
                 'widget' => 'single_text',
                 // this is actually the default format for single_text
@@ -161,7 +165,7 @@ class UploadType extends AbstractType
                 'label' => false
 
             ])
-            ->add('date_archivage', DateType::class, [
+            ->add('dateArchivage', DateType::class, [
 
                 'widget' => 'single_text',
                 // this is actually the default format for single_text
@@ -186,7 +190,7 @@ class UploadType extends AbstractType
             ])
             ->add('competences',null, array('label' => false))
             ->add('qualites',null, array('label' => false))
-            ->add('type_contrat', ChoiceType::class, [
+            ->add('typeContrat', ChoiceType::class, [
                 'choices'  => [
                     '...' => 'nothing',
                     'CDI' => 'CDI',
@@ -199,7 +203,7 @@ class UploadType extends AbstractType
                 ],
                 'label' => false
             ])
-            ->add('categorie_contrat', ChoiceType::class, [
+            ->add('categorieContrat', ChoiceType::class, [
                 'choices'  => [
                     '...' => 'nothing',
                     'Emploi' => 'Emploi',

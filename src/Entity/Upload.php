@@ -21,7 +21,7 @@ class Upload
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $namepdf;
+    private $namePdf;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -30,63 +30,35 @@ class Upload
     private $titre;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\NotBlank(message="Veuillez renseigner ce champ")
      */
-    private $nom_structure;
+    private $localisation;
 
-    /**
-     * @return mixed
-     */
-    public function getNomStructure()
-    {
-        return $this->nom_structure;
-    }
-
-    /**
-     * @param mixed $nom_structure
-     */
-    public function setNomStructure($nom_structure): void
-    {
-        $this->nom_structure = $nom_structure;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getDescriptionStructure()
-    {
-        return $this->description_structure;
-    }
-
-    /**
-     * @param mixed $description_structure
-     */
-    public function setDescriptionStructure($description_structure): void
-    {
-        $this->description_structure = $description_structure;
-    }
 
     /**
      * @ORM\Column(type="string", nullable=true)
      * @Assert\NotBlank(message="Veuillez renseigner ce champ")
      */
-    private $description_structure;
+    private $nomStructure;
 
-
-
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     * @Assert\NotBlank(message="Veuillez renseigner ce champ")
+     */
+    private $descriptionStructure;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\NotBlank(message="Veuillez renseigner ce champ")
      */
-    private $intitule_poste;
+    private $intitulePoste;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\NotBlank(message="Veuillez renseigner ce champ")
      */
-    private $description_poste;
+    private $descriptionPoste;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -103,12 +75,12 @@ class Upload
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $logo_structure;
+    private $logoStructure;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $nombre_candidature;
+    private $nombreCandidature;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
@@ -120,7 +92,7 @@ class Upload
      * @ORM\Column(type="string", length=255, nullable=true)
      *
      */
-    private $convention_collective;
+    private $conventionCollective;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -131,49 +103,34 @@ class Upload
      * @ORM\Column(type="integer", nullable=true)
      * @Assert\Choice(choices={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35}, message="Vous devez choisir un temps de travail")
      */
-    private $temps_travail;
+    private $tempsTravail;
 
     /**
      * @ORM\Column(type="date", nullable=true)
      * @Assert\NotBlank(message="Veuillez renseigner ce champ")
      */
 
-    private $date_debut_contrat;
+    private $dateDebutContrat;
 
     /**
      * @ORM\Column(type="date", nullable=true)
      * @Assert\NotBlank(message="Veuillez renseigner ce champ")
      */
-    private $date_entretien;
+    private $dateEntretien;
 
     /**
      * @ORM\Column(type="date", nullable=true)
      * @Assert\NotBlank(message="Veuillez renseigner ce champ")
      *
      */
-    private $date_publication;
+    private $datePublication;
 
-    /**
-     * @return mixed
-     */
-    public function getLogoStructure()
-    {
-        return $this->logo_structure;
-    }
-
-    /**
-     * @param mixed $logo_structure
-     */
-    public function setLogoStructure($logo_structure): void
-    {
-        $this->logo_structure = $logo_structure;
-    }
 
     /**
      * @ORM\Column(type="date", nullable=true)
      * @Assert\NotBlank(message="Veuillez renseigner ce champ")
      */
-    private $date_archivage;
+    private $dateArchivage;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
@@ -202,283 +159,28 @@ class Upload
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Choice(choices={"CDI","CDD","Stage","CDI_Interim","Service_civ","Saisonnier"}, message="Vous devez choisir un type de contrat")
      */
-    private $type_contrat;
+    private $typeContrat;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Choice(choices={"Emploi","Service_civ","Alternance","Stage"}, message="Vous devez choisir une catégorie pour cette offre")
      */
-    private $categorie_contrat;
+    private $categorieContrat;
 
-
-    public function getId(): ?int
+    /**
+     * @return mixed
+     */
+    public function getId()
     {
         return $this->id;
     }
 
-
-
-
-
-    public function getTitre(): ?string
-    {
-        return $this->titre;
-    }
-
-    public function setTitre(string $titre): self
-    {
-        $this->titre = $titre;
-
-        return $this;
-    }
-
-    public function getIntitulePoste(): ?string
-    {
-        return $this->intitule_poste;
-    }
-
-    public function setIntitulePoste(string $intitule_poste): self
-    {
-        $this->intitule_poste = $intitule_poste;
-
-        return $this;
-    }
-
-    public function getDescriptionPoste(): ?string
-    {
-        return $this->description_poste;
-    }
-
-    public function setDescriptionPoste(string $description_poste): self
-    {
-        $this->description_poste = $description_poste;
-
-        return $this;
-    }
-
-    public function getMissions(): ?string
-    {
-        return $this->missions;
-    }
-
-    public function setMissions(string $missions): self
-    {
-        $this->missions = $missions;
-
-        return $this;
-    }
-
-    public function getStatut(): ?string
-    {
-        return $this->statut;
-    }
-
-    public function setStatut(string $statut): self
-    {
-        $this->statut = $statut;
-
-        return $this;
-    }
-
-    public function getNombreCandidature(): ?int
-    {
-        return $this->nombre_candidature;
-    }
-
-    public function setNombreCandidature(int $nombre_candidature): self
-    {
-        $this->nombre_candidature = $nombre_candidature;
-
-        return $this;
-    }
-
-    public function getExperience(): ?int
-    {
-        return $this->experience;
-    }
-
-    public function setExperience(int $experience): self
-    {
-        $this->experience = $experience;
-
-        return $this;
-    }
-
-    public function getConventionCollective(): ?string
-    {
-        return $this->convention_collective;
-    }
-
-    public function setConventionCollective(string $convention_collective): self
-    {
-        $this->convention_collective = $convention_collective;
-
-        return $this;
-    }
-
-    public function getOutils(): ?string
-    {
-        return $this->outils;
-    }
-
-    public function setOutils(?string $outils): self
-    {
-        $this->outils = $outils;
-
-        return $this;
-    }
-
-    public function getTempsTravail(): ?int
-    {
-        return $this->temps_travail;
-    }
-
-    public function setTempsTravail(int $temps_travail): self
-    {
-        $this->temps_travail = $temps_travail;
-
-        return $this;
-    }
-
-
-
-
-
-    public function getSalaire(): ?int
-    {
-        return $this->salaire;
-    }
-
-    public function setSalaire(?int $salaire): self
-    {
-        $this->salaire = $salaire;
-
-        return $this;
-    }
-
-    public function getFormation(): ?string
-    {
-        return $this->formation;
-    }
-
-    public function setFormation(?string $formation): self
-    {
-        $this->formation = $formation;
-
-        return $this;
-    }
-
-    public function getCompetences(): ?string
-    {
-        return $this->competences;
-    }
-
-    public function setCompetences(?string $competences): self
-    {
-        $this->competences = $competences;
-
-        return $this;
-    }
-
-    public function getQualites(): ?string
-    {
-        return $this->qualites;
-    }
-
-    public function setQualites(?string $qualites): self
-    {
-        $this->qualites = $qualites;
-
-        return $this;
-    }
-
-    public function getTypeContrat(): ?string
-    {
-        return $this->type_contrat;
-    }
-
-    public function setTypeContrat(string $type_contrat): self
-    {
-        $this->type_contrat = $type_contrat;
-
-        return $this;
-    }
-
-    public function getCategorieContrat(): ?string
-    {
-        return $this->categorie_contrat;
-    }
-
-    public function setCategorieContrat(string $categorie_contrat): self
-    {
-        $this->categorie_contrat = $categorie_contrat;
-
-        return $this;
-    }
-
-
     /**
-     * @return mixed
+     * @param mixed $id
      */
-    public function getDateArchivage()
+    public function setId($id): void
     {
-        return $this->date_archivage;
-    }
-
-    /**
-     * @param mixed $date_archivage
-     */
-    public function setDateArchivage($date_archivage): void
-    {
-        $this->date_archivage = $date_archivage;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getDateDebutContrat()
-    {
-        return $this->date_debut_contrat;
-    }
-
-    /**
-     * @param mixed $date_debut_contrat
-     */
-    public function setDateDebutContrat($date_debut_contrat): void
-    {
-        $this->date_debut_contrat = $date_debut_contrat;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getDateEntretien()
-    {
-        return $this->date_entretien;
-    }
-
-    /**
-     * @param mixed $date_entretien
-     */
-    public function setDateEntretien($date_entretien): void
-    {
-        $this->date_entretien = $date_entretien;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getDatePublication()
-    {
-        return $this->date_publication;
-    }
-
-    /**
-     * @param mixed $date_publication
-     */
-    public function setDatePublication($date_publication): void
-    {
-        $this->date_publication = $date_publication;
+        $this->id = $id;
     }
 
     /**
@@ -496,6 +198,391 @@ class Upload
     {
         $this->namepdf = $namepdf;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getTitre()
+    {
+        return $this->titre;
+    }
+
+    /**
+     * @param mixed $titre
+     */
+    public function setTitre($titre): void
+    {
+        $this->titre = $titre;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLocalisation()
+    {
+        return $this->localisation;
+    }
+
+    /**
+     * @param mixed $localisation
+     */
+    public function setLocalisation($localisation): void
+    {
+        $this->localisation = $localisation;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNomStructure()
+    {
+        return $this->nomStructure;
+    }
+
+    /**
+     * @param mixed $nomStructure
+     */
+    public function setNomStructure($nomStructure): void
+    {
+        $this->nomStructure = $nomStructure;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDescriptionStructure()
+    {
+        return $this->descriptionStructure;
+    }
+
+    /**
+     * @param mixed $descriptionStructure
+     */
+    public function setDescriptionStructure($descriptionStructure): void
+    {
+        $this->descriptionStructure = $descriptionStructure;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIntitulePoste()
+    {
+        return $this->intitulePoste;
+    }
+
+    /**
+     * @param mixed $intitulePoste
+     */
+    public function setIntitulePoste($intitulePoste): void
+    {
+        $this->intitulePoste = $intitulePoste;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDescriptionPoste()
+    {
+        return $this->descriptionPoste;
+    }
+
+    /**
+     * @param mixed $descriptionPoste
+     */
+    public function setDescriptionPoste($descriptionPoste): void
+    {
+        $this->descriptionPoste = $descriptionPoste;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMissions()
+    {
+        return $this->missions;
+    }
+
+    /**
+     * @param mixed $missions
+     */
+    public function setMissions($missions): void
+    {
+        $this->missions = $missions;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStatut()
+    {
+        return $this->statut;
+    }
+
+    /**
+     * @param mixed $statut
+     */
+    public function setStatut($statut): void
+    {
+        $this->statut = $statut;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLogoStructure()
+    {
+        return $this->logoStructure;
+    }
+
+    /**
+     * @param mixed $logoStructure
+     */
+    public function setLogoStructure($logoStructure): void
+    {
+        $this->logoStructure = $logoStructure;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNombreCandidature()
+    {
+        return $this->nombreCandidature;
+    }
+
+    /**
+     * @param mixed $nombreCandidature
+     */
+    public function setNombreCandidature($nombreCandidature): void
+    {
+        $this->nombreCandidature = $nombreCandidature;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getExperience()
+    {
+        return $this->experience;
+    }
+
+    /**
+     * @param mixed $experience
+     */
+    public function setExperience($experience): void
+    {
+        $this->experience = $experience;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getConventionCollective()
+    {
+        return $this->conventionCollective;
+    }
+
+    /**
+     * @param mixed $conventionCollective
+     */
+    public function setConventionCollective($conventionCollective): void
+    {
+        $this->conventionCollective = $conventionCollective;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOutils()
+    {
+        return $this->outils;
+    }
+
+    /**
+     * @param mixed $outils
+     */
+    public function setOutils($outils): void
+    {
+        $this->outils = $outils;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTempsTravail()
+    {
+        return $this->tempsTravail;
+    }
+
+    /**
+     * @param mixed $tempsTravail
+     */
+    public function setTempsTravail($tempsTravail): void
+    {
+        $this->tempsTravail = $tempsTravail;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDateDebutContrat()
+    {
+        return $this->dateDebutContrat;
+    }
+
+    /**
+     * @param mixed $dateDebutContrat
+     */
+    public function setDateDebutContrat($dateDebutContrat): void
+    {
+        $this->dateDebutContrat = $dateDebutContrat;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDateEntretien()
+    {
+        return $this->dateEntretien;
+    }
+
+    /**
+     * @param mixed $dateEntretien
+     */
+    public function setDateEntretien($dateEntretien): void
+    {
+        $this->dateEntretien = $dateEntretien;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDatePublication()
+    {
+        return $this->datePublication;
+    }
+
+    /**
+     * @param mixed $datePublication
+     */
+    public function setDatePublication($datePublication): void
+    {
+        $this->datePublication = $datePublication;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDateArchivage()
+    {
+        return $this->dateArchivage;
+    }
+
+    /**
+     * @param mixed $dateArchivage
+     */
+    public function setDateArchivage($dateArchivage): void
+    {
+        $this->dateArchivage = $dateArchivage;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSalaire()
+    {
+        return $this->salaire;
+    }
+
+    /**
+     * @param mixed $salaire
+     */
+    public function setSalaire($salaire): void
+    {
+        $this->salaire = $salaire;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFormation()
+    {
+        return $this->formation;
+    }
+
+    /**
+     * @param mixed $formation
+     */
+    public function setFormation($formation): void
+    {
+        $this->formation = $formation;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCompetences()
+    {
+        return $this->competences;
+    }
+
+    /**
+     * @param mixed $competences
+     */
+    public function setCompetences($competences): void
+    {
+        $this->competences = $competences;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getQualites()
+    {
+        return $this->qualites;
+    }
+
+    /**
+     * @param mixed $qualites
+     */
+    public function setQualites($qualites): void
+    {
+        $this->qualites = $qualites;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTypeContrat()
+    {
+        return $this->typeContrat;
+    }
+
+    /**
+     * @param mixed $typeContrat
+     */
+    public function setTypeContrat($typeContrat): void
+    {
+        $this->typeContrat = $typeContrat;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCategorieContrat()
+    {
+        return $this->categorieContrat;
+    }
+
+    /**
+     * @param mixed $categorieContrat
+     */
+    public function setCategorieContrat($categorieContrat): void
+    {
+        $this->categorieContrat = $categorieContrat;
+    }
+
 
 
 }
