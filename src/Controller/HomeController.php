@@ -58,14 +58,6 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route("/createaccount", name="app_createaccount")
-     */
-    public function createaccount(): Response
-    {
-        return $this->render ('home/createaccount.html.twig');
-    }
-
-    /**
      * @Route("/createoffer", name="app_createoffer")
      */
     public function createoffer(): Response
@@ -79,14 +71,6 @@ class HomeController extends AbstractController
     public function connect(): Response
     {
         return $this->render ('home/connect.html.twig');
-    }
-
-    /**
-     * @Route("/createaccountSAdmin", name="app_createaccountSAdmin")
-     */
-    public function createaccountSAdmin(): Response
-    {
-        return $this->render ('home/createaccountSAdmin.html.twig');
     }
 
     /**
