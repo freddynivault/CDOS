@@ -39,7 +39,7 @@ class SuperAdminRegistrationFormType extends AbstractType
             ])
             ->add('confirmPassword', PasswordType::class, [
                 'label' => false,
-                'attr' => ['placeholder'=> 'Confirmez votre mot de passe']
+                'attr' => ['placeholder'=> 'Confirmez le mot de passe']
             ])
             ->add('firstName', TextType::class, [
                 'label' => false,
