@@ -12,7 +12,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use function Sodium\add;
 
-class RegistrationFormType extends AbstractType
+class SuperAdminRegistrationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -23,6 +23,7 @@ class RegistrationFormType extends AbstractType
                 'choices'  => [
                     'Candidat' => 'ROLE_CANDIDAT',
                     'Admin Structure' => 'ROLE_ADMIN_STRUCTURE',
+                    'Super Admin' => 'ROLE_SUPER_ADMIN',
                 ],
                 'attr' => [
                     'id' => 'registration_form_role',
