@@ -1,179 +1,260 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Hello PagesController!{% endblock %}
-
+{% block stylesheets %}<link rel="stylesheet" href="{{ asset('css/styledrag2.css') }}">{% endblock %}
 {% block body %}
     <style>
-        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+        .example-wrapper {
+            margin: 1em auto;
+            max-width: 800px;
+            width: 95%;
+            font: 18px/1.5 sans-serif;
+        }
+
+        .example-wrapper code {
+            background: #F5F5F5;
+            padding: 2px 6px;
+        }
+
     </style>
 
-    <form>
-        <div class = "container">
-            <div class = "py-5 text-center">
-                <p class ="lead">Veuillez renseigner les informations concernant l'offre que vous souhaitez ajouter</p>
-                </br>
-                <h4>Titre de l'offre</h4>
-                <input id="titreOffre" placeholder="..." type="text" class="form-control">
-                <div class="invalid-feedback">Veuillez renseigner le titre de l'offre</div>
+    <div class="container">
+        {{ form_start(formModif, {'attr': {'novalidate': 'novalidate'}}) }}
+        <div class="py-5 text-center">
+            <p class="lead">Veuillez renseigner les informations concernant l'offre que vous souhaitez ajouter</p>
+            </br>
+            <h4>Titre de l'offre</h4>
+            {{ form_row(formModif.titre) }}
+        </div>
+    </div>
+    <div class="container">
+        {{ form_start(formModif) }}
+        <div class="text-center">
+            <h4>Categorie de l'offre</h4>
+            {{ form_row(formModif.categorieContrat) }}
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row g-3">
+            <h4>Structure</h4>
+            <div class="col-sm-6">
+                <label for="nameStructure" class="form-label"> Nom de la structure</label>
+                {{ form_row(formModif.nomStructure) }}
             </div>
-        </div>
+            <div class="col-sm-6">
+                <div class="mb-3">
+                    <label for="logoStructure" class="form-label">Logo de la structure</label>
 
-        <div class ="container">
-            <div class ="row g-3">
-                <h4>Structure</h4>
-                <div class ="col-sm-6">
-                    <label for ="nameStructure" class ="form-label"> Nom de la structure</label>
-                    <input id="nameStructure" placeholder="CDOS Vienne" type="text" class="form-control">
-                    <div class="invalid-feedback">Veuillez renseigner le nom de la structure</div>
+                    {{ form_row(formModif.logoStructure) }}
                 </div>
-                <div class ="col-sm-6">
-                    <div class="mb-3">
-                        <label for ="logoStructure" class ="form-label">Logo de la structure</label>
-                        <input class="form-control" type="file" id="formFile">
-                    </div>
-                </div>
-                <div class ="col-12">
-                    <div class="mb-3">
-                        <label for ="descriptionStructure" class ="form-label">Description de la structure</label>
-                        <textarea class="form-control" placeholder="Description ..." id="floatingTextarea"></textarea>
-                    </div>
-                </div>
-
-                <hr class="my-4">
-
-
-                <div class ="row mt-3">
-                    <div class="col col-md-6">
-                        <h4>Poste proposé</h4>
-                        <div class="mb-3">
-                            <label for ="intitulePoste" class ="form-label">Intitulé du poste</label>
-                            <input id="intitulePoste" placeholder="Chargé(e) de mision" type="text" class="form-control" size="10">
-                            <div class="invalid-feedback">Veuillez l'intitulé du poste</div>
-                        </div>
-                        <div class="mb-3">
-                            <label for ="descriptionPoste" class ="form-label">Description du poste</label>
-                            <input id="descriptionPosteStructure" placeholder="..." type="text" class="form-control">
-                            <div class="invalid-feedback">Veuillez renseigner la description du poste</div>
-                        </div>
-                        <div class="mb-3">
-                            <label for ="missionPoste" class ="form-label">Missions</label>
-                            <input id="missionPoste" placeholder="..." type="text" class="form-control">
-                            <div class="invalid-feedback">Veuillez renseigner les missions pour ce poste</div>
-                        </div>
-                    </div>
-                    <div class="col col-md-6">
-                        <div class="container">
-                            <div class="row">
-                                <h4>Profil recherché</h4>
-                                <div class="col-sm">
-                                    <label for ="formation" class ="form-label">Formation (Diplômes)</label>
-                                    <input id="formation" placeholder="Bac+5" type="text" class="form-control">
-                                    <div class="invalid-feedback">Veuillez renseigner la formation pour le profil recherché</div>
-                                </div>
-                                <div class="col">
-                                    <label for ="experience" class ="form-label">Expérience</label>
-                                    <input id="experience" placeholder="2 ans" type="text" class="form-control">
-                                    <div class="invalid-feedback">Veuillez renseigner l'expérience pour le profil recherché</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-sm">
-                                    <label for ="competence" class ="form-label">Compétences</label>
-                                    <input id="competence" placeholder="Autonomie/Travail d'équipe" type="text" class="form-control">
-                                    <div class="invalid-feedback">Veuillez renseigner les compétences pour le profil recherché</div>
-                                </div>
-                                <div class="col">
-                                    <label for ="qualite" class ="form-label">Qualités</label>
-                                    <input id="qualite" placeholder="CDOS Vienne" type="text" class="form-control">
-                                    <div class="invalid-feedback">Veuillez renseigner les qualités pour le profil recherché</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-sm">
-                                    <label for ="outils" class ="form-label">Outils à maitriser</label>
-                                    <input id="outils" placeholder="CDOS Vienne" type="text" class="form-control">
-                                    <div class="invalid-feedback">Veuillez renseigner les outils à maitriser pour le profil recherché</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <hr class="my-4">
-
-                <div class ="row mt-3">
-                    <div class="col col-md-6">
-                        <h4>Détails du contrat</h4>
-                        <div class="mb-3">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                                <label class="form-check-label" for="inlineRadio1">CDI</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                                <label class="form-check-label" for="inlineRadio2">CDD</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"
-                                <label class="form-check-label" for="inlineRadio3">Stage</label>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label for ="tempsTravail" class ="form-label">Temps de travail</label>
-                            <input id="tempsTravail" placeholder="35h" type="text" class="form-control">
-                            <div class="invalid-feedback">Veuillez renseigner le temps de travail</div>
-                        </div>
-                        <div class="mb-3">
-                            <label for ="dateDebutContrat" class ="form-label">Date de début de contrat</label>
-                            <input id="dateDebutContrat" placeholder="..." type="date" class="form-control">
-                            <div class="invalid-feedback">Veuillez renseigner la date de début de contrat</div>
-                        </div>
-                        <div class="mb-3">
-                            <label for ="dateEntretien" class ="form-label">Date d'entretien</label>
-                            <input id="dateEntretien" placeholder="..." type="date" class="form-control">
-                            <div class="invalid-feedback">Veuillez renseigner la date d'entretien</div>
-                        </div>
-                    </div>
-                    <div class="col col-md-6">
-
-                        <div class="mb-3">
-                            <div class="mb-3">
-                                <label for ="datePublication" class ="form-label">Date de publication</label>
-                                <input id="datePublication" placeholder="..." type="date" class="form-control">
-                            </div>
-                            <div class="mb-3">
-                                <label for ="dateArchivage" class ="form-label">Date d'archivage de l'offre</label>
-                                <input id="dateArchivage" placeholder="..." type="date" class="form-control">
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label for ="convention" class ="form-label">Convention collective</label>
-                            <input id="convention" placeholder="" type="text" class="form-control">
-                            <div class="invalid-feedback">Veuillez renseigner la convention collective</div>
-                        </div>
-                        <div class="mb-3">
-                            <label for ="salaire" class ="form-label">Salaire brut</label>
-                            <input id="salaire" placeholder="1500 €" type="text" class="form-control">
-                            <div class="invalid-feedback">Veuillez renseigner le salaire en brut</div>
-                        </div>
-
-                    </div>
-                    <hr class="my-4">
-                </div>
-
-
-
-
             </div>
-        </div>
-        </div>
+            <div class="col-12">
+                <div class="mb-3">
+                    <label for="descriptionStructure" class="form-label">Description de la structure</label>
+                    {{ form_row(formModif.descriptionStructure) }}
+                </div>
+                <div class="mb-3">
+                    <label for="localisationStructure" class="form-label">Localisation</label>
+                    {{ form_row(formModif.localisation) }}
+                </div>
+            </div>
 
-        {{ include('home/draganddrop.html.twig') }}
-    </form>
+            <hr class="my-4">
 
+
+            <div class="row mt-3">
+                <div class="col col-md-6">
+                    <h4>Poste proposé</h4>
+                    <div class="mb-3">
+                        <label for="intitulePoste" class="form-label">Intitulé du poste</label>
+                        {{ form_row(formModif.intitulePoste) }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="descriptionPoste" class="form-label">Description du poste</label>
+                        {{ form_row(formModif.descriptionPoste) }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="missionPoste" class="form-label">Missions</label>
+                        {{ form_row(formModif.missions) }}
+                    </div>
+                </div>
+                <div class="col col-md-6">
+                    <div class="container">
+                        <div class="row">
+                            <h4>Profil recherché</h4>
+                            <div class="col-sm">
+                                <label for="formation" class="form-label">Formation (Diplômes)</label>
+                                {{ form_row(formModif.formation) }}
+                            </div>
+                            <div class="col">
+                                <label for="experience" class="form-label">Expérience</label>
+                                {{ form_row(formModif.experience) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm">
+                                <label for="competence" class="form-label">Compétences</label>
+                                {{ form_row(formModif.competences) }}
+                            </div>
+                            <div class="col">
+                                <label for="qualite" class="form-label">Qualités</label>
+                                {{ form_row(formModif.qualites) }}
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm">
+                                <label for="outils" class="form-label">Outils à maitriser</label>
+                                {{ form_row(formModif.outils) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="my-4">
+
+            <div class="row mt-3">
+                <div class="col col-md-6">
+                    <h4>Détails du contrat</h4>
+                    <div class="mb-3">
+                        <label for="typeContrat" class="form-label">Type de contrat</label>
+                        {{ form_row(formModif.typeContrat) }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="tempsTravail" class="form-label">Temps de travail</label>
+                        {{ form_row(formModif.tempsTravail) }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="dateDebutContrat" class="form-label">Date de début de contrat</label>
+                        {{ form_row(formModif.dateDebutContrat, {'attr': {'placeholder': "dd/mm/yyyy" }}) }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="dateEntretien" class="form-label">Date d'entretien</label>
+                        {{ form_row(formModif.dateEntretien, {'attr': {'placeholder': "dd/mm/yyyy" }}) }}
+                    </div>
+                </div>
+                <div class="col col-md-6">
+
+                    <div class="mb-3">
+                        <div class="mb-3">
+                            <label for="datePublication" class="form-label">Date de publication</label>
+                            {{ form_row(formModif.datePublication, {'attr': {'placeholder': "dd/mm/yyyy" }}) }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="dateArchivage" class="form-label">Date d'archivage de l'offre</label>
+                            {{ form_row(formModif.dateArchivage, {'attr': {'placeholder': "dd/mm/yyyy" }})}}
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="convention" class="form-label">Convention collective</label>
+                        {{ form_row(formModif.conventionCollective) }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="salaire" class="form-label">Salaire brut</label>
+                        {{ form_row(formModif.salaire) }}
+                    </div>
+
+                </div>
+                <hr class="my-4">
+                <h4>Télécharger l'offre au format PDF</h4>
+                <div class="container">
+                    <div class="row">
+                        <div class="drop-zone">
+                            <span class="drop-zone__prompt">Cliquez pour parcourir ou glissez votre document</span>
+                            {{ form_row(formModif.namePdf, {'attr': {'class': 'drop-zone__input'}}) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div align="center">
+        {{ form_row(formModif.submit, { 'label': 'Envoyer' }) }}
+    </div>
+    {{ form_end(formModif) }}
+
+
+    <script>
+        document.querySelectorAll(".drop-zone__input").forEach((inputElement) => {
+            const dropZoneElement = inputElement.closest(".drop-zone");
+
+            dropZoneElement.addEventListener("click", (e) => {
+                inputElement.click();
+            });
+
+            inputElement.addEventListener("change", (e) => {
+                if (inputElement.files.length) {
+                    updateThumbnail(dropZoneElement, inputElement.files[0]);
+                }
+            });
+
+            dropZoneElement.addEventListener("dragover", (e) => {
+                e.preventDefault();
+                dropZoneElement.classList.add("drop-zone--over");
+            });
+
+            ["dragleave", "dragend"].forEach((type) => {
+                dropZoneElement.addEventListener(type, (e) => {
+                    dropZoneElement.classList.remove("drop-zone--over");
+                });
+            });
+
+            dropZoneElement.addEventListener("drop", (e) => {
+                e.preventDefault();
+
+                if (e.dataTransfer.files.length) {
+                    inputElement.files = e.dataTransfer.files;
+                    updateThumbnail(dropZoneElement, e.dataTransfer.files[0]);
+                }
+
+                dropZoneElement.classList.remove("drop-zone--over");
+            });
+        });
+
+        /**
+         * Updates the thumbnail on a drop zone element.
+         *
+         * @param {HTMLElement} dropZoneElement
+         * @param {File} file
+         */
+        function updateThumbnail(dropZoneElement, file) {
+            let thumbnailElement = dropZoneElement.querySelector(".drop-zone__thumb");
+
+            // First time - remove the prompt
+            if (dropZoneElement.querySelector(".drop-zone__prompt")) {
+                dropZoneElement.querySelector(".drop-zone__prompt").remove();
+            }
+
+            // First time - there is no thumbnail element, so lets create it
+            if (!thumbnailElement) {
+                thumbnailElement = document.createElement("div");
+                thumbnailElement.classList.add("drop-zone__thumb");
+                dropZoneElement.appendChild(thumbnailElement);
+            }
+
+            thumbnailElement.dataset.label = file.name;
+
+            // Show thumbnail for image files
+            if (file.type.startsWith("image/")) {
+                const reader = new FileReader();
+
+                reader.readAsDataURL(file);
+                reader.onload = () => {
+                    thumbnailElement.style.backgroundImage = `url('${reader.result}')`;
+                };
+            } else {
+                thumbnailElement.style.backgroundImage = null;
+            }
+        }
+
+    </script>
 {% endblock %}

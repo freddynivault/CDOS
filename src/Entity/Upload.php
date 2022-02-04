@@ -43,7 +43,7 @@ class Upload
     private $nomStructure;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="text", nullable=true)
      * @Assert\NotBlank(message="Veuillez renseigner ce champ")
      */
     private $descriptionStructure;
@@ -83,8 +83,8 @@ class Upload
     private $nombreCandidature;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
-     *
+     * @ORM\Column(type="string", nullable=true)
+     * @Assert\Choice(choices={"Aucune experience","1 an","2 ans","3 ans","4 ans","5 ans","6 ans","7 ans","8 ans","9 ans","10 ans"}, message="Vous devez choisir une formation")
      */
     private $experience;
 
@@ -100,7 +100,8 @@ class Upload
     private $outils;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="string", nullable=true)
+     * @Assert\Choice(choices={"1 an","2 H","3 H","4 H","5 H","6 H","7 H","8 H","9 H","10 H","11 H","12 H","13 H","14 H","15 H","16 H","17 H","18 H","19 H","20 H","21 H","22 H","23 H","24 H","25 H","26 H","27 H","28 H","29 H","30 H","31 H","32 H","33 H","34 H","35 H"}, message="Vous devez choisir une formation")
      */
     private $tempsTravail;
 
@@ -139,7 +140,7 @@ class Upload
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Choice(choices={"BPJEPS","DEJEPS","L_Management","M_Management","L_APAS","M_APAS"}, message="Vous devez choisir une formation")
+     * @Assert\Choice(choices={"BPJEPS","DEJEPS","Licence Management","Master Management","Licence APAS","Master APAS"}, message="Vous devez choisir une formation")
      */
     private $formation;
 
@@ -157,13 +158,12 @@ class Upload
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Choice(choices={"CDI","CDD","Stage","CDI interimaire","Service civique","Saisonnier"}, message="Vous devez choisir un type de contrat")
-     * @Assert\Choice(choices={"CDI","CDD","Stage","CDI interimaire","Service civique","Saisonnier"}, message="Vous devez choisir un type de contrat")
      */
     private $typeContrat;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Choice(choices={"Emploi","Service_civ","Alternance","Stage"}, message="Vous devez choisir une catégorie pour cette offre")
+     * @Assert\Choice(choices={"Emploi","Service civique","Alternance","Stage"}, message="Vous devez choisir une catégorie pour cette offre")
      */
     private $categorieContrat;
 

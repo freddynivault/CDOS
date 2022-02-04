@@ -10,7 +10,8 @@
                 <div class="card_body">
                     <div class="row d-flex">
                         <div class="col-sm-4 createSegment">
-                         <a class="btn dim_button create_new" href ="{{ path('app_upload') }}"> <span class="glyphicon glyphicon-plus"></span> Ajouter une nouvelle offre</a>
+                            <a class="btn dim_button create_new" href="{{ path('app_upload') }}"> <span
+                                        class="glyphicon glyphicon-plus"></span> Ajouter une nouvelle offre</a>
                         </div>
                         <div class="col-sm-8 add_flex">
                             <div class="form-group searchInput">
@@ -23,26 +24,31 @@
                         <table style="width:100%;" id="filtertable" class="table cust-datatable dataTable no-footer ">
 
                             <thead>
-                                <th style="min-width:150px;">Consulter l'offre</th>
-                                <th style="min-width:150px;">Titre de l'offre</th>
-                                <th style="min-width:150px;">Nom de la structure</th>
-                                <th style="min-width:150px;">Description de l'offre</th>
-                                <th style="min-width:100px;">Type de contrat</th>
-                                <th style="min-width:100px;">Date de publication</th>
-                                <th style="min-width:150px;">Localisation</th>
-                                {% if is_granted('ROLE_ADMIN_STRUCTURE') or is_granted('ROLE_SUPER_ADMIN')%}
+                            <th style="min-width:150px;">Consulter l'offre</th>
+                            <th style="min-width:150px;">Titre de l'offre</th>
+                            <th style="min-width:150px;">Nom de la structure</th>
+                            <th style="min-width:150px;">Description de l'offre</th>
+                            <th style="min-width:100px;">Type de contrat</th>
+                            <th style="min-width:100px;">Date de publication</th>
+                            <th style="min-width:150px;">Localisation</th>
+                            {% if is_granted('ROLE_ADMIN_STRUCTURE') or is_granted('ROLE_SUPER_ADMIN') %}
                                 <th style="min-width:150px;">Action</th>
-                                {% endif %}
+                            {% endif %}
                             </thead>
                             <tbody>
-                                {% for offer in tableau %}
+                            {% for offer in tableau %}
+                                {% if offer.statut == 'Initial' %}
                                     <tr>
-                                        <td> <div class="btn-group consult">
-                                                <abbr title="Consulter"><a href="{{ path ('app_viewoffer',{id : offer.id}) }}"><i class="bi bi-eye-fill" href="#"></i></a></abbr>
-                                            </div></td>
-                                        <td><b> {{ offer.titre}} </b></td>
-                                        <td> {{ offer.nomStructure }} </td>
-                                        <td> {{ offer.descriptionPoste }} </td>
+                                    <td>
+                                        <div class="btn-group consult">
+                                            <abbr title="Consulter"><a
+                                                        href="{{ path ('app_viewoffer',{id : offer.id}) }}"><i
+                                                            class="bi bi-eye-fill" href="#"></i></a></abbr>
+                                        </div>
+                                    </td>
+                                    <td><b> {{ offer.titre }} </b></td>
+                                    <td> {{ offer.nomStructure }} </td>
+                                    <td> {{ offer.descriptionPoste }} </td>
                                     {% if offer.typeContrat == "CDI" %}
                                         <td><span class="mode mode_process"> {{ offer.typeContrat }}</td>
                                     {% elseif offer.typeContrat == "CDD" %}
@@ -55,21 +61,27 @@
                                         <td><span class="mode mode_ok"> {{ offer.typeContrat }}</td>
                                     {% elseif offer.typeContrat == "Saisonnier" %}
                                         <td><span class="mode mode_type"> {{ offer.typeContrat }}</td>
-                                        {% endif %}
-                                        <td> {{ offer.datePublication|date("d/m/Y") }} </td>
-                                        <td> {{ offer.Localisation}} </td>
-                                        {% if is_granted('ROLE_ADMIN_STRUCTURE') or is_granted('ROLE_SUPER_ADMIN')%}
-                                        <td> <div class="btn-group edit">
-                                                <abbr title="Modifier"><a href="#"><i class="bi bi-pencil-fill" href="#"></i></a></abbr>
+                                    {% endif %}
+                                    <td> {{ offer.datePublication|date("d/m/Y") }} </td>
+                                    <td> {{ offer.Localisation }} </td>
+                                    {% if  is_granted('ROLE_SUPER_ADMIN') %}
+                                        <td>
+                                            <div class="btn-group edit">
+                                               <a href="{{ path('app_modif', {id : offer.id}) }}"><i class="bi bi-pencil-fill"></i></a>
                                             </div>
 
                                             <div class="btn-group delete">
-                                                <abbr title="Supprimer"><a href="#"><i class="bi bi-trash-fill"></i></a></abbr>
+                                                <a href="{{ path('app_delete', {id : offer.id}) }}"
+                                                   onclick="return confirm('Etes-vous sur de vouloir supprimer cette offre')"><i
+                                                            class="bi bi-trash-fill"></i></a>
                                             </div>
+
+
                                         </td>
-                                    </tr>
+                                        </tr>
                                     {% endif %}
-                                {% endfor %}
+                                {% endif %}
+                            {% endfor %}
 
 
                             </tbody>
@@ -83,28 +95,28 @@
     </div>
 
 
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.14/js/jquery.dataTables.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.14/js/jquery.dataTables.min.js"></script>
     <script>
 
         var dataTable = $('#filtertable').DataTable({
 
-            "pageLength":5,
+            "pageLength": 5,
             "scrollY": 400,
             "scrollX": true,
-            "scrollCollapse" :true,
+            "scrollCollapse": true,
             "paging": false,
 
-            'aoColumnDefs':[{
-                'bSortable':true,
-                'aTargets':['3'],
+            'aoColumnDefs': [{
+                'bSortable': true,
+                'aTargets': ['3'],
 
             }],
-            columnDefs:[
-                {type:'date-dd-mm-yyyy',aTargets:[5]}
+            columnDefs: [
+                {type: 'date-dd-mm-yyyy', aTargets: [5]}
             ],
-            "aoolumns":[
+            "aoolumns": [
                 null,
                 null,
                 null,
@@ -113,20 +125,21 @@
                 null,
                 null
             ],
-            "order":false,
-            "bLengthChange":false,
-            "dom":'<"top">ct<"top"p><"clear">'
+            "order": false,
+            "bLengthChange": false,
+            "dom": '<"top">ct<"top"p><"clear">'
+
 
 
         });
 
-        $("#filterbox" ).on('keyup change', function () {
+        $("#filterbox").on('keyup change', function () {
             dataTable.search(this.value).draw();
         });
 
 
-
     </script>
+
 
 
 
