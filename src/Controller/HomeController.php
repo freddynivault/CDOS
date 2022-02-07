@@ -27,7 +27,7 @@ class HomeController extends AbstractController
     {
         $entityManager = $doctrine->getManager();
         $offer = $entityManager->getRepository(Upload::class)->findAll();
-        return $this->render ('home/listoffer.html.twig', ['tableau' => $offer]);
+        return $this->render ('home/listoffer.html.twig', ['offer' => $offer]);
     }
 
     /**
@@ -35,9 +35,10 @@ class HomeController extends AbstractController
      */
     public function viewOffer(ManagerRegistry $doctrine, int $id): Response
     {
+        $user = $this->getUser();
         $entityManager = $doctrine->getManager();
         $offer = $entityManager->getRepository(Upload::class)->find($id);
-        return $this->render ('home/viewjoboffer.html.twig', ['offer' => $offer]);
+        return $this->render ('home/viewjoboffer.html.twig', ['offer' => $offer, 'user'=> $user]);
     }
 
     /**

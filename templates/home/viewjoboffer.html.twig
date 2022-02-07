@@ -1,38 +1,58 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Hello PagesController!{% endblock %}
-
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/styledrag2.css') }}">{% endblock %}
 {% block body %}
     <link rel="stylesheet" href="public/css/bootstrap.min.css">
 
     <style>
-        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+        .example-wrapper {
+            margin: 1em auto;
+            max-width: 800px;
+            width: 95%;
+            font: 18px/1.5 sans-serif;
+        }
+
+        .example-wrapper code {
+            background: #F5F5F5;
+            padding: 2px 6px;
+        }
     </style>
 
-<!--- Informations structure -->
+    <!--- Informations structure -->
 
     <section class="home py-1 bg-light" id="job_présentation">
         <div class="container-lg">
             <div class="row align-items-center align-content-center">
                 <div class="col-md-6 mt-5 mt-md-0">
-                   <div class="home-img text-center">
-                       <img src="{{ asset('uploads/pdf_file/'~ offer.logoStructure) }}" class="rounded-circle">
-                   </div>
+                    <div class="home-img text-center">
+                        <img src="{{ asset('uploads/pdf_file/'~ offer.logoStructure) }}" class="rounded-circle">
+
+                    </div>
                 </div>
                 <div class="col-md-6 mt-5 mt-md-0 order-md-first">
                     <div class="home-text">
                         <p class="text-muted mb-1">{{ offer.localisation }}</p>
                         <h1 class="text-danger text-uppercase fs-1 fw-bold">{{ offer.titre }}</h1>
                         <h2 class="fs-4">{{ offer.nomStructure }}</h2>
-                        <p class="mt-4 text-muted">{{ offer.descriptionStructure}} </p>
+                        <p class="mt-4 text-muted">{{ offer.descriptionStructure }} </p>
                     </div>
                 </div>
                 <div class="col">
+                    <div class="home-img text-md-start">
+
+                        <a class="btn btn-download text-danger">
+                             <h2><i class="bi bi-inbox-fill"></i> {{ offer.nombreCandidature }} candidature(s)
+                                </h2>
+                        </a>
+                    </div>
                     <div class="home-img text-md-end">
-                        {%  set test = 'uploads/pdf_file/' ~ offer.namePdf %}
-                        <a class="btn btn-download text-danger" href="{{ asset(test) }}" download="{{ offer.titre }}.pdf">
-                            <abbr title="Télécharger l'offre en PDF"><h1><i class="bi bi-file-earmark-pdf-fill"></i></h1></abbr>
+                        {% set test = 'uploads/pdf_file/' ~ offer.namePdf %}
+                        <a class="btn btn-download text-danger" href="{{ asset(test) }}"
+                           download="{{ offer.titre }}.pdf">
+                            <abbr title="Télécharger l'offre en PDF"><h1><i class="bi bi-file-earmark-pdf-fill"></i>
+                                </h1></abbr>
                         </a>
                     </div>
                 </div>
@@ -48,6 +68,7 @@
                 <div class="col-md-6">
                     <div class="section-title">
                         <h2 class="fw-bold mb-5">Poste proposé</h2>
+
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -57,7 +78,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class ="col-md-6">
+                <div class="col-md-6">
                     <div class="about-text">
                         <h3 class="fs-5">Intitulé du poste</h3>
                         <p class="text-muted">{{ offer.intitulePoste }}</p>
@@ -75,13 +96,13 @@
                     <div class="about-text">
                         <div class="row">
                             <div class="col-md-6">
-                             <h3 class="fs-5">Formation (Diplômes)</h3>
-                             <p class="text-muted">{{ offer.formation }}</p>
+                                <h3 class="fs-5">Formation (Diplômes)</h3>
+                                <p class="text-muted">{{ offer.formation }}</p>
                             </div>
-                              <div class="col-md-6">
-                               <h3 class="fs-5">Expérience</h3>
-                               <p class="text-muted">{{ offer.experience }}</p>
-                             </div>
+                            <div class="col-md-6">
+                                <h3 class="fs-5">Expérience</h3>
+                                <p class="text-muted">{{ offer.experience }}</p>
+                            </div>
                         </div>
                     </div>
                     <div class="about-text">
@@ -119,7 +140,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class ="col-md-6">
+                <div class="col-md-6">
                     <div class="about-text">
                         <h3 class="fs-5">Type de contrat</h3>
                         <p class="text-muted">{{ offer.typeContrat }}</p>
@@ -137,7 +158,7 @@
                         <p class="text-muted">{{ offer.dateEntretien|date("d/m/Y") }}</p>
                     </div>
                 </div>
-                <div class ="col-md-6">
+                <div class="col-md-6">
                     <div class="about-text">
                         <h3 class="fs-5">Date de publication</h3>
                         <p class="text-muted">{{ offer.datePublication|date("d/m/Y") }}</p>
@@ -159,56 +180,155 @@
 
                 <hr class="my-4">
 
-                </div>
             </div>
+        </div>
         </div>
     </section>
 
     <!--- Drag & drop --->
     {% if is_granted('ROLE_CANDIDAT') %}
-    <form>
-<div class="container">
-<div class="accordion accordion-flush" id="accordionFlushExample">
-    <div class="accordion-item">
-        <h2 class="accordion-header" id="flush-headingOne">
-            <button class="accordion-button collapsed btn-danger" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                Cliquez pour postuler à cette offre
-            </button>
-        </h2>
-        <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-            <div class="accordion-body">Ci-dessous vous pouvez télécharger votre CV et votre lettre de motivation pour cette offre</br>Vous avez la possibilité d'éditer un commentaire</div>
+        <div class="container">
+            {{ form_start(formCandidate, {'attr': {'novalidate': 'novalidate'}}) }}
+            <div class="accordion accordion-flush" id="accordionFlushExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="flush-headingOne">
+                        <button class="accordion-button collapsed btn-danger" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false"
+                                aria-controls="flush-collapseOne">
+                            Cliquez pour postuler à cette offre
+                        </button>
+                    </h2>
+                    <div id="flush-collapseOne" class="accordion-collapse collapse"
+                         aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">Ci-dessous vous pouvez télécharger votre CV et votre lettre de
+                            motivation pour cette offre</br>Vous avez la possibilité d'éditer un commentaire
+                        </div>
 
-    <section class="about bg-white" id="about">
-        <div class="container-lg py-4">
-            <div class="row">
-                <div class="col-sm-6">
-                    <h4>Envoyez votre CV</h4>
-                        {{ include('home/draganddrop.html.twig') }}
-                </div>
-                <div class="col-sm-6">
-                    <h4>Envoyez votre lettre de motivation</h4>
-                        {{ include('home/draganddrop.html.twig') }}
-                </div>
-                <div class="mb-3">
-                    <label for ="commentaire" class ="form-label">Commentaires</label>
-                    <textarea class="form-control" placeholder="..." id="floatingTextarea"></textarea>
-                </div>
-                <div align="center">
-                    <a href="#" class="btn btn-danger px-6 mt-6">Postuler à cette offre</a>
+                        <section class="about bg-white" id="about">
+
+                            <div class="container-lg py-4">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <h4>Envoyer votre CV</h4>
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="drop-zone">
+                                                    <span class="drop-zone__prompt">Cliquez pour parcourir ou glissez votre document</span>
+                                                    {{ form_row(formCandidate.cv, {'attr': {'class': 'drop-zone__input'}}) }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <h4>Envoyer votre lettre de motivation</h4>
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="drop-zone">
+                                                    <span class="drop-zone__prompt">Cliquez pour parcourir ou glissez votre document</span>
+                                                    {{ form_row(formCandidate.lettreMotivation, {'attr': {'class': 'drop-zone__input'}}) }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="commentaire" class="form-label">Commentaires</label>
+                                        {{ form_row(formCandidate.commentaire) }}
+                                    </div>
+                                    <div align="center">
+                                        {{ form_row(formCandidate.submit, { 'label': 'Envoyer' }) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
                 </div>
             </div>
         </div>
-      </section>
-     </div>
-    </div>
-</div>
-</div>
-    </form>
+        {{ form_end(formCandidate) }}
+    {% elseif is_granted('ROLE_SUPER_ADMIN') or is_granted('ROLE_ADMIN_STRUCTURE') %}
+
     {% else %}
+
         <div align="center">
-            <a href="{{ path ('app_login') }}" class="btn btn-danger" >Connecter vous pour pouvoir postuler à cette offre</a>
+            <a href="{{ path ('app_login') }}" class="btn btn-danger">Connecter vous pour pouvoir postuler à cette
+                offre</a>
         </div>
+
     {% endif %}
 
     <script src="assets/bootstrap.bundle.min.js"></script>
+    <script>
+        document.querySelectorAll(".drop-zone__input").forEach((inputElement) => {
+            const dropZoneElement = inputElement.closest(".drop-zone");
+
+            dropZoneElement.addEventListener("click", (e) => {
+                inputElement.click();
+            });
+
+            inputElement.addEventListener("change", (e) => {
+                if (inputElement.files.length) {
+                    updateThumbnail(dropZoneElement, inputElement.files[0]);
+                }
+            });
+
+            dropZoneElement.addEventListener("dragover", (e) => {
+                e.preventDefault();
+                dropZoneElement.classList.add("drop-zone--over");
+            });
+
+            ["dragleave", "dragend"].forEach((type) => {
+                dropZoneElement.addEventListener(type, (e) => {
+                    dropZoneElement.classList.remove("drop-zone--over");
+                });
+            });
+
+            dropZoneElement.addEventListener("drop", (e) => {
+                e.preventDefault();
+
+                if (e.dataTransfer.files.length) {
+                    inputElement.files = e.dataTransfer.files;
+                    updateThumbnail(dropZoneElement, e.dataTransfer.files[0]);
+                }
+
+                dropZoneElement.classList.remove("drop-zone--over");
+            });
+        });
+
+        /**
+         * Updates the thumbnail on a drop zone element.
+         *
+         * @param {HTMLElement} dropZoneElement
+         * @param {File} file
+         */
+        function updateThumbnail(dropZoneElement, file) {
+            let thumbnailElement = dropZoneElement.querySelector(".drop-zone__thumb");
+
+            // First time - remove the prompt
+            if (dropZoneElement.querySelector(".drop-zone__prompt")) {
+                dropZoneElement.querySelector(".drop-zone__prompt").remove();
+            }
+
+            // First time - there is no thumbnail element, so lets create it
+            if (!thumbnailElement) {
+                thumbnailElement = document.createElement("div");
+                thumbnailElement.classList.add("drop-zone__thumb");
+                dropZoneElement.appendChild(thumbnailElement);
+            }
+
+            thumbnailElement.dataset.label = file.name;
+
+            // Show thumbnail for image files
+            if (file.type.startsWith("image/")) {
+                const reader = new FileReader();
+
+                reader.readAsDataURL(file);
+                reader.onload = () => {
+                    thumbnailElement.style.backgroundImage = `url('${reader.result}')`;
+                };
+            } else {
+                thumbnailElement.style.backgroundImage = null;
+            }
+        }
+
+    </script>
 {% endblock %}
