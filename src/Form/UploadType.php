@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\Upload;
+use App\Entity\Offer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
@@ -221,7 +221,7 @@ class UploadType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Upload::class,
+            'data_class' => Offer::class,
         ]);
     }
 }

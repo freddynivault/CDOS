@@ -3,23 +3,23 @@
 namespace App\Repository;
 
 
-use App\Entity\Upload;
+use App\Entity\Offer;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 
 
 /**
-* @method Upload|null find($id, $lockMode = null, $lockVersion = null)
-* @method Upload|null findOneBy(array $criteria, array $orderBy = null)
- * @method Upload[]    findAll()
-* @method Upload[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+* @method Offer|null find($id, $lockMode = null, $lockVersion = null)
+* @method Offer|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Offer[]    findAll()
+* @method Offer[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
     */
 class UploadRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Upload::class);
+        parent::__construct($registry, Offer::class);
     }
 
     // /**

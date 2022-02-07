@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Upload;
+use App\Entity\Offer;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,7 +26,7 @@ class HomeController extends AbstractController
     public function offer(ManagerRegistry $doctrine): Response
     {
         $entityManager = $doctrine->getManager();
-        $offer = $entityManager->getRepository(Upload::class)->findAll();
+        $offer = $entityManager->getRepository(Offer::class)->findAll();
         return $this->render ('home/listoffer.html.twig', ['tableau' => $offer]);
     }
 
@@ -36,7 +36,7 @@ class HomeController extends AbstractController
     public function viewOffer(ManagerRegistry $doctrine, int $id): Response
     {
         $entityManager = $doctrine->getManager();
-        $offer = $entityManager->getRepository(Upload::class)->find($id);
+        $offer = $entityManager->getRepository(Offer::class)->find($id);
         return $this->render ('home/viewjoboffer.html.twig', ['offer' => $offer]);
     }
 
@@ -56,7 +56,7 @@ class HomeController extends AbstractController
     {
         $user = $this->getUser();
         $entityManager = $doctrine->getManager();
-        $offer = $entityManager->getRepository(Upload::class)->findAll();
+        $offer = $entityManager->getRepository(Offer::class)->findAll();
         return $this->render('home/listofferAdmin.html.twig', ['offer' => $offer, 'user'=> $user]);
     }
 

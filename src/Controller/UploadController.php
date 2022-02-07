@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Upload;
+use App\Entity\Offer;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Form\UploadType;
@@ -26,7 +26,7 @@ class UploadController extends AbstractController
     #[Route('/upload', name: 'app_upload')]
     public function maPage(Request $request, EntityManagerInterface $entityManager): Response
     {
-        $upload = new Upload();
+        $upload = new Offer();
 
         $form = $this->createForm(UploadType::class, $upload);
 
@@ -71,11 +71,11 @@ class UploadController extends AbstractController
     {
 
         $entityManager = $doctrine->getManager();
-        $offer = $entityManager->getRepository(Upload::class)->find($id);
+        $offer = $entityManager->getRepository(Offer::class)->find($id);
         $offer->setStatut('Archive');
         $entityManager->persist($offer);
         $entityManager->flush();
-        $offers = $entityManager->getRepository(Upload::class)->findAll();
+        $offers = $entityManager->getRepository(Offer::class)->findAll();
         return $this->render('home/listoffer.html.twig', ['tableau' => $offers]);
 
 
@@ -86,7 +86,7 @@ class UploadController extends AbstractController
     {
 
         $entityManager = $doctrine->getManager();
-        $offer = $entityManager->getRepository(Upload::class)->find($id);
+        $offer = $entityManager->getRepository(Offer::class)->find($id);
 
         $form = $this->createForm(UploadType::class, $offer);
 

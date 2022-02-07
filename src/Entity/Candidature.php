@@ -38,7 +38,7 @@ class Candidature
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Upload")
+     * @ORM\ManyToOne(targetEntity="Offer")
      */
     private $offer;
 

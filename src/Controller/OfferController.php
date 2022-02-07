@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Entity\Offer;
 use App\Entity\User;
 use App\Form\OfferType;
-use App\Form\RegistrationFormType;
+use App\Form\SuperAdminRegistrationFormType;
 use App\Security\UserAuthenticator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
