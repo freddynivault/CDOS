@@ -30,6 +30,28 @@ class Upload
     private $titre;
 
     /**
+     * @return mixed
+     */
+    public function getIdUser()
+    {
+        return $this->idUser;
+    }
+
+    /**
+     * @param mixed $idUser
+     */
+    public function setIdUser($idUser): void
+    {
+        $this->idUser = $idUser;
+    }
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumn(name="id_user", referencedColumnName="id")
+     */
+    private $idUser;
+
+    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\NotBlank(message="Veuillez renseigner ce champ")
      */

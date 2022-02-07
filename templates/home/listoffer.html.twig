@@ -9,10 +9,12 @@
             <div class="col-md-12 main-datatable">
                 <div class="card_body">
                     <div class="row d-flex">
+                        {% if is_granted('ROLE_ADMIN_STRUCTURE') or is_granted('ROLE_SUPER_ADMIN') %}
                         <div class="col-sm-4 createSegment">
                             <a class="btn dim_button create_new" href="{{ path('app_upload') }}"> <span
                                         class="glyphicon glyphicon-plus"></span> Ajouter une nouvelle offre</a>
                         </div>
+                        {% endif %}
                         <div class="col-sm-8 add_flex">
                             <div class="form-group searchInput">
                                 <label for="email">Search:</label>
@@ -64,7 +66,7 @@
                                     {% endif %}
                                     <td> {{ offer.datePublication|date("d/m/Y") }} </td>
                                     <td> {{ offer.Localisation }} </td>
-                                    {% if  is_granted('ROLE_SUPER_ADMIN') %}
+                                    {% if  is_granted('ROLE_SUPER_ADMIN') or is_granted('ROLE_ADMIN_STRUCTURE') %}
                                         <td>
                                             <div class="btn-group edit">
                                                <a href="{{ path('app_modif', {id : offer.id}) }}"><i class="bi bi-pencil-fill"></i></a>

@@ -30,11 +30,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $email;
 
-    /*/**
-     * @ORM\Column(type="string")
-     *//*
-    private $userType = "Candidat";
-*/
+
     /**
      * @ORM\Column(type="string", nullable=true)
      */

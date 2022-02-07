@@ -9,9 +9,12 @@
             <div class="col-md-12 main-datatable">
                 <div class="card_body">
                     <div class="row d-flex">
-                        <div class="col-sm-4 createSegment">
-                            <a class="btn dim_button create_new" href ="{{ path('app_createoffer') }}"> <span class="glyphicon glyphicon-plus"></span> Ajouter une nouvelle offre</a>
-                        </div>
+
+                            <div class="col-sm-4 createSegment">
+                                <a class="btn dim_button create_new" href="{{ path('app_upload') }}"> <span
+                                            class="glyphicon glyphicon-plus"></span> Ajouter une nouvelle offre</a>
+                            </div>
+
                         <div class="col-sm-8 add_flex">
                             <div class="form-group searchInput">
                                 <label for="email">Search:</label>
@@ -21,201 +24,72 @@
                     </div>
                     <div class="overflow-x">
                         <table style="width:100%;" id="filtertable" class="table cust-datatable dataTable no-footer ">
+
                             <thead>
-                            <tr>
-                                <th style="min-width:150px;">Titre de l'offre</th>
-                                <th style="min-width:150px;">Nom de la structure</th>
-                                <th style="min-width:150px;">Description de l'offre</th>
-                                <th style="min-width:100px;">Type de contrat</th>
-                                <th style="min-width:100px;">Date de publication</th>
-                                <th style="min-width:150px;">Localisation</th>
+                            <th style="min-width:150px;">Consulter l'offre</th>
+                            <th style="min-width:150px;">Titre de l'offre</th>
+                            <th style="min-width:150px;">Nom de la structure</th>
+                            <th style="min-width:150px;">Description de l'offre</th>
+                            <th style="min-width:100px;">Type de contrat</th>
+                            <th style="min-width:100px;">Date de publication</th>
+                            <th style="min-width:150px;">Localisation</th>
+
                                 <th style="min-width:150px;">Action</th>
-                            </tr>
+
                             </thead>
                             <tbody>
-                            <tr>
+                            {% for offer in offer %}
+                                {% if offer.statut == 'Initial' %}
+                                    {% if offer.idUser == user %}
+                                    <tr>
+                                    <td>
+                                        <div class="btn-group consult">
+                                            <abbr title="Consulter"><a
+                                                        href="{{ path ('app_viewoffer',{id : offer.id}) }}"><i
+                                                            class="bi bi-eye-fill" href="#"></i></a></abbr>
+                                        </div>
+                                    </td>
+                                    <td><b> {{ offer.titre }} </b></td>
+                                    <td> {{ offer.nomStructure }} </td>
+                                    <td> {{ offer.descriptionPoste }} </td>
+                                    {% if offer.typeContrat == "CDI" %}
+                                        <td><span class="mode mode_process"> {{ offer.typeContrat }}</td>
+                                    {% elseif offer.typeContrat == "CDD" %}
+                                        <td><span class="mode mode_done"> {{ offer.typeContrat }}</td>
+                                    {% elseif offer.typeContrat == "Stage" %}
+                                        <td><span class="mode mode_on"> {{ offer.typeContrat }}</td>
+                                    {% elseif offer.typeContrat == "CDI interimaire" %}
+                                        <td><span class="mode mode_off"> {{ offer.typeContrat }}</td>
+                                    {% elseif offer.typeContrat == "Service civique" %}
+                                        <td><span class="mode mode_ok"> {{ offer.typeContrat }}</td>
+                                    {% elseif offer.typeContrat == "Saisonnier" %}
+                                        <td><span class="mode mode_type"> {{ offer.typeContrat }}</td>
+                                    {% endif %}
+                                    <td> {{ offer.datePublication|date("d/m/Y") }} </td>
+                                    <td> {{ offer.Localisation }} </td>
 
-                                <td><b>Chargé de mission vie associative</b></td>
-                                <td>CDOS Vienne</td>
-                                <td>As d'activité : Industrie, Logistique, Transport, Bâtiment Travaux Public, Tertiaire</td>
-                                <td><span class="mode mode_process">CDD</td>
-                                <td>17-Jan-2022</td>
-                                <td>Poitiers</span></td>
-                                <td>
-                                    <div class="btn-group edit">
-                                        <abbr title="Modifier"><a href="#"><i class="bi bi-pencil-fill" href="#"></i></a></abbr>
-                                    </div>
+                                        <td>
+                                            <div class="btn-group edit">
+                                                <a href="{{ path('app_modif', {id : offer.id}) }}"><i class="bi bi-pencil-fill"></i></a>
+                                            </div>
 
-                                    <div class="btn-group delete">
-                                        <abbr title="Supprimer"><a href="#"><i class="bi bi-trash-fill"></i></a></abbr>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
+                                            <div class="btn-group delete">
+                                                <a href="{{ path('app_delete', {id : offer.id}) }}"
+                                                   onclick="return confirm('Etes-vous sur de vouloir supprimer cette offre')"><i
+                                                            class="bi bi-trash-fill"></i></a>
+                                            </div>
 
-                                <td><b>Chargé de mission suivi stratégique</b></td>
-                                <td>Direction affaires générales</td>
-                                <td>
-                                    Adéquat t'accompagne dans ta recherche d'emploi (intérim, CDD, CDI) et te propose + de 5000 jobs dans tous les secteurs d'activité : Industrie, Logistique, Transport, Bâtiment Travaux Public, Tertiaire</td>
-                                <td><span class="mode mode_done">CDI</td>
-                                <td>17-Jan-2022</td>
-                                <td>Niort</span></td>
-                                <td>
-                                    <div class="btn-group edit">
-                                        <abbr title="Modifier"><a href="#"><i class="bi bi-pencil-fill" href="#"></i></a></abbr>
-                                    </div>
 
-                                    <div class="btn-group delete">
-                                        <abbr title="Supprimer"><a href="#"><i class="bi bi-trash-fill"></i></a></abbr>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
+                                        </td>
+                                        </tr>
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %}
 
-                                <td><b>Chargé de mission suivi stratégique</b></td>
-                                <td>Direction affaires générales</td>
-                                <td>Direction affaires générales</td>
-                                <td><span class="mode mode_process">CDD</td>
-                                <td>17-Jan-2022</td>
-                                <td>Poitiers</span></td>
-                                <td>
-                                    <div class="btn-group edit">
-                                        <abbr title="Modifier"><a href="#"><i class="bi bi-pencil-fill" href="#"></i></a></abbr>
-                                    </div>
 
-                                    <div class="btn-group delete">
-                                        <abbr title="Supprimer"><a href="#"><i class="bi bi-trash-fill"></i></a></abbr>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-
-                                <td><b>Chargé de mission suivi stratégique</b></td>
-                                <td>Direction affaires générales</td>
-                                <td>Direction affaires générales</td>
-                                <td><span class="mode mode_process">CDD</td>
-                                <td>17-Jan-2022</td>
-                                <td>Poitiers</span></td>
-                                <td>
-                                    <div class="btn-group edit">
-                                        <abbr title="Modifier"><a href="#"><i class="bi bi-pencil-fill" href="#"></i></a></abbr>
-                                    </div>
-
-                                    <div class="btn-group delete">
-                                        <abbr title="Supprimer"><a href="#"><i class="bi bi-trash-fill"></i></a></abbr>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-
-                                <td><b>Chargé de mission suivi stratégique</b></td>
-                                <td>Direction affaires générales</td>
-                                <td>Direction affaires générales</td>
-                                <td><span class="mode mode_process">CDD</td>
-                                <td>17-Jan-2022</td>
-                                <td>Poitiers</span></td>
-                                <td>
-                                    <div class="btn-group edit">
-                                        <abbr title="Modifier"><a href="#"><i class="bi bi-pencil-fill" href="#"></i></a></abbr>
-                                    </div>
-
-                                    <div class="btn-group delete">
-                                        <abbr title="Supprimer"><a href="#"><i class="bi bi-trash-fill"></i></a></abbr>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-
-                                <td><b>Chargé de mission suivi stratégique</b></td>
-                                <td>Direction affaires générales</td>
-                                <td>Direction affaires générales</td>
-                                <td><span class="mode mode_process">CDD</td>
-                                <td>17-Jan-2022</td>
-                                <td>Poitiers</span></td>
-                                <td>
-                                    <div class="btn-group edit">
-                                        <abbr title="Modifier"><a href="#"><i class="bi bi-pencil-fill" href="#"></i></a></abbr>
-                                    </div>
-
-                                    <div class="btn-group delete">
-                                        <abbr title="Supprimer"><a href="#"><i class="bi bi-trash-fill"></i></a></abbr>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-
-                                <td><b>Chargé de mission suivi stratégique</b></td>
-                                <td>Direction affaires générales</td>
-                                <td>Direction affaires générales</td>
-                                <td><span class="mode mode_process">CDD</td>
-                                <td>17-Jan-2022</td>
-                                <td>Poitiers</span></td>
-                                <td>
-                                    <div class="btn-group edit">
-                                        <abbr title="Modifier"><a href="#"><i class="bi bi-pencil-fill" href="#"></i></a></abbr>
-                                    </div>
-
-                                    <div class="btn-group delete">
-                                        <abbr title="Supprimer"><a href="#"><i class="bi bi-trash-fill"></i></a></abbr>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-
-                                <td><b>Chargé de mission suivi stratégique</b></td>
-                                <td>Direction affaires générales</td>
-                                <td>Direction affaires générales</td>
-                                <td><span class="mode mode_process">CDD</td>
-                                <td>17-Jan-2022</td>
-                                <td>Poitiers</span></td>
-                                <td>
-                                    <div class="btn-group edit">
-                                        <abbr title="Modifier"><a href="#"><i class="bi bi-pencil-fill" href="#"></i></a></abbr>
-                                    </div>
-
-                                    <div class="btn-group delete">
-                                        <abbr title="Supprimer"><a href="#"><i class="bi bi-trash-fill"></i></a></abbr>
-                                    </div>
-                                </td>
-                            </tr>
-
-                            <tr>
-
-                                <td><b>Chargé de mission suivi stratégique</b></td>
-                                <td>Direction affaires générales</td>
-                                <td>Direction affaires générales</td>
-                                <td><span class="mode mode_process">CDD</td>
-                                <td>17-Jan-2022</td>
-                                <td>Poitiers</span></td>
-                                <td>
-                                    <div class="btn-group edit">
-                                        <abbr title="Modifier"><a href="#"><i class="bi bi-pencil-fill" href="#"></i></a></abbr>
-                                    </div>
-
-                                    <div class="btn-group delete">
-                                        <abbr title="Supprimer"><a href="#"><i class="bi bi-trash-fill"></i></a></abbr>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-
-                                <td><b>ah</b></td>
-                                <td>Direction affaires générales</td>
-                                <td>Direction affaires générales</td>
-                                <td><span class="mode mode_process">CDD</td>
-                                <td>17-Jan-2022</td>
-                                <td>Poitiers</span></td>
-                                <td>
-                                    <div class="btn-group edit">
-                                        <abbr title="Modifier"><a href="#"><i class="bi bi-pencil-fill" href="#"></i></a></abbr>
-                                    </div>
-
-                                    <div class="btn-group delete">
-                                        <abbr title="Supprimer"><a href="#"><i class="bi bi-trash-fill"></i></a></abbr>
-                                    </div>
-                                </td>
-                            </tr>
                             </tbody>
+
+
                         </table>
                     </div>
                 </div>
@@ -230,21 +104,22 @@
     <script>
 
         var dataTable = $('#filtertable').DataTable({
-            "pageLength":5,
+
+            "pageLength": 5,
             "scrollY": 400,
             "scrollX": true,
-            "scrollCollapse" :true,
+            "scrollCollapse": true,
             "paging": false,
 
-            'aoColumnDefs':[{
-                'bSortable':false,
-                'aTargets':['nosort'],
+            'aoColumnDefs': [{
+                'bSortable': true,
+                'aTargets': ['3'],
 
             }],
-            columnDefs:[
-                {type:'date-dd-mm-yyyy',aTargets:[5]}
+            columnDefs: [
+                {type: 'date-dd-mm-yyyy', aTargets: [5]}
             ],
-            "aoolumns":[
+            "aoolumns": [
                 null,
                 null,
                 null,
@@ -253,18 +128,21 @@
                 null,
                 null
             ],
-            "order":false,
-            "bLengthChange":false,
-            "dom":'<"top">ct<"top"p><"clear">'
+            "order": false,
+            "bLengthChange": false,
+            "dom": '<"top">ct<"top"p><"clear">'
+
 
 
         });
 
-        $("#filterbox" ).on('keyup change', function () {
+        $("#filterbox").on('keyup change', function () {
             dataTable.search(this.value).draw();
         });
 
+
     </script>
+
 
 
 

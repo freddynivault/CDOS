@@ -35,7 +35,7 @@
                 <!--Second ICONE-->
                 {% if is_granted('ROLE_ADMIN_STRUCTURE') %}
                     <li class="nav-item text-uppercase px-5">
-                        <a class="nav-link text-light" href="{{ path ('app_candidate') }}">
+                        <a class="nav-link text-light" href="{{ path ('app_offersadmin') }}">
                             <i class="bi bi-file-text-fill" style="font-size:  16px;"></i>
                             Mes offres
                         </a>
@@ -92,7 +92,7 @@
 
                 {% elseif is_granted('ROLE_ADMIN_STRUCTURE') %}
                     <li class="nav-item text-uppercase px-5">
-                        <a class="nav-link text-light" href="{{ path('app_createoffer') }}">
+                        <a class="nav-link text-light" href="{{ path('app_upload') }}">
                             <i class="bi bi-plus-circle-fill" style="font-size:  16px;"></i>
                             Ajouter une offre
                         </a>

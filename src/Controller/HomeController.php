@@ -16,6 +16,7 @@ class HomeController extends AbstractController
      */
     public function home(): Response
     {
+
         return $this->render ('home/index.html.twig');
     }
 
@@ -51,10 +52,12 @@ class HomeController extends AbstractController
     /**
      * @Route("/listofferAdmin", name="app_offersadmin")
      */
-    public function offerAdmin(): Response
+    public function offerAdmin(ManagerRegistry $doctrine): Response
     {
-
-        return $this->render('home/listofferAdmin.html.twig');
+        $user = $this->getUser();
+        $entityManager = $doctrine->getManager();
+        $offer = $entityManager->getRepository(Upload::class)->findAll();
+        return $this->render('home/listofferAdmin.html.twig', ['offer' => $offer, 'user'=> $user]);
     }
 
     /**
