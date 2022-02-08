@@ -27,8 +27,10 @@
             <div class="row align-items-center align-content-center">
                 <div class="col-md-6 mt-5 mt-md-0 order-md-first">
                     <div class="home-text">
-                        <h1 class="text-danger text-uppercase fs-1 fw-bold">Candidature pour l'offre : </h1>
-                        <h2 class="fs-4">Nom de la structure</h2>
+                        <h1 class="text-danger text-uppercase fs-1 fw-bold">Candidature pour l'offre : {{ candidature.offer.titre }} </h1>
+
+                        <h2 class="fs-4">Nom de la structure : </h2>
+                        {{ candidature.offer.nomStructure }}
                     </div>
                 </div>
                 <div class="col">
@@ -59,21 +61,21 @@
                 <div class="col-md-6">
                     <div class="about-text" >
                         <h3 class="fs-5">Nom du candidat</h3>
-                        <p class="text-muted">Nivault</p>
+                        <p class="text-muted">{{ candidature.user.lastName }}</p>
                     </div>
                     <div class="about-text">
                         <h3 class="fs-5">Prenom du candidat</h3>
-                        <p class="text-muted">Freddy</p>
+                        <p class="text-muted">{{ candidature.user.firstName }}</p>
                     </div>
                     <div class="about-text">
                         <h3 class="fs-5">Email</h3>
-                        <p class="text-muted">freddynivault@outlook.fr</p>
+                        <p class="text-muted">{{ candidature.user.email }}</p>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="about-text">
                         <div class="row">
-                                <p class="text-muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
+                                <p class="text-muted">{{ candidature.commentaire }}</p>
                         </div>
                     </div>
                 </div>
@@ -102,16 +104,21 @@
             </div>
             <div class="row">
                 <div class="col" align="center">
-                        <a class="btn btn-download text-danger" href="" >
+                        {% set test = 'uploads/pdf_file/' ~ candidature.CV %}
+                        <a class="btn btn-download text-danger" href="{{ asset(test) }}"
+                           download="{{ 'CV - '~ candidature.user.firstName ~ '-'~ candidature.user.lastName }}.pdf">
                             <abbr title="Télécharger le CV en PDF"><h1><i class="bi bi-file-earmark-pdf-fill"></i>
                                 </h1></abbr>
                         </a>
+
                 </div>
                 <div class="col" align="center">
-                    <a class="btn btn-download text-danger" href="" >
-                        <abbr title="Télécharger la lettre de motivation en PDF"><h1><i class="bi bi-file-earmark-pdf-fill"></i>
-                            </h1></abbr>
-                    </a>
+                        {% set test = 'uploads/pdf_file/' ~ candidature.lettreMotivation %}
+                        <a class="btn btn-download text-danger" href="{{ asset(test) }}"
+                           download="{{ 'LM - '~ candidature.user.firstName ~ '-'~ candidature.user.lastName }}.pdf">
+                            <abbr title="Télécharger la lettre de motivation en PDF"><h1><i class="bi bi-file-earmark-pdf-fill"></i>
+                                </h1></abbr>
+                        </a>
                 </div>
             </div>
         </div>

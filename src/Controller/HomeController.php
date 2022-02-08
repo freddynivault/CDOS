@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Candidature;
 use App\Entity\Upload;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -42,11 +43,14 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route("/listcandidature", name="app_candidate")
+     * @Route("/listcandidature/{id}", name="app_apply")
      */
-    public function candidate(): Response
+    public function apply(int $id, ManagerRegistry $doctrine): Response
     {
-        return $this->render ('home/listcandidature.html.twig');
+        $entityManager = $doctrine->getManager();
+        $candidature = $entityManager->getRepository(Candidature::class)->findAll();
+        $offer = $entityManager->getRepository(Upload::class)->find($id);
+        return $this->render ('home/listcandidature.html.twig', ['candidature' => $candidature, 'offer' => $offer]);
     }
 
 

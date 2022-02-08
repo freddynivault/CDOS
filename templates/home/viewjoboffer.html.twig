@@ -41,11 +41,13 @@
                 </div>
                 <div class="col">
                     <div class="home-img text-md-start">
-
-                        <a class="btn btn-download text-danger">
+                    {% if is_granted('ROLE_ADMIN_STRUCTURE') %}
+                        {% dump(offer.id) %}
+                        <a class="btn btn-download text-danger" href="{{ path('app_apply',{id : offer.id}) }}">
                              <h2><i class="bi bi-inbox-fill"></i> {{ offer.nombreCandidature }} candidature(s)
                                 </h2>
                         </a>
+                    {% endif %}
                     </div>
                     <div class="home-img text-md-end">
                         {% set test = 'uploads/pdf_file/' ~ offer.namePdf %}

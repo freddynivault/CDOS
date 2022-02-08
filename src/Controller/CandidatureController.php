@@ -57,4 +57,15 @@ class CandidatureController extends AbstractController
        return $this->render ('home/viewjoboffer.html.twig', ['offer' => $offer, 'formCandidate' => $form->createView(), ]);
 
     }
+    /**
+     * @Route("/displayapply/{id}", name="app_displayapply")
+     */
+    public function displayapply(int $id, ManagerRegistry $doctrine): Response
+    {
+        $entityManager = $doctrine->getManager();
+        $candidature = $entityManager->getRepository(Candidature::class)->find($id);
+        dump($id);
+        dump($candidature);
+        return $this->render ('candidature/candidature.html.twig', ['candidature' => $candidature]);
+    }
 }
