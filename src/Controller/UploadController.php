@@ -37,7 +37,7 @@ class UploadController extends AbstractController
             $file->move($this->getParameter('upload_directory'), $fileName);
             $upload->setNamepdf($fileName);
 
-            $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
             $user = $this->getUser();
             $upload->setIdUser($user);
 
@@ -56,7 +56,7 @@ class UploadController extends AbstractController
 
             $entityManager->persist($upload);
             $entityManager->flush();
-            return $this->redirectToRoute('app_offers');
+            return $this->redirectToRoute('app_offersadmin');
         }
 
 
@@ -69,15 +69,16 @@ class UploadController extends AbstractController
     #[Route('/delete/{id}', name: 'app_delete')]
     public function DeleteOffer(ManagerRegistry $doctrine, int $id): Response
     {
-
+        $user = $this->getUser();
         $entityManager = $doctrine->getManager();
         $offer = $entityManager->getRepository(Offer::class)->find($id);
         $offer->setStatut('Archive');
         $entityManager->persist($offer);
         $entityManager->flush();
         $offers = $entityManager->getRepository(Offer::class)->findAll();
-        return $this->render('home/listoffer.html.twig', ['tableau' => $offers]);
 
+
+        return $this->render('home/listofferAdmin.html.twig', ['offer' => $offers, 'user'=> $user]);
 
     }
 
@@ -104,7 +105,7 @@ class UploadController extends AbstractController
 
             $entityManager->persist($offer);
             $entityManager->flush();
-            return $this->redirectToRoute('app_offers');
+            return $this->redirectToRoute('app_offersadmin');
         }
         return $this->render('home/modifoffer.html.twig', [
             'formModif' => $form->createView()
