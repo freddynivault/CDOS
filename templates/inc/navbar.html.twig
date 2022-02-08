@@ -52,19 +52,19 @@
 
 
                 <!--Third ICONE-->
-                {% if is_granted('ROLE_CANDIDAT')  %}
-                <li class="nav-item text-uppercase px-5">
-                    <a class="nav-link text-light" href="#">
-                        <i class="bi bi-pen-fill bi-10px" style="font-size:  16px;"></i>
-                        Candidature spontanée
-                    </a>
-                </li>
+{#                {% if is_granted('ROLE_CANDIDAT')  %}#}
+{#                <li class="nav-item text-uppercase px-5">#}
+{#                    <a class="nav-link text-light" href="#">#}
+{#                        <i class="bi bi-pen-fill bi-10px" style="font-size:  16px;"></i>#}
+{#                        Candidature spontanée#}
+{#                    </a>#}
+{#                </li>#}
 
 
                 <!--SuperAdmin ICONE-->
-                {% elseif is_granted('ROLE_ADMIN_STRUCTURE') or is_granted('ROLE_SUPER_ADMIN') %}
+                {% if is_granted('ROLE_ADMIN_STRUCTURE') %}
                 <li class="nav-item text-uppercase px-5">
-                    <a class="nav-link text-light" href="#">
+                    <a class="nav-link text-light" href="{{ path('app_displayall') }}">
                         <i class="bi bi-pen-fill bi-10px" style="font-size:  16px;"></i>
                         Les Candidatures
                     </a>
@@ -75,7 +75,7 @@
 
                 {% if is_granted('ROLE_SUPER_ADMIN') %}
                 <li class="nav-item text-uppercase px-5">
-                    <a class="nav-link text-light" href="#">
+                    <a class="nav-link text-light" href="{{ path('app_allcandidature') }}">
                         <i class="bi bi-person-lines-fill" style="font-size:  16px;"></i>
                         Les candidatures
                     </a>
@@ -84,7 +84,7 @@
                 {% elseif is_granted('ROLE_CANDIDAT') %}
                     <!--Candidat-->
                     <li class="nav-item text-uppercase px-5">
-                        <a class="nav-link text-light" href="#">
+                        <a class="nav-link text-light" href="{{ path("app_mescandidatures") }}">
                             <i class="bi bi-person-lines-fill" style="font-size:  16px;"></i>
                             Mes candidatures
                         </a>
@@ -102,7 +102,7 @@
 
                 {% if is_granted('ROLE_SUPER_ADMIN') %}
                 <li class="nav-item text-uppercase px-5">
-                    <a class="nav-link text-light" href="superAdminRegister">
+                    <a class="nav-link text-light" href="{{ path('app_alluser') }}">
                         <i class="bi bi-person-bounding-box" style="font-size:  16px;"></i>
                         Les utilisateurs
                     </a>

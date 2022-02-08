@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Candidature;
 use App\Entity\Upload;
+use App\Entity\User;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -90,11 +91,25 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route("/test", name="app_test")
+     * @Route("/allcandidature", name="app_allcandidature")
      */
-    public function test(): Response
+    public function allcandidature(ManagerRegistry $doctrine): Response
     {
-        return $this->render ('home/test.html.twig');
+        $entityManager = $doctrine->getManager();
+        $candidature = $entityManager->getRepository(Candidature::class)->findAll();
+        return $this->render ('home/allcandidatures.html.twig', ['candidature' => $candidature]);
     }
+
+    /**
+     * @Route("/alluser", name="app_alluser")
+     */
+    public function alluser(ManagerRegistry $doctrine): Response
+    {
+        $entityManager = $doctrine->getManager();
+        $user = $entityManager->getRepository(User::class)->findAll();
+        return $this->render ('home/alluser.html.twig', ['user' => $user]);
+    }
+
+
 
 }

@@ -1,0 +1,117 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PagesController!{% endblock %}
+
+{% block body %}
+
+    <div class="container p-30">
+        <div class="row">
+            <div class="col-md-12 main-datatable">
+                <div class="card_body">
+                    <div class="row d-flex">
+                        <div class="col-sm-4 createSegment">
+                            <h4 >Liste de vos candidatures</h4>
+                        </div>
+                        <div class="col-sm-8 add_flex">
+                            <div class="form-group searchInput">
+                                <label for="email">Search:</label>
+                                <input type="search" class="form-control" id="filterbox" placeholder=" ">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="overflow-x">
+                        <table style="width:100%;" id="filtertable" class="table cust-datatable dataTable no-footer ">
+                            <thead>
+                            <tr>
+                                <th style="min-width:100px;">Consulter</th>
+                                <th style="min-width:100px;">Nom de l'offre</th>
+                                <th style="min-width:150px;">Nom du candidat</th>
+                                <th style="min-width:150px;">Email Candidat</th>
+                                <th style="min-width:150px;">Supprimer</th>
+
+                            <tbody>
+
+                            {% for candidature in candidature %}
+                                {% if candidature.user == user %}
+                                    <tr>
+                                        <td>
+                                            <div class="btn-group consult">
+                                                <abbr title="Consulter"><a
+                                                            href="{{ path ('app_displayapply',{id : candidature.id}) }}"><i
+                                                                class="bi bi-eye-fill" href="#"></i></a></abbr>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            {{ candidature.offer.titre }}
+                                        </td>
+                                        <td>
+                                            {{ candidature.user.lastname ~ ' ' ~ candidature.user.firstname }}
+                                        </td>
+                                        <td>
+                                            {{ candidature.user.email }}
+                                        </td>
+                                        <td>
+                                            <div class="btn-group delete">
+                                                <a href="{{ path('app_delete_candidature', {id : candidature.id}) }}"
+                                                 onclick="return confirm('Etes-vous sur de vouloir supprimer cette candidature ?')"><i
+                                                         class="bi bi-trash-fill"></i></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.14/js/jquery.dataTables.min.js"></script>
+    <script>
+
+        var dataTable = $('#filtertable').DataTable({
+            "pageLength":5,
+            "scrollY": 400,
+            "scrollX": true,
+            "scrollCollapse" :true,
+            "paging": false,
+
+            'aoColumnDefs':[{
+                'bSortable':false,
+                'aTargets':['nosort'],
+
+            }],
+            columnDefs:[
+                {type:'date-dd-mm-yyyy',aTargets:[5]}
+            ],
+            "aoolumns":[
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ],
+            "order":false,
+            "bLengthChange":false,
+            "dom":'<"top">ct<"top"p><"clear">'
+
+
+        });
+
+        $("#filterbox" ).on('keyup change', function () {
+            dataTable.search(this.value).draw();
+        });
+
+    </script>
+
+
+
+
+{% endblock %}

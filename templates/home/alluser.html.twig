@@ -1,0 +1,113 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PagesController!{% endblock %}
+
+{% block body %}
+
+    <div class="container p-30">
+        <div class="row">
+            <div class="col-md-12 main-datatable">
+                <div class="card_body">
+                    <div class="row d-flex">
+
+                        <div class="col-sm-4 createSegment">
+                            <a class="btn dim_button create_new" href="{{ path('app_admin_register') }}"> <span
+                                        class="glyphicon glyphicon-plus"></span> Ajouter un utilisateur</a>
+                        </div>
+
+                        <div class="col-sm-8 add_flex">
+                            <div class="form-group searchInput">
+                                <label for="email">Search:</label>
+                                <input type="search" class="form-control" id="filterbox" placeholder=" ">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="overflow-x">
+                        <table style="width:100%;" id="filtertable" class="table cust-datatable dataTable no-footer ">
+
+                            <thead>
+                            <th style="min-width:150px;">Email</th>
+                            <th style="min-width:150px;">Type d'utilisateur</th>
+
+                            </thead>
+                            <tbody>
+                            {% dump(user) %}
+                            {% for user in user %}
+                                        <tr>
+                                            <td><b> {{ user.email }} </b></td>
+                                            <td> {% if user.roles[0] == 'ROLE_CANDIDAT'%}
+                                                    Candidat
+                                                 {% elseif user.roles[0] == 'ROLE_ADMIN_STRUCTURE' %}
+                                                     Administrateur structure
+                                                 {% elseif user.roles[0] == 'ROLE_SUPER_ADMIN' %}
+                                                     Super Administrateur
+                                                     {% endif %}
+                                            </td>
+
+
+                                        </tr>
+
+                            {% endfor %}
+
+
+                            </tbody>
+
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.14/js/jquery.dataTables.min.js"></script>
+    <script>
+
+        var dataTable = $('#filtertable').DataTable({
+
+            "pageLength": 5,
+            "scrollY": 400,
+            "scrollX": true,
+            "scrollCollapse": true,
+            "paging": false,
+
+            'aoColumnDefs': [{
+                'bSortable': true,
+                'aTargets': ['3'],
+
+            }],
+            columnDefs: [
+                {type: 'date-dd-mm-yyyy', aTargets: [5]}
+            ],
+            "aoolumns": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ],
+            "order": false,
+            "bLengthChange": false,
+            "dom": '<"top">ct<"top"p><"clear">'
+
+
+
+        });
+
+        $("#filterbox").on('keyup change', function () {
+            dataTable.search(this.value).draw();
+        });
+
+
+    </script>
+
+
+
+
+
+{% endblock %}
