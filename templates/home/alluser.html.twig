@@ -36,11 +36,11 @@
                                         <tr>
                                             <td><b> {{ user.email }} </b></td>
                                             <td> {% if user.roles[0] == 'ROLE_CANDIDAT'%}
-                                                    Candidat
+                                                    <span class="mode mode_process">Candidat</span>
                                                  {% elseif user.roles[0] == 'ROLE_ADMIN_STRUCTURE' %}
-                                                     Administrateur structure
+                                                     <span class="mode mode_done">Administrateur structure</span>
                                                  {% elseif user.roles[0] == 'ROLE_SUPER_ADMIN' %}
-                                                     Super Administrateur
+                                                     <span class="mode mode_on">Super Administrateur</span>
                                                      {% endif %}
                                             </td>
 

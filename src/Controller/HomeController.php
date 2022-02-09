@@ -16,10 +16,28 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="app_home")
      */
-    public function home(): Response
+    public function home(ManagerRegistry $doctrine): Response
     {
+        $entityManager = $doctrine->getManager();
+        $offer = $entityManager->getRepository(Upload::class)->findAll();
+        $candidature = $entityManager->getRepository(Candidature::class)->findAll();
+        $user = $entityManager->getRepository(User::class)->findAll();
+        $nboffer = count($offer);
+        $nbcandidature = count($candidature);
+        $nbuser = 0;
 
-        return $this->render ('home/index.html.twig');
+        for ($i = 0; $i <= count($user) - 1; $i++) {
+            $role = $user[$i]->getRoles();
+
+            if ($role[0] == "ROLE_ADMIN_STRUCTURE") {
+                $nbuser++;
+            }
+        }
+
+
+        return $this->render('home/index.html.twig', ['offer' => $nboffer, 'candidature' => $nbcandidature, 'user' => $nbuser]);
+
+
     }
 
     /**
@@ -29,7 +47,7 @@ class HomeController extends AbstractController
     {
         $entityManager = $doctrine->getManager();
         $offer = $entityManager->getRepository(Upload::class)->findAll();
-        return $this->render ('home/listoffer.html.twig', ['offer' => $offer]);
+        return $this->render('home/listoffer.html.twig', ['offer' => $offer]);
     }
 
     /**
@@ -40,7 +58,7 @@ class HomeController extends AbstractController
         $user = $this->getUser();
         $entityManager = $doctrine->getManager();
         $offer = $entityManager->getRepository(Upload::class)->find($id);
-        return $this->render ('home/viewjoboffer.html.twig', ['offer' => $offer, 'user'=> $user]);
+        return $this->render('home/viewjoboffer.html.twig', ['offer' => $offer, 'user' => $user]);
     }
 
     /**
@@ -51,7 +69,7 @@ class HomeController extends AbstractController
         $entityManager = $doctrine->getManager();
         $candidature = $entityManager->getRepository(Candidature::class)->findAll();
         $offer = $entityManager->getRepository(Upload::class)->find($id);
-        return $this->render ('home/listcandidature.html.twig', ['candidature' => $candidature, 'offer' => $offer]);
+        return $this->render('home/listcandidature.html.twig', ['candidature' => $candidature, 'offer' => $offer]);
     }
 
 
@@ -63,7 +81,7 @@ class HomeController extends AbstractController
         $user = $this->getUser();
         $entityManager = $doctrine->getManager();
         $offer = $entityManager->getRepository(Upload::class)->findAll();
-        return $this->render('home/listofferAdmin.html.twig', ['offer' => $offer, 'user'=> $user]);
+        return $this->render('home/listofferAdmin.html.twig', ['offer' => $offer, 'user' => $user]);
     }
 
     /**
@@ -71,7 +89,7 @@ class HomeController extends AbstractController
      */
     public function createoffer(): Response
     {
-        return $this->render ('home/createoffer.html.twig');
+        return $this->render('home/createoffer.html.twig');
     }
 
     /**
@@ -79,7 +97,7 @@ class HomeController extends AbstractController
      */
     public function connect(): Response
     {
-        return $this->render ('home/connect.html.twig');
+        return $this->render('home/connect.html.twig');
     }
 
     /**
@@ -87,7 +105,7 @@ class HomeController extends AbstractController
      */
     public function passforget(): Response
     {
-        return $this->render ('home/passforget.html.twig');
+        return $this->render('home/passforget.html.twig');
     }
 
     /**
@@ -97,7 +115,7 @@ class HomeController extends AbstractController
     {
         $entityManager = $doctrine->getManager();
         $candidature = $entityManager->getRepository(Candidature::class)->findAll();
-        return $this->render ('home/allcandidatures.html.twig', ['candidature' => $candidature]);
+        return $this->render('home/allcandidatures.html.twig', ['candidature' => $candidature]);
     }
 
     /**
@@ -107,9 +125,8 @@ class HomeController extends AbstractController
     {
         $entityManager = $doctrine->getManager();
         $user = $entityManager->getRepository(User::class)->findAll();
-        return $this->render ('home/alluser.html.twig', ['user' => $user]);
+        return $this->render('home/alluser.html.twig', ['user' => $user]);
     }
-
 
 
 }
