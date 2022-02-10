@@ -166,7 +166,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="drop-zone">
-                                <span class="drop-zone__prompt">Cliquez pour parcourir ou glissez votre document</span>
+                                <span class="drop-zone__prompt" >Cliquez pour parcourir ou glissez votre document</span>
                                 {{ form_row(formUpload.namePdf, {'attr': {'class': 'drop-zone__input'}}) }}
                             </div>
                         </div>
@@ -184,6 +184,7 @@
 
 
     <script>
+
         document.querySelectorAll(".drop-zone__input").forEach((inputElement) => {
             const dropZoneElement = inputElement.closest(".drop-zone");
 
@@ -255,6 +256,9 @@
                 thumbnailElement.style.backgroundImage = null;
             }
         }
+
+    </script>
+    <script>
 
     </script>
 {% endblock %}
