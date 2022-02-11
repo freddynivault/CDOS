@@ -14,7 +14,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 
 class RegistrationController extends AbstractController
@@ -28,7 +27,7 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            return $this->createUser($user, $userPasswordHasher, $form, $entityManager, $userAuthenticator, $authenticator, $request);
+            return $this->createUser($user, $userPasswordHasher, $form, $entityManager, $userAuthenticator, $authenticator, $request, false);
         }
 
         return $this->render('registration/register.html.twig', [
@@ -45,7 +44,7 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            return $this->createUser($user, $userPasswordHasher, $form, $entityManager, $userAuthenticator, $authenticator, $request);
+            return $this->createUser($user, $userPasswordHasher, $form, $entityManager, $userAuthenticator, $authenticator, $request, true);
         }
 
         return $this->render('registration/superAdminRegister.html.twig', [
@@ -63,7 +62,7 @@ class RegistrationController extends AbstractController
      * @param Request $request
      * @return Response|null
      */
-    public function createUser(User $user, UserPasswordHasherInterface $userPasswordHasher, FormInterface $form, EntityManagerInterface $entityManager, UserAuthenticatorInterface $userAuthenticator, UserAuthenticator $authenticator, Request $request): ?Response
+    public function createUser(User $user, UserPasswordHasherInterface $userPasswordHasher, FormInterface $form, EntityManagerInterface $entityManager, UserAuthenticatorInterface $userAuthenticator, UserAuthenticator $authenticator, Request $request, bool $isSuperAdmin): ?Response
     {
         $user->setPassword(
             $userPasswordHasher->hashPassword(
@@ -71,16 +70,21 @@ class RegistrationController extends AbstractController
                 $form->get('password')->getData(),
             )
         );
-        $user->setRoles(array($form->get('role')->getData()));
+        $role = array($form->get('role')->getData());
+        $user->setRoles($role);
 
         $entityManager->persist($user);
         $entityManager->flush();
         // do anything else you need here, like send an email
 
-        return $userAuthenticator->authenticateUser(
-            $user,
-            $authenticator,
-            $request
-        );
+        if (!$isSuperAdmin)
+        {
+            return $userAuthenticator->authenticateUser(
+                $user,
+                $authenticator,
+                $request
+            );
+        }
+        return $this->redirectToRoute('app_alluser');
     }
 }
