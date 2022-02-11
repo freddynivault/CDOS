@@ -10,7 +10,7 @@
                 <div class="card_body">
                     <div class="row d-flex">
                         <div class="col-sm-4 createSegment">
-                           <h4 >Liste des candidatures pour vos offres</h4>
+                            <h4 >Liste des candidatures pour vos offres</h4>
                         </div>
                         <div class="col-sm-8 add_flex">
                             <div class="form-group searchInput">
@@ -29,28 +29,28 @@
                                 <th style="min-width:150px;">Email Candidat</th>
 
                             <tbody>
-                                {% for candidature in candidature %}
-                                    {% if candidature.offer == offer %}
-                                        <tr>
-                                            <td>
-                                                <div class="btn-group consult">
-                                                    <abbr title="Consulter"><a
-                                                                href="{{ path ('app_displayapply',{id : candidature.id}) }}"><i
-                                                                    class="bi bi-eye-fill" href="#"></i></a></abbr>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <b>{{ offer.titre }}</b>
-                                            </td>
-                                            <td>
-                                                {{ candidature.user.lastname ~ ' ' ~ candidature.user.firstname }}
-                                            </td>
-                                            <td>
-                                                {{ candidature.user.email }}
-                                            </td>
-                                        </tr>
-                                    {% endif %}
-                                {% endfor %}
+                            {% for candidature in candidature %}
+                                {% if candidature.offer.iduser == user %}
+                                    <tr>
+                                        <td>
+                                            <div class="btn-group consult">
+                                                <abbr title="Consulter"><a
+                                                            href="{{ path ('app_displayapply',{id : candidature.id}) }}"><i
+                                                                class="bi bi-eye-fill" href="#"></i></a></abbr>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <b>{{ candidature.offer.titre }}</b>
+                                        </td>
+                                        <td>
+                                            {{ candidature.user.lastname ~ ' ' ~ candidature.user.firstname }}
+                                        </td>
+                                        <td>
+                                            {{ candidature.user.email }}
+                                        </td>
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
                             </tbody>
                         </table>
                     </div>

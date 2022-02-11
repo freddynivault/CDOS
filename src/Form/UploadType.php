@@ -37,7 +37,9 @@ class UploadType extends AbstractType
 
                 'label' => false,
                 'mapped' => false, // Tell that there is no Entity to link
-                'required' => true,
+                'attr' => [
+                    'id' => 'draganddropcreate',
+                ],
                 'constraints' => [
                     new File([
                         'mimeTypes' => [ // We want to let upload only txt, csv or Excel files
@@ -61,7 +63,6 @@ class UploadType extends AbstractType
 
                 'label' => false,
                 'mapped' => false, // Tell that there is no Entity to link
-                'required' => true,
                 'constraints' => [
                     new File([
                         'mimeTypes' => [ // We want to let upload only txt, csv or Excel files

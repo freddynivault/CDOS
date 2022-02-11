@@ -32,31 +32,42 @@ class UploadController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+
             $file = $form->get('namePdf')->getData();
-            $fileName = md5(uniqid()) . '.' . $file->guessExtension();
-            $file->move($this->getParameter('upload_directory'), $fileName);
-            $upload->setNamepdf($fileName);
+            if ($file == null) {
+                $message = 'Veuillez ajouter un l\'offre au format PDF en bas de la page';
+                echo '<script type="text/javascript">window.confirm("'.$message.'");</script>';
+            }
+            else {
+                $fileName = md5(uniqid()) . '.' . $file->guessExtension();
+                $file->move($this->getParameter('upload_directory'), $fileName);
+                $upload->setNamepdf($fileName);
+
+                $user = $this->getUser();
+                $upload->setIdUser($user);
 
 
-            $user = $this->getUser();
-            $upload->setIdUser($user);
+                $logo = $form->get('logoStructure')->getData();
+                if ($logo == null){
+                    $message = 'Veuillez ajouter un logo pour la structure';
+                    echo '<script type="text/javascript">window.confirm("'.$message.'");</script>';
+                }
+                else {
+                    $logoName = md5(uniqid()) . '.' . $logo->guessExtension();
+                    $logo->move($this->getParameter('upload_directory'), $logoName);
+                    $upload->setLogoStructure($logoName);
 
 
-            $logo = $form->get('logoStructure')->getData();
-            $logoName = md5(uniqid()) . '.' . $logo->guessExtension();
-            $logo->move($this->getParameter('upload_directory'), $logoName);
-            $upload->setLogoStructure($logoName);
+                    $upload->setStatut('Initial');
+
+                    $upload->setNombreCandidature('0');
 
 
-
-            $upload->setStatut('Initial');
-
-            $upload->setNombreCandidature('0');
-
-
-            $entityManager->persist($upload);
-            $entityManager->flush();
-            return $this->redirectToRoute('app_offersadmin');
+                    $entityManager->persist($upload);
+                    $entityManager->flush();
+                    return $this->redirectToRoute('app_offersadmin');
+                }
+            }
         }
 
 
@@ -78,7 +89,7 @@ class UploadController extends AbstractController
         $offers = $entityManager->getRepository(Offer::class)->findAll();
 
 
-        return $this->render('home/listofferAdmin.html.twig', ['offer' => $offers, 'user'=> $user]);
+        return $this->render('home/listofferAdmin.html.twig', ['offer' => $offers, 'user' => $user]);
 
     }
 

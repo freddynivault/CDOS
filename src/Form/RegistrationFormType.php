@@ -24,9 +24,7 @@ class RegistrationFormType extends AbstractType
                     'Candidat' => 'ROLE_CANDIDAT',
                     'Admin Structure' => 'ROLE_ADMIN_STRUCTURE',
                 ],
-                'attr' => [
-                    'id' => 'registration_form_role',
-                ],
+
             ])
             ->add('email', EmailType::class, [
                 'label' => false,

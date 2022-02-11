@@ -64,8 +64,47 @@ class CandidatureController extends AbstractController
     {
         $entityManager = $doctrine->getManager();
         $candidature = $entityManager->getRepository(Candidature::class)->find($id);
-        dump($id);
-        dump($candidature);
+
         return $this->render ('candidature/candidature.html.twig', ['candidature' => $candidature]);
+    }
+
+    /**
+     * @Route("/displayall", name="app_displayall")
+     */
+    public function displayall(ManagerRegistry $doctrine): Response
+    {
+        $entityManager = $doctrine->getManager();
+        $candidature = $entityManager->getRepository(Candidature::class)->findAll();
+        $user = $this->getUser();
+
+        return $this->render ('home/listallcandidature.html.twig', ['candidature' => $candidature, 'user'=>$user]);
+    }
+
+    /**
+     * @Route("/myapply", name="app_mescandidatures")
+     */
+    public function myapply(ManagerRegistry $doctrine): Response
+    {
+        $entityManager = $doctrine->getManager();
+        $candidature = $entityManager->getRepository(Candidature::class)->findAll();
+        $user = $this->getUser();
+
+        return $this->render ('home/mescandidatures.html.twig', ['candidature' => $candidature, 'user'=>$user]);
+    }
+
+    #[Route('/deletecandidature/{id}', name: 'app_delete_candidature')]
+    public function DeleteOffer(ManagerRegistry $doctrine, int $id): Response
+    {
+        $user = $this->getUser();
+        $entityManager = $doctrine->getManager();
+        $candidature = $entityManager->getRepository(Candidature::class)->find($id);
+
+        $entityManager->remove($candidature);
+        $entityManager->flush();
+        $candidature = $entityManager->getRepository(Candidature::class)->findAll();
+
+
+        return $this->render('home/mescandidatures.html.twig', ['candidature' => $candidature, 'user'=> $user]);
+
     }
 }
