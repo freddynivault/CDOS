@@ -48,11 +48,33 @@ class CandidatureController extends AbstractController
             $offer->setNombreCandidature($nbCandidature);
 
 
+            $candidatureuser = $entityManager->getRepository(Candidature::class)->findall();
 
-            $entityManager->persist($candidature);
-            $entityManager->flush();
+            $flag = false;
+            dump($candidatureuser);
+            if($candidatureuser != null) {
+                dump($candidatureuser);
+                for ($i = 0; $i <= count($candidatureuser)-1; $i++) {
+                    $offre = $candidatureuser[$i]->getOffer();
+                    $candidat = $candidatureuser[$i]->getUser();
+                    if ($offre == $offer && $candidat == $user) {
+                        $flag = true;
+                    }
 
-            return $this->redirectToRoute('app_offers');
+                }
+            }
+            dump($flag);
+            if(!$flag) {
+                $entityManager->persist($candidature);
+                $entityManager->flush();
+                return $this->redirectToRoute('app_offers');
+            }
+            else {
+                $message = 'Vous avez deja postulé pour cette offre !';
+                echo '<script type="text/javascript">window.confirm("' . $message . '");</script>';
+            }
+
+
         }
        return $this->render ('home/viewjoboffer.html.twig', ['offer' => $offer, 'formCandidate' => $form->createView(), ]);
 
