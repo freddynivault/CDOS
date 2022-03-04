@@ -27,6 +27,7 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             return $this->createUser($user, $userPasswordHasher, $form, $entityManager, $userAuthenticator, $authenticator, $request, false);
         }
 
@@ -72,6 +73,21 @@ class RegistrationController extends AbstractController
         );
         $role = array($form->get('role')->getData());
         $user->setRoles($role);
+
+        if($role[0] == "ROLE_ADMIN_STRUCTURE"){
+            $user->setFirstName(null);
+            $user->setLastName(null);
+        }
+        elseif ($role[0] == "ROLE_CANDIDAT"){
+            $user->setNomStructure(null);
+            $user->setDescriptionStructure(null);
+        }
+        elseif ($role[0] == "ROLE_SUPER_ADMIN"){
+            $user->setNomStructure(null);
+            $user->setDescriptionStructure(null);
+            $user->setFirstName(null);
+            $user->setLastName(null);
+        }
 
         $entityManager->persist($user);
         $entityManager->flush();
