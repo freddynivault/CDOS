@@ -2,12 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\UploadRepository;
+use App\Repository\OfferRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass=UploadRepository::class)
+ * @ORM\Entity(repositoryClass=OfferRepository::class)
  */
 class Offer
 {

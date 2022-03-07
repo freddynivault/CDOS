@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\RegistrationFormType;
-use App\Form\SuperAdminRegistrationFormType;
+use App\Form\SuperAdminSuperAdminRegistrationFormType;
 use App\Security\UserAuthenticator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -41,7 +41,7 @@ class RegistrationController extends AbstractController
     {
         $user = new User();
 
-        $form = $this->createForm(SuperAdminRegistrationFormType::class, $user);
+        $form = $this->createForm(SuperAdminSuperAdminRegistrationFormType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

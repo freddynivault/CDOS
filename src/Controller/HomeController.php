@@ -3,13 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\Candidature;
-use App\Entity\Upload;
+use App\Entity\Offer;
 use App\Entity\User;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class HomeController extends AbstractController
 {
@@ -19,7 +18,7 @@ class HomeController extends AbstractController
     public function home(ManagerRegistry $doctrine): Response
     {
         $entityManager = $doctrine->getManager();
-        $offer = $entityManager->getRepository(Upload::class)->findAll();
+        $offer = $entityManager->getRepository(Offer::class)->findAll();
         $candidature = $entityManager->getRepository(Candidature::class)->findAll();
         $user = $entityManager->getRepository(User::class)->findAll();
         $nboffer = count($offer);
@@ -33,32 +32,7 @@ class HomeController extends AbstractController
                 $nbuser++;
             }
         }
-
-
         return $this->render('home/index.html.twig', ['offer' => $nboffer, 'candidature' => $nbcandidature, 'user' => $nbuser]);
-
-
-    }
-
-    /**
-     * @Route("/listoffer", name="app_offers")
-     */
-    public function offer(ManagerRegistry $doctrine): Response
-    {
-        $entityManager = $doctrine->getManager();
-        $offer = $entityManager->getRepository(Upload::class)->findAll();
-        return $this->render('home/listoffer.html.twig', ['offer' => $offer]);
-    }
-
-    /**
-     * @Route("/viewoffer/{id}", name="app_viewoffer")
-     */
-    public function viewOffer(ManagerRegistry $doctrine, int $id): Response
-    {
-        $user = $this->getUser();
-        $entityManager = $doctrine->getManager();
-        $offer = $entityManager->getRepository(Upload::class)->find($id);
-        return $this->render('home/viewjoboffer.html.twig', ['offer' => $offer, 'user' => $user]);
     }
 
     /**
@@ -68,28 +42,8 @@ class HomeController extends AbstractController
     {
         $entityManager = $doctrine->getManager();
         $candidature = $entityManager->getRepository(Candidature::class)->findAll();
-        $offer = $entityManager->getRepository(Upload::class)->find($id);
+        $offer = $entityManager->getRepository(Offer::class)->find($id);
         return $this->render('home/listcandidature.html.twig', ['candidature' => $candidature, 'offer' => $offer]);
-    }
-
-
-    /**
-     * @Route("/listofferAdmin", name="app_offersadmin")
-     */
-    public function offerAdmin(ManagerRegistry $doctrine): Response
-    {
-        $user = $this->getUser();
-        $entityManager = $doctrine->getManager();
-        $offer = $entityManager->getRepository(Upload::class)->findAll();
-        return $this->render('home/listofferAdmin.html.twig', ['offer' => $offer, 'user' => $user]);
-    }
-
-    /**
-     * @Route("/createoffer", name="app_createoffer")
-     */
-    public function createoffer(): Response
-    {
-        return $this->render('home/createoffer.html.twig');
     }
 
     /**
@@ -127,6 +81,4 @@ class HomeController extends AbstractController
         $user = $entityManager->getRepository(User::class)->findAll();
         return $this->render('home/alluser.html.twig', ['user' => $user]);
     }
-
-
 }

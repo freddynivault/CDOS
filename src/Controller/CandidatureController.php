@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Candidature;
-use App\Entity\Upload;
+use App\Entity\Offer;
 use App\Form\CandidatureType;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
@@ -19,8 +19,7 @@ class CandidatureController extends AbstractController
     public function candidateOffer(Request $request, EntityManagerInterface $entity, ManagerRegistry $doctrine, int $id): Response
     {
         $entityManager = $doctrine->getManager();
-        $offer = $entityManager->getRepository(Upload::class)->find($id);
-
+        $offer = $entityManager->getRepository(Offer::class)->find($id);
 
         $candidature= new Candidature();
 
@@ -38,7 +37,6 @@ class CandidatureController extends AbstractController
             $file->move($this->getParameter('upload_directory'), $fileName);
             $candidature->setLettreMotivation($fileName);
 
-
             $user = $this->getUser();
             $candidature->setUser($user);
             $candidature->setOffer($offer);
@@ -46,7 +44,6 @@ class CandidatureController extends AbstractController
             $nbCandidature = $offer->getNombreCandidature();
             $nbCandidature = $nbCandidature +1;
             $offer->setNombreCandidature($nbCandidature);
-
 
             $candidatureuser = $entityManager->getRepository(Candidature::class)->findall();
 
