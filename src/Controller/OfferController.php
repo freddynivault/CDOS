@@ -11,9 +11,17 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-
+/**
+ * Cette classe a pour but de gérer les offres. Leur ajout, leur création, et leur affichage
+ */
 class OfferController extends AbstractController
 {
+    /**
+     * @param Request $request
+     * @param EntityManagerInterface $entityManager
+     * @return Response
+     * Cette fonction a pour but d'ajouter une nouvelle offre.
+     */
     #[Route('/addoffer', name: 'app_addoffer')]
     public function addoffer(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -34,6 +42,7 @@ class OfferController extends AbstractController
 
     /**
      * @Route("/listofferAdmin", name="app_offersadmin")
+     * Cette fonction a pour but d'afficher touyte les offres pour le super admin
      */
     public function offerAdmin(ManagerRegistry $doctrine): Response
     {
@@ -45,6 +54,7 @@ class OfferController extends AbstractController
 
     /**
      * @Route("/createoffer", name="app_createoffer")
+     * Cette fonction a pour but d'emmener à la page de création d'offre
      */
     public function createoffer(): Response
     {
@@ -53,6 +63,7 @@ class OfferController extends AbstractController
 
     /**
      * @Route("/listoffer", name="app_offers")
+     * Cette fonction a pour but d'afficher les offres pour les candidats
      */
     public function offer(ManagerRegistry $doctrine): Response
     {
@@ -63,6 +74,7 @@ class OfferController extends AbstractController
 
     /**
      * @Route("/viewoffer/{id}", name="app_viewoffer")
+     * Cette fonction a pour but d'afficher une offre précise.
      */
     public function viewOffer(ManagerRegistry $doctrine, int $id): Response
     {

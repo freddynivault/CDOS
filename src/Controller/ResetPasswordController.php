@@ -19,6 +19,10 @@ use SymfonyCasts\Bundle\ResetPassword\Controller\ResetPasswordControllerTrait;
 use SymfonyCasts\Bundle\ResetPassword\Exception\ResetPasswordExceptionInterface;
 use SymfonyCasts\Bundle\ResetPassword\ResetPasswordHelperInterface;
 
+/**
+ * Cette class permet le controle de la mise à jour du mot de passe. Elle est auto générer par le bundle resetPassword de symfony.
+ * Nous n'avons fait aucune modificationà ce controller.
+ */
 #[Route('/reset-password')]
 class ResetPasswordController extends AbstractController
 {
@@ -167,7 +171,7 @@ class ResetPasswordController extends AbstractController
         ;
 
         $mailer->send($email);
-
+        dump($email);
         // Store the token object in session for retrieval in check-email route.
         $this->setTokenObjectInSession($resetToken);
 

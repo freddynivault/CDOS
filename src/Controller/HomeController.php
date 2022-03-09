@@ -10,9 +10,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * Cette classe contient les fonctions pour afficher les pages d'acceuil ainsi que les fonction du super admin
+ */
 class HomeController extends AbstractController
 {
     /**
+     * Cette fonction affiche la page d'acceuil, qui contient des compteur sur le nombre d'offre,
+     * de condidature et de structure disponible sur le site
      * @Route("/", name="app_home")
      */
     public function home(ManagerRegistry $doctrine): Response
@@ -35,19 +40,11 @@ class HomeController extends AbstractController
         return $this->render('home/index.html.twig', ['offer' => $nboffer, 'candidature' => $nbcandidature, 'user' => $nbuser]);
     }
 
-    /**
-     * @Route("/listcandidature/{id}", name="app_apply")
-     */
-    public function apply(int $id, ManagerRegistry $doctrine): Response
-    {
-        $entityManager = $doctrine->getManager();
-        $candidature = $entityManager->getRepository(Candidature::class)->findAll();
-        $offer = $entityManager->getRepository(Offer::class)->find($id);
-        return $this->render('home/listcandidature.html.twig', ['candidature' => $candidature, 'offer' => $offer]);
-    }
+
 
     /**
      * @Route("/connect", name="app_connect")
+     * Cette fonction permet d'afficher la page de connection
      */
     public function connect(): Response
     {
@@ -56,6 +53,7 @@ class HomeController extends AbstractController
 
     /**
      * @Route("/passforget", name="app_passforget")
+     * Cette fonction permet d'afficher la page de mot de passe oublié
      */
     public function passforget(): Response
     {
@@ -64,6 +62,7 @@ class HomeController extends AbstractController
 
     /**
      * @Route("/allcandidature", name="app_allcandidature")
+     * Cette fonction permet d'afficher toute les candidature du site
      */
     public function allcandidature(ManagerRegistry $doctrine): Response
     {
@@ -74,6 +73,7 @@ class HomeController extends AbstractController
 
     /**
      * @Route("/alluser", name="app_alluser")
+     * Cette fonction permet d'afficher tous les users du site
      */
     public function alluser(ManagerRegistry $doctrine): Response
     {

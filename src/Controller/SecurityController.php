@@ -7,10 +7,14 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
+/**
+ * Cette class a pour but de gérer la sécurité du site. Il est auto généré avec le Package security de symfony. Nous n'avons pas modifier cette class
+ */
 class SecurityController extends AbstractController
 {
     /**
      * @Route("/login", name="app_login")
+     * Cette fonction permet de se logger sur le site.
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
@@ -28,6 +32,7 @@ class SecurityController extends AbstractController
 
     /**
      * @Route("/logout", name="app_logout")
+     * Cette fonction permet de se déconnecter du site
      */
     public function logout(): void
     {

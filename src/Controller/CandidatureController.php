@@ -13,8 +13,20 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * Cette classe a poyur but de gérer les candidature. L'affichage et l'ajout.
+ */
 class CandidatureController extends AbstractController
 {
+    /**
+     * @param Request $request
+     * @param EntityManagerInterface $entity
+     * @param ManagerRegistry $doctrine
+     * @param int $id
+     * @return Response
+     *
+     * Cette fonction a pour but d'ajouter une candidature
+     */
     #[Route('/postuler/{id}', name: 'app_candidature')]
     public function candidateOffer(Request $request, EntityManagerInterface $entity, ManagerRegistry $doctrine, int $id): Response
     {
@@ -27,6 +39,7 @@ class CandidatureController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            //Cette partie permet la récupération des deux fichiers
             $file = $form->get('cv')->getData();
             $fileName = md5(uniqid()) . '.' . $file->guessExtension();
             $file->move($this->getParameter('upload_directory'), $fileName);
@@ -36,15 +49,16 @@ class CandidatureController extends AbstractController
             $fileName = md5(uniqid()) . '.' . $file->guessExtension();
             $file->move($this->getParameter('upload_directory'), $fileName);
             $candidature->setLettreMotivation($fileName);
-
+            // Cette partie permet de fixer le candidat qui pose l'offre et l'offre que laquelle la candidature est faite
             $user = $this->getUser();
             $candidature->setUser($user);
             $candidature->setOffer($offer);
 
+            // Cela permet de mettre à jour les champs qui doivent l'etre, soit le nombre de candidature sur une offre
             $nbCandidature = $offer->getNombreCandidature();
             $nbCandidature = $nbCandidature +1;
             $offer->setNombreCandidature($nbCandidature);
-
+            //Cette partie permet de s'assurer que le candidat ne pose pas de candidature sur une offre sur laquelle il a deja candidater
             $candidatureuser = $entityManager->getRepository(Candidature::class)->findall();
 
             $flag = false;
@@ -76,7 +90,9 @@ class CandidatureController extends AbstractController
        return $this->render ('home/viewjoboffer.html.twig', ['offer' => $offer, 'formCandidate' => $form->createView(), ]);
 
     }
+
     /**
+     * Cette fonction a pour but de montrer une candidature précise
      * @Route("/displayapply/{id}", name="app_displayapply")
      */
     public function displayapply(int $id, ManagerRegistry $doctrine): Response
@@ -88,6 +104,7 @@ class CandidatureController extends AbstractController
     }
 
     /**
+     * Cette fonction a pour but d'afficher toutes les candidature dans une datatable
      * @Route("/displayall", name="app_displayall")
      */
     public function displayall(ManagerRegistry $doctrine): Response
@@ -100,6 +117,7 @@ class CandidatureController extends AbstractController
     }
 
     /**
+     * Cette fonction a pour but d'afficher les candidature d'un candidat précis
      * @Route("/myapply", name="app_mescandidatures")
      */
     public function myapply(ManagerRegistry $doctrine): Response
@@ -111,6 +129,12 @@ class CandidatureController extends AbstractController
         return $this->render ('home/mescandidatures.html.twig', ['candidature' => $candidature, 'user'=>$user]);
     }
 
+    /**
+     * @param ManagerRegistry $doctrine
+     * @param int $id
+     * @return Response
+     * Cette fonction a pour but de supprimer une candidature. Elle renvoit sur la liste des candidatures
+     */
     #[Route('/deletecandidature/{id}', name: 'app_delete_candidature')]
     public function DeleteOffer(ManagerRegistry $doctrine, int $id): Response
     {
@@ -125,5 +149,16 @@ class CandidatureController extends AbstractController
 
         return $this->render('home/mescandidatures.html.twig', ['candidature' => $candidature, 'user'=> $user]);
 
+    }
+
+    /**
+     * @Route("/listcandidature/{id}", name="app_apply")
+     */
+    public function apply(int $id, ManagerRegistry $doctrine): Response
+    {
+        $entityManager = $doctrine->getManager();
+        $candidature = $entityManager->getRepository(Candidature::class)->findAll();
+        $offer = $entityManager->getRepository(Offer::class)->find($id);
+        return $this->render('home/listcandidature.html.twig', ['candidature' => $candidature, 'offer' => $offer]);
     }
 }
